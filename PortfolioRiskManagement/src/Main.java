@@ -12,7 +12,7 @@ public class Main {
 		
 		String[] symbols = {"GSPC","AAPL"};
 		YahooData yahooData = new YahooData(symbols);
-		//
+		
 			
 			double[] obs = new double[100];
 			double bandWidth = 0.004;
