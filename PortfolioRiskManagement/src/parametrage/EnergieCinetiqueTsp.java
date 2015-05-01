@@ -12,11 +12,11 @@ import modele.Routage;
 public class EnergieCinetiqueTsp extends EnergieCinetique {
 	
 /**
- * Calcule les sommes de produits spiniques dans la particule à partir des matrices d'Ising de chaque réplique. Cela correspond à l'énergie cinétique, sans prendre en compte J
+ * Calcule les sommes de produits spiniques dans la particule Ã© partir des matrices d'Ising de chaque rÃ©plique. Cela correspond Ã© l'Ã©nergie cinÃ©tique, sans prendre en compte J
  * @param p
  * Particule sur laquelle on calcule la somme des produits spiniques
  * @return
- * La somme des produits spiniques entre répliques de la particule (Ecin sans J)
+ * La somme des produits spiniques entre rÃ©pliques de la particule (Ecin sans J)
  */
 public static double calculerCompteurSpinique(ParticuleTSP p){
 		
@@ -43,13 +43,13 @@ public static double calculerCompteurSpinique(ParticuleTSP p){
 	}
 	
 	/**
-	 * Calcule l'énergie cinétique de la particule pour TSP. 
+	 * Calcule l'Ã©nergie cinÃ©tique de la particule pour TSP. 
 	 * @param p
-	 * ParticuleTSP sur laquelle on calcule l'énergie cinétique
+	 * ParticuleTSP sur laquelle on calcule l'Ã©nergie cinÃ©tique
 	 * @param J
-	 * Ponderation qui entre dans le calcul de l'énergie cinétique
+	 * Ponderation qui entre dans le calcul de l'Ã©nergie cinÃ©tique
 	 * @return
-	 * Energie Cinétique de la particule
+	 * Energie CinÃ©tique de la particule
 	 */
 	public static double calculer(ParticuleTSP p, Ponderation J){
 		int n = p.getEtat().size();

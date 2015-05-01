@@ -5,25 +5,25 @@ public class ParametreK {
 	double K =1;
 	
 	/**
-	 * Construit un paramètre K intervenant dans la probabilité d'acceptation de l'état muté. En génral, dans QA, K = 1
+	 * Construit un paramÃ©tre K intervenant dans la probabilitÃ© d'acceptation de l'Ã©tat mutÃ©. En gÃ©nral, dans QA, K = 1
 	 * @param e
-	 * Valeur numérique de K
+	 * Valeur numÃ©rique de K
 	 */
 	public ParametreK(double e){
 		this.K = e;
 	}
 	/**
 	 * @return
-	 * Retourne la valeur numérique de K
+	 * Retourne la valeur numÃ©rique de K
 	 */
 	public double getK(){
 		return this.K;
 	}
 
 	/**
-	 * Permet d'établir la nouvelle valeur numérique de K
+	 * Permet d'Ã©tablir la nouvelle valeur numÃ©rique de K
 	 * @param e
-	 * Nouvelle valeur numérique de K
+	 * Nouvelle valeur numÃ©rique de K
 	 */
 	public void setK(double e){
 		this.K = e;

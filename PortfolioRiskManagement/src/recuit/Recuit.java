@@ -30,16 +30,16 @@ public class Recuit extends JFrame
 	static ParametreK K = new ParametreK(1);
 
 	/**
-	 * Methode qui calcule la probabilité d'acceptation d'un état muté. 
-	 * Elle est utilisée dans la methode solution qui effectue le recuit.
+	 * Methode qui calcule la probabilitÃ© d'acceptation d'un Ã©tat mutÃ©. 
+	 * Elle est utilisÃ©e dans la methode solution qui effectue le recuit.
 	 * @param deltaE
 	 * Variation de H
 	 * @param deltaEpot
 	 * Variation de H potentiel
 	 * @param temperature
-	 * Température du recuit
+	 * TempÃ©rature du recuit
 	 * @return
-	 * Probabilité (entre 0 et 1) d'effectuer la mutation
+	 * ProbabilitÃ© (entre 0 et 1) d'effectuer la mutation
 	 * @throws IOException
 	 */
 	public static double probaAcceptation(double deltaE, double deltaEpot, Temperature temperature) throws IOException 
@@ -53,22 +53,20 @@ public class Recuit extends JFrame
 	
 	
 	/**
-	 * C'est la méthode qui effectue le recuit quantique. 
+	 * C'est la mÃ©thode qui effectue le recuit quantique. 
 	 * @param p
-	 * Problème construit par l'utilisateur
+	 * ProblÃ©me construit par l'utilisateur
 	 * @param m
-	 * Une mutation aléatoire correspondant au problème traité.
-	 * Les générations de mutation aléatoires au fil du recuit s'effectueront avec la méthode maj que l'utilisateur aura implémenté dans sa classe (voir IMutation)
+	 * Une mutation alÃ©atoire correspondant au problÃ©me traitÃ©.
+	 * Les gÃ©nÃ©rations de mutation alÃ©atoires au fil du recuit s'effectueront avec la mÃ©thode maj que l'utilisateur aura implÃ©mentÃ© dans sa classe (voir IMutation)
 	 * @param nombreIterations
-	 * Nombre d'iterations pour chaque réplique. Le nombre de répliques, on le rappelle, est défini dans Problème.
+	 * Nombre d'iterations pour chaque rÃ©plique. Le nombre de rÃ©pliques, on le rappelle, est dÃ©fini dans ProblÃ©me.
 	 * @param seed
 	 * Rentrer 1 en argument
 	 * @param M
-	 * Nombre de fois consécutives que l'on traite une réplique. Rentrer 1 pour une utilisation normale
-	 * @param sortie
-	 * Fichier .txt dans lequel on stocke le résultat final du recuit.
+	 * Nombre de fois consÃ©cutives que l'on traite une rÃ©plique. Rentrer 1 pour une utilisation normale
 	 * @return
-	 * Solution du recuit : la meilleure énergie rencontrée par la particule
+	 * Solution du recuit : la meilleure Ã©nergie rencontrÃ©e par la particule
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
@@ -131,7 +129,7 @@ public class Recuit extends JFrame
 						p.setEtat(e);
 						
 						Epot += deltapot/nombreEtat;
-						E += delta;// L'energie courante est modifiée
+						E += delta;// L'energie courante est modifiÃ©e
 						energie += deltapot;
 						
 						}

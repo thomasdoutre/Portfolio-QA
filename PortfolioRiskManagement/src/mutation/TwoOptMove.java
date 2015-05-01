@@ -14,7 +14,7 @@ public class TwoOptMove implements IMutation {
 	int j;
 
 	/**
-	 * Construit une mutation 2-opt aléatoire
+	 * Construit une mutation 2-opt alÃ©atoire
 	 * @param r
 	 * Route sur laquelle on veut muter
 	 */
@@ -50,22 +50,20 @@ public class TwoOptMove implements IMutation {
 	/**
 	 * Fait la mutation 2-opt sur un Routage et modifie sa matrice d'Ising
 	 * @param p
-	 * Probleme considéré
+	 * Probleme considÃ©rÃ©
 	 * @param e
 	 * Etat sur lequel on mute
-	 * @return 
-	 * Nouvel état après mutation 2-opt
 	 */
 	public void faire(Probleme p, Etat e) {
 
 		Routage routage = (Routage) e;
-		//Mise à jour d'Ising
+		//Mise Ã© jour d'Ising
 		int NodeI  = routage.getRoute().get(this.i);
 		int NodeBeforeI = routage.getRoute().get(routage.getPreviousIndex(this.i));
 		int NodeJ = routage.getRoute().get(this.j);
 		int NodeAfterJ = routage.getRoute().get(routage.getNextIndex(this.j));
 
-		//On modifie les spins concernes. La condition elimine un cas où twoOptMove ne modifie rien.
+		//On modifie les spins concernes. La condition elimine un cas oÃ© twoOptMove ne modifie rien.
 		if(routage.getNextIndex(this.j)!=this.i){
 			routage.disconnect(NodeBeforeI, NodeI);
 			routage.disconnect(NodeAfterJ, NodeJ);
@@ -98,7 +96,7 @@ public class TwoOptMove implements IMutation {
 
 
 	public double calculer(Probleme p, Etat e) {
-		// Cette méthode va calculer le delta potentiel engendré par la mutation
+		// Cette mÃ©thode va calculer le delta potentiel engendrÃ© par la mutation
 
 		Graphe g = ((ParticuleTSP)p).getGraphe();
 		Routage r = (Routage) e;

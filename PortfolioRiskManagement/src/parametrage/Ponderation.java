@@ -5,29 +5,29 @@ public class Ponderation {
 	/**
 	 * Construit un J(Gamma)
 	 * @param gamma
-	 * Paramètre Gamma correspondant
+	 * ParamÃ©tre Gamma correspondant
 	 */
 	public Ponderation(ParametreGamma gamma){
 		this.gamma=gamma;
 	}
 
 	/**
-	 * Permet d'établir un nouveau Gamma pour ce J
+	 * Permet d'Ã©tablir un nouveau Gamma pour ce J
 	 * @param gamma
-	 * Nouveau paramètre Gamma
+	 * Nouveau paramÃ©tre Gamma
 	 */
 	public void setGamma(ParametreGamma gamma){
 		this.gamma = gamma;
 	}
 	
 	/**
-	 * Calcule la valeur numérique de J (loi en ln tanh)
+	 * Calcule la valeur numÃ©rique de J (loi en ln tanh)
 	 * @param temperature
-	 * Température du recuit
+	 * TempÃ©rature du recuit
 	 * @param p
-	 * Coefficient Entier (fixé à la taille du problème dans le recuit)
+	 * Coefficient Entier (fixÃ© Ã© la taille du problÃ©me dans le recuit)
 	 * @return
-	 * Valeur numérique de J
+	 * Valeur numÃ©rique de J
 	 */
 	public double calcul(Temperature temperature, int p) {
 		double t = temperature.getValue();

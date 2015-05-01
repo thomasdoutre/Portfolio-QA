@@ -10,48 +10,46 @@ import modele.Probleme;
 public interface IMutation {
 	/**
 	 * Faire la mutation. Modifie la particule.
-	 * Dans le cas où la mutation porte sur une réplique à la fois, implémenter seulement faire(Probleme p, Etat e) 
-	 * L'utilisateur devra implémenter cette méthode dans la classe fille adaptée.
+	 * Dans le cas oÃ© la mutation porte sur une rÃ©plique Ã© la fois, implÃ©menter seulement faire(Probleme p, Etat e) 
+	 * L'utilisateur devra implÃ©menter cette mÃ©thode dans la classe fille adaptÃ©e.
 	 * @param p
 	 * Probleme sur lequel on mute (exemple : ParticuleTSP)
 	 */
 public void faire(Probleme p);
 	/**
-	 * Calcule la différence d'énergie apparue lors de la mutation.
-	 * Dans le cas où la mutation porte sur une réplique à la fois, retourner 0 et implémenter faire(Probleme p, Etat e) 
-	 * L'utilisateur devra implémenter cette méthode dans la classe fille adaptée.
+	 * Calcule la diffÃ©rence d'Ã©nergie apparue lors de la mutation.
+	 * Dans le cas oÃ© la mutation porte sur une rÃ©plique Ã© la fois, retourner 0 et implÃ©menter faire(Probleme p, Etat e) 
+	 * L'utilisateur devra implÃ©menter cette mÃ©thode dans la classe fille adaptÃ©e.
 	 * @param p
 	 * Probleme sur lequel on mute
 	 * @return
-	 * Valeur numérique de la différence d'énergie après mutation (sans pour autant muter !)
+	 * Valeur numÃ©rique de la diffÃ©rence d'Ã©nergie aprÃ©s mutation (sans pour autant muter !)
 	 */
 public double calculer(Probleme p);
 /**
- * Faire la mutation sur l'état e de la particule. Ex : faire(p,p.getEtat.get(0))
- * L'utilisateur devra implémenter cette méthode dans la classe fille adaptée
+ * Faire la mutation sur l'Ã©tat e de la particule. Ex : faire(p,p.getEtat.get(0))
+ * L'utilisateur devra implÃ©menter cette mÃ©thode dans la classe fille adaptÃ©e
  * @param p
- * Problème sur lequel on mute.
+ * ProblÃ©me sur lequel on mute.
  * @param e
  * Etat de la particule sur lequel la mutation a lieu
- * @return
- * Etat muté
  */
 public void faire(Probleme p, Etat e);
 /**
- * Calcule la différence d'energie suite à la mutation sur l'état e
- * L'utilisateur devra implémenter cette méthode dans la classe fille adaptée
+ * Calcule la diffÃ©rence d'energie suite Ã© la mutation sur l'Ã©tat e
+ * L'utilisateur devra implÃ©menter cette mÃ©thode dans la classe fille adaptÃ©e
  * @param p
- * Problème sur lequel on mute
+ * ProblÃ©me sur lequel on mute
  * @param e
  * Etat de la particule sur lequel la mutation a lieu.
  * @return
- * Différence d'énergie après mutation
+ * DiffÃ©rence d'Ã©nergie aprÃ©s mutation
  */
 public double calculer(Probleme p, Etat e);
 /**
- * Transforme la mutation courante en une autre mutation, de même type(même type d'objet) mais différente(arguments différents)
- * C'est en fait un générateur de mutation aléatoire,créant une mutation indépendante de la mutation traitée mais de même type : c'est un constructeur en fait
- * L'utilisateur devra implémenter cette méthode dans la classe fille adaptée
+ * Transforme la mutation courante en une autre mutation, de mÃ©me type(mÃ©me type d'objet) mais diffÃ©rente(arguments diffÃ©rents)
+ * C'est en fait un gÃ©nÃ©rateur de mutation alÃ©atoire,crÃ©ant une mutation indÃ©pendante de la mutation traitÃ©e mais de mÃ©me type : c'est un constructeur en fait
+ * L'utilisateur devra implÃ©menter cette mÃ©thode dans la classe fille adaptÃ©e
  */
 public void maj();
 }

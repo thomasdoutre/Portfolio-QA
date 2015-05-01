@@ -4,9 +4,9 @@ public class Temperature {
 	double value;
 	
 	/**
-	 * Construit un paramètre T
+	 * Construit un paramÃ©tre T
 	 * @param value
-	 * Valeur numérique le la température
+	 * Valeur numÃ©rique le la tempÃ©rature
 	 */
 	public Temperature(double value){
 		this.value = value;
@@ -14,16 +14,16 @@ public class Temperature {
 
 	/**
 	 * @return
-	 * Retourne la valeur numérique de la température
+	 * Retourne la valeur numÃ©rique de la tempÃ©rature
 	 */
 	public double getValue(){
 		return this.value;
 	}
 	
 	/**
-	 * Permet d'établir une nouvelle valeur numérique de T
+	 * Permet d'Ã©tablir une nouvelle valeur numÃ©rique de T
 	 * @param value
-	 * Nouvelle valeur numérique de T
+	 * Nouvelle valeur numÃ©rique de T
 	 */
 	public void setValue(double value){
 		this.value = value;

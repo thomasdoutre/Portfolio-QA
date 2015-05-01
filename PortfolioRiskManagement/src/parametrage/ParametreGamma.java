@@ -3,20 +3,20 @@ package parametrage;
 public class ParametreGamma {
 
 	/**
-	 * Gamma dÈbut
+	 * Gamma d√©but
 	 */
 	private double gamma;
 	private double facteur;
 	private double gammafin;
 	
 	/**
-	 * Construit un paramËtre Gamma
+	 * Construit un param√©tre Gamma
 	 * @param temp
-	 * C'est la rÈelle valeur numÈrique de Gamma.
+	 * C'est la r√©elle valeur num√©rique de Gamma.
 	 * @param froid
-	 * C'est le facteur de dÈcroissance exponentiel de Gamma.
+	 * C'est le facteur de d√©croissance exponentiel de Gamma.
 	 * @param temperaturefin
-	 * Lorsque le recuit se termine, on fait en sorte de s'arrÍter ‡ cette valeur.
+	 * Lorsque le recuit se termine, on fait en sorte de s'arr√©ter √© cette valeur.
 	 */
 	public ParametreGamma(double temp,double froid,double temperaturefin){
 		this.setGamma(temp);
@@ -27,16 +27,16 @@ public class ParametreGamma {
 // Get et Set de la temperature initiale
 	/**
 	 * @return
-	 * Retourne la valeur numÈrique de Gamma
+	 * Retourne la valeur num√©rique de Gamma
 	 */
 	public double getGamma() {
 		return this.gamma;
 	}
 
 	/**
-	 * Permet d'Ètablir la nouvelle valeur numÈrique de Gamma
+	 * Permet d'√©tablir la nouvelle valeur num√©rique de Gamma
 	 * @param temperature
-	 * Nouvelle valeur numÈrique de Gamma
+	 * Nouvelle valeur num√©rique de Gamma
 	 */
 	public void setGamma(double temperature) {
 		this.gamma = temperature;
@@ -51,7 +51,7 @@ public class ParametreGamma {
 	}
 	
 	/**
-	 * Permet d'Ètablir la nouvelle valeur finale de Gamma
+	 * Permet d'√©tablir la nouvelle valeur finale de Gamma
 	 * @param gammafin
 	 * Nouvelle valeur finale de Gamma
 	 */
@@ -60,14 +60,14 @@ public class ParametreGamma {
 	}
 //Get et Set du refroidissement, refroidissement de la temperature Recuit en exponentiel et lineaire
 	/**
-	 * Diminue la valeur de Gamma de maniËre exponentielle gr‚ce au facteur associÈ.
+	 * Diminue la valeur de Gamma de mani√©re exponentielle gr√©ce au facteur associ√©.
 	 */
 	public void refroidissementExp(){
 		this.gamma *= 1-this.facteur;
 	}
 	
 	/**
-	 * Diminue la valeur de Gamma de maniËre linÈaire gr‚ce au facteur associÈ. InutilisÈ pour le recuit.
+	 * Diminue la valeur de Gamma de mani√©re lin√©aire gr√©ce au facteur associ√©. Inutilis√© pour le recuit.
 	 */
 	public void refroidissementLin(){
 		this.gamma -= this.facteur;
@@ -75,16 +75,16 @@ public class ParametreGamma {
 
 	/**
 	 * @return
-	 * Retourne le facteur de dÈcroissance de Gamma
+	 * Retourne le facteur de d√©croissance de Gamma
 	 */
 	public double getFacteur() {
 		return this.facteur;
 	}
 
 	/**
-	 * Permet d'Ètablir le nouveau facteur de dÈcroissance de Gamma
+	 * Permet d'√©tablir le nouveau facteur de d√©croissance de Gamma
 	 * @param facteurDeRefroidissement
-	 * Nouveau facteur de dÈcroissance de Gamma
+	 * Nouveau facteur de d√©croissance de Gamma
 	 */
 	public void setFacteur(double facteurDeRefroidissement) {
 		this.facteur = facteurDeRefroidissement;

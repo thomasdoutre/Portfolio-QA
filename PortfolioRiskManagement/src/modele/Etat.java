@@ -8,8 +8,8 @@ import mutation.IMutation;
 import mutation.TwoOptMove;
 import parametrage.EnergiePotentielle;
 /**
- * Un etat a par défaut ses voisins definis a NULL, il doit etre modifié par l'utilisateur.
- * L'utilisateur se devra d'instancier Etat en une classe correspondant à son probleme.
+ * Un etat a par dÃ©faut ses voisins definis a NULL, il doit etre modifiÃ© par l'utilisateur.
+ * L'utilisateur se devra d'instancier Etat en une classe correspondant Ã© son probleme.
  * 
  */
 public class Etat {
@@ -31,7 +31,7 @@ public class Etat {
 	/**
 	 * 
 	 * @return
-	 * l'energie potentielle en tant que CLASS instanciée pour faciliter la représentation
+	 * l'energie potentielle en tant que CLASS instanciÃ©e pour faciliter la reprÃ©sentation
 	 */
 	public EnergiePotentielle getE(){
 		return this.epot;
@@ -55,7 +55,7 @@ public class Etat {
 	}
 	/**
 	 * @return
-	 * L'etat suivant dans la chaine liant les états
+	 * L'etat suivant dans la chaine liant les Ã©tats
 	 */
 	
 	public Etat getNext(){
@@ -63,7 +63,7 @@ public class Etat {
 	}
 	/**
 	 * @return
-	 * L'etat précédent dans la chaine liant les états
+	 * L'etat prÃ©cÃ©dent dans la chaine liant les Ã©tats
 	 */
 	public Etat getPrevious(){
 		return this.previous;
@@ -78,8 +78,8 @@ public class Etat {
 	}
 	
 	/**
-	 * L'utilisateur devra implementer la methode appropriée a son "type" d'etat
-	 * retourne 0 par défaut
+	 * L'utilisateur devra implementer la methode appropriÃ©e a son "type" d'etat
+	 * retourne 0 par dÃ©faut
 	 * @param e
 	 * Etat a calculer
 	 * @return
@@ -93,13 +93,13 @@ public class Etat {
 	
 
 	/**
-	 * Fonction dont le but est de construire une liste des deltaepot engendrés par une mutation élémentaire
+	 * Fonction dont le but est de construire une liste des deltaepot engendrÃ©s par une mutation Ã©lÃ©mentaire
 	 * @param p
-	 * instance du probleme étudié
+	 * instance du probleme Ã©tudiÃ©
 	 * @param m
 	 * mutation qui va induire les deltaEpot
 	 * @param longueurListeVoisins
-	 * Longueur desirée de la liste
+	 * Longueur desirÃ©e de la liste
 	 * @return
 	 * La liste des deltaEpot
 	 */

@@ -4,13 +4,13 @@ import modele.Graphe;
 
 public class ParametreurGamma {
 	
-	//Fonction réciproque à tanh
+	//Fonction rÃ©ciproque Ã© tanh
 	/**
-	 * Cette méthode permet le passage de J vers Gamma. Si J=f(Gamma), cette méthode correspond à la réciproque de f
+	 * Cette mÃ©thode permet le passage de J vers Gamma. Si J=f(Gamma), cette mÃ©thode correspond Ã© la rÃ©ciproque de f
 	 * @param x
-	 * Valeur numérique de la pondération
+	 * Valeur numÃ©rique de la pondÃ©ration
 	 * @return
-	 * Retourne le Gamma associé
+	 * Retourne le Gamma associÃ©
 	 */
 	public static double argth(double x){
 		return 0.5*Math.log((1+x)/(1-x)); 
@@ -18,20 +18,20 @@ public class ParametreurGamma {
 
 	// Ce parametreur donne les 3 attributs d'un parametre Gamma pour un recuit
 	// Il essaie de comparer l'influence d'une amelioration d'Epot et d'Ecin
-	// Etant donne un deltaE, le parametreur decrete qu'à la fin du recuit, une amelioration moyenne d'Ecin a la même influence qu'une amelioration deltaE/p.size() de Epot
-	// Le poids permet de faie varier linéairement l'influence d'une amelioration sur l'autre
+	// Etant donne un deltaE, le parametreur decrete qu'Ã© la fin du recuit, une amelioration moyenne d'Ecin a la mÃ©me influence qu'une amelioration deltaE/p.size() de Epot
+	// Le poids permet de faie varier linÃ©airement l'influence d'une amelioration sur l'autre
 	/**
-	 * Paramètre le Gamma pour le recuit. On fixe Jfin = deltaE/(4*P) et Jdeb = 100*Jfin. 
+	 * ParamÃ©tre le Gamma pour le recuit. On fixe Jfin = deltaE/(4*P) et Jdeb = 100*Jfin. 
 	 * @param nombreIterations
 	 * Nombre d'iterations du recuit
 	 * @param nombreEtat
-	 * Nombre de répliques pour le recuit
+	 * Nombre de rÃ©pliques pour le recuit
 	 * @param temp
-	 * Température du recuit
+	 * TempÃ©rature du recuit
 	 * @param deltaE
-	 * Delta d'énergie potentielle. Représente le deuxième décile de la distribution des deltaE pour le graphe considéré
+	 * Delta d'Ã©nergie potentielle. ReprÃ©sente le deuxiÃ©me dÃ©cile de la distribution des deltaE pour le graphe considÃ©rÃ©
 	 * @return
-	 * Le paramètre Gamma que l'on va utiliser pour le recuit
+	 * Le paramÃ©tre Gamma que l'on va utiliser pour le recuit
 	 */
 	public static ParametreGamma parametrageGamma( int nombreIterations,int nombreEtat,Temperature temp, double deltaE){
 		double t = temp.getValue();

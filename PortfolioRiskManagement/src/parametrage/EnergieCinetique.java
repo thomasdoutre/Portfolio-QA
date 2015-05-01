@@ -9,12 +9,12 @@ import modele.Particule;
  */
 public class EnergieCinetique {
 	/**
-	 * N'est pas utilisé en tant que tel. 
-	 * On calcule toujours une sous-énergie cinétique qui correspond à un certain problème.
-	 * L'utilisateur devra implémenter cette méthode dans la classe fille adaptée.
+	 * N'est pas utilisÃ© en tant que tel. 
+	 * On calcule toujours une sous-Ã©nergie cinÃ©tique qui correspond Ã© un certain problÃ©me.
+	 * L'utilisateur devra implÃ©menter cette mÃ©thode dans la classe fille adaptÃ©e.
 	 * Ex : EnergieCinetiqueTSP pour TSP
 	 * @param p
-	 * la particule sur laquelle on calcule l'énergie cinétique
+	 * la particule sur laquelle on calcule l'Ã©nergie cinÃ©tique
 	 * @return 0
 	 */
 public static double calculer(Particule p){	

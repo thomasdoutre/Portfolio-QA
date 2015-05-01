@@ -11,15 +11,15 @@ import mutation.IMutation;
 public class ParametreurT {
 	
 	/**
-	 * Renvoie la liste de 1000 deltaEpot triée. Permet le paramétrage de T (au 5e centile) et de Gamma (voir paramétreurGamma)
+	 * Renvoie la liste de 1000 deltaEpot triÃ©e. Permet le paramÃ©trage de T (au 5e centile) et de Gamma (voir paramÃ©treurGamma)
 	 * @param p
-	 * Problème en entrée du recuit
+	 * ProblÃ©me en entrÃ©e du recuit
 	 * @param m
 	 * Type de mutation que l'on traite
 	 * @param nombreIterations
-	 * Nombre d'itérations du recuit
+	 * Nombre d'itÃ©rations du recuit
 	 * @return
-	 * Liste triée de 1000 deltaEpot
+	 * Liste triÃ©e de 1000 deltaEpot
 	 */
 	public static List<Double> parametreurRecuit(Probleme p,IMutation m,int nombreIterations){
 		

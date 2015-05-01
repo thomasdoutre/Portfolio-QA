@@ -11,12 +11,12 @@ public  class EnergiePotentielle {
 
 
 	/**
-	 * N'est pas utilisé en tant que tel. 
-	 * On calcule toujours une sous-énergie potentielle qui correspond à un certain problème.
-	 * L'utilisateur devra implémenter cette méthode dans la classe fille adaptée.
+	 * N'est pas utilisÃ© en tant que tel. 
+	 * On calcule toujours une sous-Ã©nergie potentielle qui correspond Ã© un certain problÃ©me.
+	 * L'utilisateur devra implÃ©menter cette mÃ©thode dans la classe fille adaptÃ©e.
 	 * Ex : EnergiePotentielleTSP pour TSP
 	 * @param etat
-	 * l'etat sur lequel on calcule l'énergie potentielle
+	 * l'etat sur lequel on calcule l'Ã©nergie potentielle
 	 * @return 0
 	 */
 	public static double calculer(Etat etat){

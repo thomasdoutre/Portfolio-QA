@@ -21,15 +21,15 @@ public class Swap implements IMutation {
 	}
 
 	/**
-	 * Seule méthode utilisée dans la classe Swap. 
-	 * Swap désigne une mutation TSP qui consiste à échanger deux noeuds de la route.
-	 * Cette méthode effectue cette mutation sur un Routage
+	 * Seule mÃ©thode utilisÃ©e dans la classe Swap. 
+	 * Swap dÃ©signe une mutation TSP qui consiste Ã© Ã©changer deux noeuds de la route.
+	 * Cette mÃ©thode effectue cette mutation sur un Routage
 	 * @param r
 	 * Routage sur lequel on mute
 	 * @param i
-	 * Indice du premier noeud échangé
+	 * Indice du premier noeud Ã©changÃ©
 	 * @param j
-	 * Indice du second noeud échangé
+	 * Indice du second noeud Ã©changÃ©
 	 */
 	public static void faire(Routage r , int i,int j){
 

@@ -56,7 +56,7 @@ public class ParticuleTSP extends Probleme {
 		}
 		return tab;
 	}
-	 //Universel mais ne marche pas, à corriger
+	 //Universel mais ne marche pas, Ã© corriger
 
 	
 	//Moins de calcul que la methode precedente
@@ -86,7 +86,7 @@ public class ParticuleTSP extends Probleme {
 			cptspin += avant.valueIsing(NodeBeforeI,NodeJ) + apres.valueIsing(NodeBeforeI,NodeJ);
 			cptspin += avant.valueIsing(NodeAfterJ,NodeI) + apres.valueIsing(NodeAfterJ,NodeI);
 		}
-		// Avec un facteur 2 car un passage de 1 à -1 decremente le compteur spinique de 2
+		// Avec un facteur 2 car un passage de 1 Ã© -1 decremente le compteur spinique de 2
 		return (2*cptspin);
 	}
 	

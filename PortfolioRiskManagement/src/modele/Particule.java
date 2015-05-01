@@ -24,7 +24,7 @@ public class Particule {
 	/**
 	 * 
 	 * @return
-	 * La température (fixe) de la particule
+	 * La tempÃ©rature (fixe) de la particule
 	 */
 	public Temperature getT(){
 		return this.T;
@@ -32,7 +32,7 @@ public class Particule {
 	/**
 	 * 
 	 * @param t
-	 * 	va fixer la température de la particule a partir de la classe Temperature
+	 * 	va fixer la tempÃ©rature de la particule a partir de la classe Temperature
 	 */
 	public void setT(Temperature t){
 		this.T=t;
@@ -40,7 +40,7 @@ public class Particule {
 	/**
 	 * 
 	 * @param value
-	 * va fixer la température de la particule a partir d'un double
+	 * va fixer la tempÃ©rature de la particule a partir d'un double
 	 */
 	public void setT(double value){
 		Temperature temp = new Temperature(value);
@@ -49,7 +49,7 @@ public class Particule {
 	/**
 	 * 
 	 * @return
-	 * la liste des états composant la particule
+	 * la liste des Ã©tats composant la particule
 	 */
 	public ArrayList<Etat> getEtat(){
 		return this.etat;

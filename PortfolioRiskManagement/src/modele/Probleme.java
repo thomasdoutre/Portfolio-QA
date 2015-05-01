@@ -11,9 +11,9 @@ import parametrage.Temperature;
  * 
  * 
  * Cette classe est clef dans la conception du recuit
- * C'est une particule a laquelle est liée la totalité du problème, energie cinétique et Etats spécifiés sur le problème.
+ * C'est une particule a laquelle est liÃ©e la totalitÃ© du problÃ©me, energie cinÃ©tique et Etats spÃ©cifiÃ©s sur le problÃ©me.
  * 
- * Elle dépend aussi d'une seed qui va par la suite permettre de générer des nombres aléatoires 
+ * Elle dÃ©pend aussi d'une seed qui va par la suite permettre de gÃ©nÃ©rer des nombres alÃ©atoires 
  * 
  * 
  * 
@@ -29,7 +29,7 @@ import parametrage.Temperature;
  */
 public class Probleme extends Particule{
 
-	// On rajoute de plus une seed de génération de nombres aléatoires
+	// On rajoute de plus une seed de gÃ©nÃ©ration de nombres alÃ©atoires
 	private int seed;
 	private EnergieCinetique energiecin;
 	private EnergiePotentielle energiepot;
@@ -73,7 +73,7 @@ public class Probleme extends Particule{
 	/**
 	 * 
 	 * @return
-	 *L'energie cinétique associée au problème
+	 *L'energie cinÃ©tique associÃ©e au problÃ©me
 	 */
 	public double calculerEnergieCinetique(){
 		return 	this.energiecin.calculer(this);
@@ -133,7 +133,7 @@ public class Probleme extends Particule{
 	 * @param m
 	 * mutation pour calculer
 	 * @return
-	 * la difference locale de spin engendré par la mutation
+	 * la difference locale de spin engendrÃ© par la mutation
 	 */
 	public int differenceSpins(Etat e,IMutation m){
 		
@@ -178,7 +178,7 @@ public class Probleme extends Particule{
 	/**
 	 * Par defaut cree un Etat a NULL
 	 * L'utilisateur DOIT IMPLEMENTER cett methode pour creer un Etat adapte a son probleme
-	 *@return un etat créé aléatoirement
+	 *@return un etat crÃ©Ã© alÃ©atoirement
 	 */
 	
 
