@@ -4,9 +4,13 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.concurrent.TimeUnit;
 
 /**
  * This class retrieves historical prices and returns from yahoo.fr
@@ -24,12 +28,19 @@ public class YahooData {
 	public double[][] quoteMatrix;
 	public double[][] RawReturnsMatrix;
 	public double[][] logReturnsMatrix;
+	public Date retrieveDate;
 
-	public YahooData(String[] symbols){
+	public YahooData(String[] symbols) throws ParseException{
 		this.tickers = symbols;
-		getPricesFromYahoo(symbols);
-		getReturnsFromYahoo(symbols);
-		getlogReturnsMatrixFromYahoo(symbols);
+		
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date d = sdf.parse("21/12/2012");
+		this.retrieveDate = d;
+		
+		storePricesFromYahoo(symbols);
+		storeReturnsFromYahoo(symbols);
+		storeLogReturnsMatrixFromYahoo(symbols);
 	}
 
 	/**
@@ -165,57 +176,61 @@ public class YahooData {
 	 * @param symbols This is an array of String, with all the tickers. Historical prices of these tickers will be in the resulting matrix.
 	 */
 
-	private void getPricesFromYahoo(String[] symbols){
+	private void storePricesFromYahoo(String[] symbols){
+		
+			if(this.dataShouldBeUpdated()){
+				
+			ArrayList<double[]> pricesArrayList = new ArrayList<double[]>();
+			int n = symbols.length;
+			for(int i=0;i<n;i++) {
+				try {
 
-		ArrayList<double[]> pricesArrayList = new ArrayList<double[]>();
-		int n = symbols.length;
-		for(int i=0;i<n;i++) {
-			try {
+					URL url  = new URL(constructURL(symbols[i]));
 
-				URL url  = new URL(constructURL(symbols[i]));
+					int lines = getLinesNumber(url);
+					System.out.println("lines = "+lines);
 
-				int lines = getLinesNumber(url);
-				System.out.println("lines = "+lines);
+					URLConnection urlConn = url.openConnection();
+					InputStreamReader inStream = new InputStreamReader(urlConn.getInputStream());
+					BufferedReader buff= new BufferedReader(inStream);
+					String stringLine;
+					buff.readLine();
 
-				URLConnection urlConn = url.openConnection();
-				InputStreamReader inStream = new InputStreamReader(urlConn.getInputStream());
-				BufferedReader buff= new BufferedReader(inStream);
-				String stringLine;
-				buff.readLine();
+					int j = 0;
+					double[] prices = new double[lines-1];
 
-				int j = 0;
-				double[] prices = new double[lines-1];
+					while((stringLine = buff.readLine()) != null)
+					{
+						String[] dohlcav = stringLine.split("\\,"); //date, ohlc, adjustedclose
+						double adjClose = Double.parseDouble(dohlcav[6]);				
+						prices[j] = adjClose;
+						j++;
+					}
 
-				while((stringLine = buff.readLine()) != null)
-				{
-					String[] dohlcav = stringLine.split("\\,"); //date, ohlc, adjustedclose
-					double adjClose = Double.parseDouble(dohlcav[6]);				
-					prices[j] = adjClose;
-					j++;
+					pricesArrayList.add(prices);
+
+
+				}catch (MalformedURLException e) {
+					System.out.println(e.getMessage());
+				}catch(IOException e){
+					System.out.println(e.getMessage());
 				}
 
-				pricesArrayList.add(prices);
 
-
-			}catch (MalformedURLException e) {
-				System.out.println(e.getMessage());
-			}catch(IOException e){
-				System.out.println(e.getMessage());
 			}
+			int min = minimumTimeInterval(pricesArrayList);
+			System.out.println("minimumTimeInterval(pricesArrayList) = "+min);
 
+			double[][] pricesMatrix = new double[min][symbols.length];
 
-		}
-		int min = minimumTimeInterval(pricesArrayList);
-		System.out.println("minimumTimeInterval(pricesArrayList) = "+min);
-
-		double[][] pricesMatrix = new double[min][symbols.length];
-
-		for(int i=0; i<symbols.length; i++){
-			for(int j=0; j<min; j++){
-				pricesMatrix[j][i] = pricesArrayList.get(i)[j];
+			for(int i=0; i<symbols.length; i++){
+				for(int j=0; j<min; j++){
+					pricesMatrix[j][i] = pricesArrayList.get(i)[j];
+				}
 			}
-		}
-		this.quoteMatrix = pricesMatrix;
+			this.quoteMatrix = pricesMatrix;
+			}
+			this.retrieveDate = new Date();
 
 	}
 
@@ -227,9 +242,9 @@ public class YahooData {
 	 * @param symbols This is an array of String, with all the tickers. Historical returns of these tickers will be in the resulting matrix.
 	 */
 
-	private void getReturnsFromYahoo(String[] symbols){
+	private void storeReturnsFromYahoo(String[] symbols){
 		if(this.quoteMatrix == null){
-			this.getPricesFromYahoo(symbols);
+			this.storePricesFromYahoo(symbols);
 		}
 		int n = symbols.length;
 		int m = this.quoteMatrix.length;
@@ -252,9 +267,9 @@ public class YahooData {
 	 * @param symbols This is an array of String, with all the tickers. Historical log returns of these tickers will be in the resulting matrix.
 	 */
 
-	private void getlogReturnsMatrixFromYahoo(String[] symbols){
+	private void storeLogReturnsMatrixFromYahoo(String[] symbols){
 		if(this.quoteMatrix == null){
-			this.getPricesFromYahoo(symbols);
+			this.storePricesFromYahoo(symbols);
 		}
 		int n = symbols.length;
 		int m = this.quoteMatrix.length;
@@ -268,4 +283,30 @@ public class YahooData {
 		}
 		this.logReturnsMatrix = logReturnsMatrix;
 	}
+	
+	/**
+	 * Get a diff between two dates
+	 * @param date1 the oldest date
+	 * @param date2 the newest date
+	 * @param timeUnit the unit in which you want the diff
+	 * @return the diff value, in the provided unit
+	 */
+	public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
+	    long diffInMillies = date2.getTime() - date1.getTime();
+	    return timeUnit.convert(diffInMillies,TimeUnit.MILLISECONDS);
+	}
+	
+	/**
+	 * Get a diff between two dates
+	 * @param date1 the oldest date
+	 * @param date2 the newest date
+	 * @param timeUnit the unit in which you want the diff
+	 * @return the diff value, in the provided unit
+	 */
+	public boolean dataShouldBeUpdated() {
+		long diff = getDateDiff(this.retrieveDate,new Date(),TimeUnit.HOURS);
+		boolean updateAvalaible = diff>24;
+		return updateAvalaible;
+	}
+	
 }
