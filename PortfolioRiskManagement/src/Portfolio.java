@@ -1,3 +1,5 @@
+import java.text.ParseException;
+
 import org.apache.commons.math3.stat.descriptive.moment.Mean;
 import org.apache.commons.math3.stat.descriptive.rank.Percentile;
 
@@ -15,8 +17,8 @@ public class Portfolio{
 	
 	public String[] tickers;
 	private double[] weights;
-	private double[] portfolioLogReturn;
-	private double[] portfolioRawReturn;
+	private double[] logReturns;
+	private double[] rawReturns;
 	private double valueAtRisk;
 	
 	/**
@@ -48,31 +50,31 @@ public class Portfolio{
 	}
 
 	/**
-	 * @return the portfolioLogReturn
+	 * @return the logReturns
 	 */
-	public double[] getPortfolioLogReturn() {
-		return portfolioLogReturn;
+	public double[] getLogReturns() {
+		return logReturns;
 	}
 
 	/**
-	 * @param portfolioLogReturn the portfolioLogReturn to set
+	 * @param logReturns the logReturns to set
 	 */
-	public void setPortfolioLogReturn(double[] portfolioLogReturn) {
-		this.portfolioLogReturn = portfolioLogReturn;
+	public void setLogReturns(double[] logReturns) {
+		this.logReturns = logReturns;
 	}
 
 	/**
-	 * @return the portfolioRawReturn
+	 * @return the rawReturns
 	 */
-	public double[] getPortfolioRawReturn() {
-		return portfolioRawReturn;
+	public double[] getRawReturns() {
+		return rawReturns;
 	}
 
 	/**
-	 * @param portfolioRawReturn the portfolioRawReturn to set
+	 * @param rawReturns the rawReturns to set
 	 */
-	public void setPortfolioRawReturn(double[] portfolioRawReturn) {
-		this.portfolioRawReturn = portfolioRawReturn;
+	public void setRawReturns(double[] rawReturns) {
+		this.rawReturns = rawReturns;
 	}
 
 	/**
@@ -90,6 +92,22 @@ public class Portfolio{
 	}
 
 	/**
+	 * This method is used to construct a portfolio with all its features.
+	 * @param tickers the tickers
+	 * @param weights the weights
+	 * @param logReturns the log returns
+	 * @param rawReturns the raw returns
+	 * @param valueAtRisk the VaR
+	 */
+	
+	public Portfolio(String[] tickers,double[] weights,double[] logReturns,double[] rawReturns, double valueAtRisk){
+		this.tickers = tickers;
+		this.weights = weights;
+		this.logReturns = logReturns;
+		this.rawReturns = rawReturns;
+		this.valueAtRisk = valueAtRisk;
+	}
+	/**
 	 * This method is used to construct a portfolio.
 	 * Portfolio is initialized with a total investment on the first asset.
 	 * @param data YahooData object including assets names we want to invest in.
@@ -102,23 +120,51 @@ public class Portfolio{
 		for(int i = 1; i < data.getQuoteMatrix()[0].length-1; i++){
 			weights[i] = 0;
 		}
-		this.weights = weights;
+		this.setWeights(weights);
 
-		this.portfolioLogReturn = computeLogReturn(data, weights);
-		this.valueAtRisk = computeVAR(this.portfolioLogReturn, 5.0);
+		this.setLogReturns(computeLogReturn(data, weights));
+		this.setValueAtRisk(computeVAR(this.logReturns, 5.0));
+	}
+	
+	/**
+	 * This method is used to construct a portfolio.
+	 * Portfolio is initialized with pre-definite weights.
+	 * @param data YahooData object including assets names we want to invest in.
+	 * @param weights the weights of the portfolio.
+	 */
+	
+	public Portfolio(YahooData data, double[] weights){
+
+		this.weights = weights;
+		this.logReturns = computeLogReturn(data, weights);
+		this.valueAtRisk = computeVAR(this.logReturns, 5.0);
+	}
+	
+	/**
+	 * This method is used to construct a portfolio.
+	 * Portfolio is initialized with pre-definite weights.
+	 * @param tickers we want to invest in.
+	 * @param weights the weights of the portfolio.
+	 * @throws ParseException 
+	 */
+	
+	public Portfolio(String[] tickers, double[] weights) throws ParseException{
+		YahooData data = new YahooData(tickers);
+		this.weights = weights;
+		this.logReturns = computeLogReturn(data, weights);
+		this.valueAtRisk = computeVAR(this.logReturns, 5.0);
 	}
 	
 	/**
 	 * This method is used to construct a portfolio.
 	 * Portfolio is initialized with pre-defined weights.
 	 * @param weights the weights
-	 * @param portfolioLogReturn the log returns.
+	 * @param logReturns the log returns.
 	 */
-	public Portfolio(double[] weights, double[] portfolioLogReturn){
+	public Portfolio(double[] weights, double[] logReturns){
 		this.setWeights(weights);
-		//this.portfolioRawReturn = portfolioRawReturn;
-		this.portfolioLogReturn = portfolioLogReturn;
-		this.valueAtRisk = computeVAR(this.portfolioLogReturn, 5.0);
+		this.logReturns = logReturns;
+		this.valueAtRisk = computeVAR(this.logReturns, 5.0);
 	}
 	
 	/**
@@ -127,21 +173,33 @@ public class Portfolio{
 	 */
 
 	public Portfolio clone(){
+		String[] tickers = this.tickers;
+		double[] cWeights = cloneArray(this.weights);
+		double[] cLogReturns = cloneArray(this.logReturns);
+		double[] cRawReturns = cloneArray(this.rawReturns);
+		double cVar = this.valueAtRisk;
+
+		Portfolio clone = new Portfolio(tickers, cWeights,cLogReturns,cRawReturns,cVar);
+		return clone;
+
+	}
+	
+	/*public Portfolio cloneB(){
 		double[] clonedWeights = new double[this.getWeights().length];
-		//double[] clonedPortfolioRawReturn = new double[this.portfolioRawReturn.length];
-		double[] clonedPortfolioLogReturn = new double[this.portfolioLogReturn.length];
+		//double[] clonedrawReturns = new double[this.rawReturns.length];
+		double[] clonedlogReturns = new double[this.logReturns.length];
 		for(int i = 0; i < this.getWeights().length; i++){
 			clonedWeights[i] = this.getWeights()[i];
 		}
-		/*for(int i = 0; i < this.getPortfolioRawReturn().length; i++){
-			clonedPortfolioRawReturn[i] = this.getPortfolioRawReturn()[i];
-		}*/
-		for(int i = 0; i < this.getPortfolioLogReturn().length; i++){
-			clonedPortfolioLogReturn[i] = this.getPortfolioLogReturn()[i];
+		for(int i = 0; i < this.getrawReturns().length; i++){
+			clonedrawReturns[i] = this.getrawReturns()[i];
 		}
-		Portfolio clone = new Portfolio(clonedWeights, clonedPortfolioLogReturn);
+		for(int i = 0; i < this.getLogReturns().length; i++){
+			clonedlogReturns[i] = this.getLogReturns()[i];
+		}
+		Portfolio clone = new Portfolio(clonedWeights, clonedlogReturns);
 		return clone;
-	}
+	}*/
 	
 	
 	/**
@@ -154,24 +212,24 @@ public class Portfolio{
 	public double[] computeLogReturn(YahooData data, double[] weights){
 		double[][] rawReturnsMatrix = data.getRawReturnsMatrix();
 		int n = rawReturnsMatrix.length;
-		double portfolioLogReturn[] = new double[n];
-		double portfolioRawReturn = 0;
+		double logReturns[] = new double[n];
+		double rawReturns = 0;
 		
 		for(int i = 0; i < n; i++){
 			for(int j = 0; j < weights.length; j++){
-				portfolioRawReturn += weights[j]*rawReturnsMatrix[i][j];
-				System.out.println("portfolioRawReturn = "+portfolioRawReturn);
+				rawReturns += weights[j]*rawReturnsMatrix[i][j];
+				System.out.println("rawReturns = "+rawReturns);
 			}
-			if(portfolioRawReturn == 0){
-			System.out.println("portfolioRawReturn = 0 !!");
-			portfolioRawReturn = 0;
+			if(rawReturns == 0){
+			System.out.println("rawReturns = 0 !!");
+			rawReturns = 0;
 			}
 			
 			else{
-				portfolioLogReturn[i] = Math.log(portfolioRawReturn);
+				logReturns[i] = Math.log(rawReturns);
 			}
 		}
-		return portfolioLogReturn;
+		return logReturns;
 	}
 	
 	/**
@@ -181,14 +239,14 @@ public class Portfolio{
 	 * @return double[] raw returns are historically computed, the method returns an array of this raw returns, it allows us tio compute VaR.
 	 */
 	public double[] computeRawReturn(YahooData data, double[] weights){
-		double portfolioRawReturn[] = new double[data.getQuoteMatrix().length-1];
+		double rawReturns[] = new double[data.getQuoteMatrix().length-1];
 		for(int i = 0; i < data.getQuoteMatrix().length-1; i++){
 			for(int j = 0; j < data.getQuoteMatrix()[0].length; j++){
-				portfolioRawReturn[i] += weights[j]*data.getRawReturnsMatrix()[i][j];
+				rawReturns[i] += weights[j]*data.getRawReturnsMatrix()[i][j];
 			}
-			portfolioRawReturn[i] = portfolioRawReturn[i];
+			rawReturns[i] = rawReturns[i];
 		}
-		return portfolioRawReturn;
+		return rawReturns;
 	}
 	
 	/**
@@ -222,9 +280,9 @@ public class Portfolio{
 	 * @param data are the historical data.
 	 */
 	public void update(YahooData data){
-			//this.portfolioRawReturn = computeRawReturn(data, this.weights);
-			this.portfolioLogReturn = computeLogReturn(data, this.weights);
-			this.valueAtRisk = computeVAR(this.portfolioLogReturn, 5.0);
+			//this.rawReturns = computeRawReturn(data, this.weights);
+			this.logReturns = computeLogReturn(data, this.weights);
+			this.valueAtRisk = computeVAR(this.logReturns, 5.0);
 	}
 	
 	/**
@@ -233,39 +291,39 @@ public class Portfolio{
 	 * @return double 'Energy' to be minimized.
 	 */
 	public double getEnergy(double targetReturn){
-		double ExpectedReturn = computeExpectedReturn(this.portfolioLogReturn);
-		double VAR = computeVAR(this.portfolioLogReturn, 5.0);
+		double ExpectedReturn = computeExpectedReturn(this.logReturns);
+		double VAR = computeVAR(this.logReturns, 5.0);
 		double energy = 100*Math.abs(targetReturn-ExpectedReturn)-VAR;
 		return energy;
 	}
 	
-
-	/**
+/*
+	*//**
 	 * This method is used to store the Raw Returns in the portfolio object.
 	 * @param data the historical data
 	 * @param weights percentages of investment.
-	 */
-	public void setPortfolioRawReturn(YahooData data, double[] weights){
-		this.portfolioRawReturn = computeRawReturn(data, weights);
+	 *//*
+	public void setrawReturns(YahooData data, double[] weights){
+		this.rawReturns = computeRawReturn(data, weights);
 	}
 	
-	/**
+	*//**
 	 * This method is used to store the Log Returns in the portfolio object.
 	 * @param data the historical data
 	 * @param weights percentages of investment.
-	 */
-	public void setPortfolioLogReturn(YahooData data, double[] weights){
-		this.portfolioLogReturn = computeLogReturn(data, weights);
+	 *//*
+	public void setlogReturns(YahooData data, double[] weights){
+		this.logReturns = computeLogReturn(data, weights);
 	}
 	
-	/**
+	*//**
 	 * This method is used to store the VaR in the portfolio object.
 	 * @param portfolioReturn historical returns.
-	 */
+	 *//*
 	public void setValueAtRisk(double[] portfolioReturn){
 		Percentile percentile = new Percentile();
 		this.valueAtRisk = percentile.evaluate(portfolioReturn, 5.0);
-	}
+	}*/
 	
 	/**
 	 * This method displays portfolios features on the console.
@@ -279,13 +337,26 @@ public class Portfolio{
 				strWeights += this.weights[this.weights.length-1]+"]\nretours logarithmiques : [";
 			}
 		}
-		for(int i=0; i < this.portfolioLogReturn.length; i++){
-			if(i != this.portfolioLogReturn.length-1){
-			strWeights += this.portfolioLogReturn[i]+"|";
+		for(int i=0; i < this.logReturns.length; i++){
+			if(i != this.logReturns.length-1){
+			strWeights += this.logReturns[i]+"|";
 			} else{
-				strWeights += this.portfolioLogReturn[this.portfolioLogReturn.length-1]+"]\nV@R = "+this.getValueAtRisk()+"\nrendement = "+this.computeExpectedReturn(this.portfolioLogReturn);
+				strWeights += this.logReturns[this.logReturns.length-1]+"]\nV@R = "+this.getValueAtRisk()+"\nrendement = "+this.computeExpectedReturn(this.logReturns);
 			}
 		}
 		return strWeights;
+	}
+	
+	/**
+	 * This method is used to clone an array of double.
+	 * @param array the array to be cloned
+	 * @return the cloned array.
+	 */
+	public double[] cloneArray(double[] array){
+		double[] cloned = new double[array.length];
+		for(int i=0; i<array.length;i++){
+			cloned[i]=array[i];
+		}
+		return cloned;
 	}
 }
