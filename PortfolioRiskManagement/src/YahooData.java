@@ -88,23 +88,7 @@ public class YahooData {
 
 
 
-	/**
-	 * This method is used to display a matrix of double is the console.
-	 * @param twoDm This is the matrix to be displayed
-	 */
 
-	private static void printMatrix(double[][] twoDm) {
-		System.out.println("=================================================================");
-		for(double[] row : twoDm) {
-			for (double i : row) {
-				System.out.print(i);
-				System.out.print("\t");
-			}
-			System.out.println();
-		}
-		System.out.println("=================================================================");
-
-	}
 
 	/**
 	 * This method is used to construct the URL to retrieve data from.
@@ -252,10 +236,12 @@ public class YahooData {
 		for(int i=0; i<n; i++){
 			double mem = this.quoteMatrix[0][i];
 			for(int j=0; j<(m-1); j++){
-				returnsMatrix[j][i] = mem/this.quoteMatrix[j+1][i];
+				returnsMatrix[j][i] = (mem/this.quoteMatrix[j+1][i] - 1)*100;
 				mem = this.quoteMatrix[j][i];
 			}
 		}
+		System.out.println("MATRICE DES RETOURS");
+		Tools.printMatrix(returnsMatrix);
 		this.RawReturnsMatrix = returnsMatrix;
 	}
 
