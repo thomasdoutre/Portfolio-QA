@@ -13,14 +13,11 @@ public class Main {
 
 	public static void main(String[] args) throws ParseException {
 
-		String[] tickers = {"GSPC","AAPL","FCHI"};
-		System.out.println("tickers length = "+tickers.length+"");
-		double[] weights = {0.33,0.33,0.34};
-		System.out.println("weights length = "+weights.length+"");
+		String[] tickers = {"GSPC","AAPL","FCHI","LG.PA","GSZ.PA","KER.PA","RNO.PA","AIR.PA"};
+		double[] weights = {0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125};
 
 
 		Portfolio portfolio = new Portfolio(tickers,weights);
-		System.out.println("Expected return : " + portfolio.computeExpectedReturn());
 
 /*		double[] obs = new double[100];
 		double bandWidth = 0.004;

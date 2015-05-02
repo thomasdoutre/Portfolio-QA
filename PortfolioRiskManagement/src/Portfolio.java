@@ -320,7 +320,6 @@ public class Portfolio{
 		double expectedReturn;
 		expectedReturn = mean.evaluate(this.rawReturns);
 		System.out.println("Expected Return = " +expectedReturn);
-
 		return expectedReturn;
 	}
 
