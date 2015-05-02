@@ -240,8 +240,6 @@ public class YahooData {
 				mem = this.quoteMatrix[j][i];
 			}
 		}
-		System.out.println("MATRICE DES RETOURS");
-		Tools.printMatrix(returnsMatrix);
 		this.RawReturnsMatrix = returnsMatrix;
 	}
 
