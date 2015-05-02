@@ -21,6 +21,21 @@ public class Portfolio{
 	private double[] rawReturns;
 	private double valueAtRisk=-1;
 	private double conditionalValueAtRisk;
+	private double expectedReturn;
+
+	/**
+	 * @return the expectedReturn
+	 */
+	public double getExpectedReturn() {
+		return expectedReturn;
+	}
+
+	/**
+	 * @param expectedReturn the expectedReturn to set
+	 */
+	public void setExpectedReturn(double expectedReturn) {
+		this.expectedReturn = expectedReturn;
+	}
 
 	/**
 	 * @return the conditionalValueAtRisk
@@ -114,15 +129,17 @@ public class Portfolio{
 	 * @param rawReturns the raw returns
 	 * @param valueAtRisk the VaR
 	 * @param conditionalValueAtRisk the CVaR
+	 * @param expectedReturn the expected return
 	 */
 
-	public Portfolio(String[] tickers,double[] weights,double[] logReturns,double[] rawReturns, double valueAtRisk, double conditionalValueAtRisk){
+	public Portfolio(String[] tickers,double[] weights,double[] logReturns,double[] rawReturns, double valueAtRisk, double conditionalValueAtRisk, double expectedReturn){
 		this.tickers = tickers;
 		this.weights = weights;
 		this.logReturns = logReturns;
 		this.rawReturns = rawReturns;
 		this.valueAtRisk = valueAtRisk;
 		this.conditionalValueAtRisk = conditionalValueAtRisk;
+		this.expectedReturn = expectedReturn;
 		
 	}
 	
@@ -143,6 +160,7 @@ public class Portfolio{
 		this.setLogReturns(computeLogReturns(data, weights));
 		this.setValueAtRisk(computeVaR(5.0));
 		this.setConditionalValueAtRisk(computeConditionalValueAtRisk(5.0));
+		this.setExpectedReturn(computeExpectedReturn());
 	}
 
 	/**
@@ -160,6 +178,7 @@ public class Portfolio{
 		this.rawReturns = computeRawReturns(data,weights);
 		this.valueAtRisk = computeVaR(5.0);
 		this.conditionalValueAtRisk = computeConditionalValueAtRisk(5.0);
+		this.expectedReturn = computeExpectedReturn();
 	}
 
 	/**
@@ -178,19 +197,9 @@ public class Portfolio{
 		this.rawReturns = computeRawReturns(data, weights);
 		this.valueAtRisk = computeVaR(5.0);
 		this.conditionalValueAtRisk = computeConditionalValueAtRisk(5.0);
+		this.expectedReturn = computeExpectedReturn();
 	}
 
-	/**
-	 * This method is used to construct a portfolio.
-	 * Portfolio is initialized with pre-defined weights.
-	 * @param weights the weights
-	 * @param logReturns the log returns.
-	 */
-	public Portfolio(double[] weights, double[] logReturns){
-		this.setWeights(weights);
-		this.logReturns = logReturns;
-		this.valueAtRisk = computeVaR(5.0);
-	}
 
 	/**
 	 * This method is used to duplicate portfolio.
@@ -204,8 +213,9 @@ public class Portfolio{
 		double[] cRawReturns = cloneArray(this.rawReturns);
 		double cVar = this.valueAtRisk;
 		double cCVar = this.conditionalValueAtRisk;
+		double cExpectedReturn = this.expectedReturn;
 
-		Portfolio clone = new Portfolio(tickers, cWeights,cLogReturns,cRawReturns,cVar,cCVar);
+		Portfolio clone = new Portfolio(tickers, cWeights,cLogReturns,cRawReturns,cVar,cCVar,cExpectedReturn);
 		return clone;
 
 	}
@@ -268,7 +278,7 @@ public class Portfolio{
 		double[] portfolioRawReturns = this.getRawReturns();
 		Percentile percentile = new Percentile();
 		double valueAtRisk;
-		valueAtRisk = - percentile.evaluate(portfolioRawReturns, 50);
+		valueAtRisk = - percentile.evaluate(portfolioRawReturns, 5.0);
 		System.out.println("VaR = "+valueAtRisk);
 		return valueAtRisk;
 	}
@@ -287,16 +297,11 @@ public class Portfolio{
 		}
 		else valueAtRisk = this.valueAtRisk;
 		
-		System.out.println("var = " +valueAtRisk);
-
 		double sum = 0;
 		int compt = 0;
 		
 		for(int i =0 ; i<portfolioRawReturns.length;i++){
-			System.out.println(portfolioRawReturns[i]);
 			if(portfolioRawReturns[i]<(-valueAtRisk)){
-				System.out.println("sum = " +sum);
-
 				sum = sum + portfolioRawReturns[i];
 				compt++;
 			}
@@ -311,11 +316,13 @@ public class Portfolio{
 	 * @param portfolioReturns historical returns of the portfolio
 	 * @return double Expected Return from historical data.
 	 */
-	public double computeExpectedReturn(double[] portfolioReturns){
+	public double computeExpectedReturn(){
 		Mean mean = new Mean();
-		double rendement = 0.0;
-		rendement = mean.evaluate(portfolioReturns);
-		return rendement;
+		double expectedReturn;
+		expectedReturn = mean.evaluate(this.rawReturns);
+		System.out.println("Expected Return = " +expectedReturn);
+
+		return expectedReturn;
 	}
 
 	/**
@@ -334,7 +341,7 @@ public class Portfolio{
 	 * @return double 'Energy' to be minimized.
 	 */
 	public double getEnergy(double targetReturn){
-		double ExpectedReturn = computeExpectedReturn(this.logReturns);
+		double ExpectedReturn = computeExpectedReturn();
 		double VAR = computeVaR(5.0);
 		double energy = 100*Math.abs(targetReturn-ExpectedReturn)-VAR;
 		return energy;
@@ -384,7 +391,7 @@ public class Portfolio{
 			if(i != this.logReturns.length-1){
 				strWeights += this.logReturns[i]+"|";
 			} else{
-				strWeights += this.logReturns[this.logReturns.length-1]+"]\nV@R = "+this.getValueAtRisk()+"\nrendement = "+this.computeExpectedReturn(this.logReturns);
+				strWeights += this.logReturns[this.logReturns.length-1]+"]\nV@R = "+this.getValueAtRisk()+"\nrendement = "+this.computeExpectedReturn();
 			}
 		}
 		return strWeights;
