@@ -122,7 +122,7 @@ public class Portfolio{
 		}
 		this.setWeights(weights);
 
-		this.setLogReturns(computeLogReturn(data, weights));
+		this.setLogReturns(computeLogReturns(data, weights));
 		this.setValueAtRisk(computeVAR(this.logReturns, 5.0));
 	}
 	
@@ -135,8 +135,10 @@ public class Portfolio{
 	
 	public Portfolio(YahooData data, double[] weights){
 
+		this.tickers = data.tickers;
 		this.weights = weights;
-		this.logReturns = computeLogReturn(data, weights);
+		this.computeLogReturns(data, weights);
+		this.rawReturns = computeRawReturns(data,weights);
 		this.valueAtRisk = computeVAR(this.logReturns, 5.0);
 	}
 	
@@ -151,7 +153,7 @@ public class Portfolio{
 	public Portfolio(String[] tickers, double[] weights) throws ParseException{
 		YahooData data = new YahooData(tickers);
 		this.weights = weights;
-		this.logReturns = computeLogReturn(data, weights);
+		this.logReturns = computeLogReturns(data, weights);
 		this.valueAtRisk = computeVAR(this.logReturns, 5.0);
 	}
 	
@@ -209,7 +211,7 @@ public class Portfolio{
 	 * @return double[] log-returns are historically computed, the method returns an array of this log returns, it allows us tio compute VaR.
 	 */
 
-	public double[] computeLogReturn(YahooData data, double[] weights){
+	public double[] computeLogReturns(YahooData data, double[] weights){
 		double[][] rawReturnsMatrix = data.getRawReturnsMatrix();
 		int n = rawReturnsMatrix.length;
 		double logReturns[] = new double[n];
@@ -238,7 +240,7 @@ public class Portfolio{
 	 * @param weights Percentage we want to invest in each asset.
 	 * @return double[] raw returns are historically computed, the method returns an array of this raw returns, it allows us tio compute VaR.
 	 */
-	public double[] computeRawReturn(YahooData data, double[] weights){
+	public double[] computeRawReturns(YahooData data, double[] weights){
 		double rawReturns[] = new double[data.getQuoteMatrix().length-1];
 		for(int i = 0; i < data.getQuoteMatrix().length-1; i++){
 			for(int j = 0; j < data.getQuoteMatrix()[0].length; j++){
@@ -281,7 +283,7 @@ public class Portfolio{
 	 */
 	public void update(YahooData data){
 			//this.rawReturns = computeRawReturn(data, this.weights);
-			this.logReturns = computeLogReturn(data, this.weights);
+			this.logReturns = computeLogReturns(data, this.weights);
 			this.valueAtRisk = computeVAR(this.logReturns, 5.0);
 	}
 	
