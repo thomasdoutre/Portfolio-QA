@@ -282,9 +282,6 @@ public class YahooData {
 	
 	/**
 	 * Get a diff between two dates
-	 * @param date1 the oldest date
-	 * @param date2 the newest date
-	 * @param timeUnit the unit in which you want the diff
 	 * @return the diff value, in the provided unit
 	 */
 	public boolean dataShouldBeUpdated() {

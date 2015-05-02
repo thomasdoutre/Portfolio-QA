@@ -313,7 +313,6 @@ public class Portfolio{
 
 	/**
 	 * This method is used to compute the Expected Return of a portfolio.
-	 * @param portfolioReturns historical returns of the portfolio
 	 * @return double Expected Return from historical data.
 	 */
 	public double computeExpectedReturn(){
