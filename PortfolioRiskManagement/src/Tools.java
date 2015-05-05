@@ -1,7 +1,7 @@
 
 
 /**
- * This class includes some useful methods for debugging
+ * This class includes some useful methods
  * @author  Thomas Doutre
  * @version 1.0
  * @since   2015-05-01
@@ -41,6 +41,19 @@ public class Tools {
 		}
 		System.out.println("=================================================================");
 
+	}
+	
+	/**
+	 * This method is used to clone an array of double.
+	 * @param array the array to be cloned
+	 * @return the cloned array.
+	 */
+	public static double[] cloneArray(double[] array){
+		double[] cloned = new double[array.length];
+		for(int i=0; i<array.length;i++){
+			cloned[i]=array[i];
+		}
+		return cloned;
 	}
 	
 }
