@@ -27,36 +27,35 @@ public class YahooData {
 	public String[] tickers;
 	public double[][] quoteMatrix;
 	public double[][] RawReturnsMatrix;
-	public double[][] logReturnsMatrix;
+	//public double[][] logReturnsMatrix;
 	public Date retrieveDate;
 
 	public YahooData(String[] symbols) throws ParseException{
 		this.tickers = symbols;
-		
 
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Date d = sdf.parse("21/12/2012");
-		this.retrieveDate = d;
-		
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, -1);
+		this.retrieveDate = cal.getTime();
+
 		storePricesFromYahoo(symbols);
 		storeReturnsFromYahoo(symbols);
-		storeLogReturnsMatrixFromYahoo(symbols);
+		//storeLogReturnsMatrixFromYahoo(symbols);
 	}
 
 	/**
 	 * @return the logReturnsMatrix
-	 */
+	 *//*
 	public double[][] getLogReturnsMatrix() {
 		return logReturnsMatrix;
 	}
 
-	/**
+	*//**
 	 * @param logReturnsMatrix the logReturnsMatrix to set
-	 */
+	 *//*
 	public void setLogReturnsMatrix(double[][] logReturnsMatrix) {
 		this.logReturnsMatrix = logReturnsMatrix;
 	}
-
+*/
 	/**
 	 * @return the rawReturnsMatrix
 	 */
@@ -243,13 +242,13 @@ public class YahooData {
 		this.RawReturnsMatrix = returnsMatrix;
 	}
 
-	/**
+/*	*//**
 	 * This method stores the historical log returns in a double[][] matrix.
 	 * Columns represents differents tickers.
 	 * Lines represents trading days.
 	 * The resulting matrix may not include all data available, because we only include data that is relevant for creating a portfolio.
 	 * @param symbols This is an array of String, with all the tickers. Historical log returns of these tickers will be in the resulting matrix.
-	 */
+	 *//*
 
 	private void storeLogReturnsMatrixFromYahoo(String[] symbols){
 		if(this.quoteMatrix == null){
@@ -266,7 +265,7 @@ public class YahooData {
 			}
 		}
 		this.logReturnsMatrix = logReturnsMatrix;
-	}
+	}*/
 	
 	/**
 	 * Get a diff between two dates

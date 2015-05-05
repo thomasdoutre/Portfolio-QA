@@ -8,7 +8,7 @@ import org.apache.commons.math3.stat.descriptive.rank.Percentile;
  * A portfolio is characterized by tickers associated with weights (percentages of investment)
  * Thanks to Data collected from Yahoo.fr, we calculate its returns and log returns.
  * The Value at Risk can be estimated.
- * @author  Thomas Doutre & Pierre-Alain Belaube
+ * @author  Thomas Doutre
  * @version 1.0
  * @since   2015-04-30
  */
@@ -17,7 +17,7 @@ public class Portfolio{
 
 	public String[] tickers;
 	private double[] weights;
-	private double[] logReturns;
+	//private double[] logReturns;
 	private double[] rawReturns;
 	private double valueAtRisk=-1;
 	private double conditionalValueAtRisk;
@@ -79,20 +79,20 @@ public class Portfolio{
 		this.weights = weights;
 	}
 
-	/**
+/*	*//**
 	 * @return the logReturns
-	 */
+	 *//*
 	public double[] getLogReturns() {
 		return logReturns;
 	}
 
-	/**
+	*//**
 	 * @param logReturns the logReturns to set
-	 */
+	 *//*
 	public void setLogReturns(double[] logReturns) {
 		this.logReturns = logReturns;
 	}
-
+*/
 	/**
 	 * @return the rawReturns
 	 */
@@ -132,10 +132,10 @@ public class Portfolio{
 	 * @param expectedReturn the expected return
 	 */
 
-	public Portfolio(String[] tickers,double[] weights,double[] logReturns,double[] rawReturns, double valueAtRisk, double conditionalValueAtRisk, double expectedReturn){
+	public Portfolio(String[] tickers,double[] weights,double[] rawReturns, double valueAtRisk, double conditionalValueAtRisk, double expectedReturn){
 		this.tickers = tickers;
 		this.weights = weights;
-		this.logReturns = logReturns;
+		//this.logReturns = logReturns;
 		this.rawReturns = rawReturns;
 		this.valueAtRisk = valueAtRisk;
 		this.conditionalValueAtRisk = conditionalValueAtRisk;
@@ -157,7 +157,7 @@ public class Portfolio{
 			weights[i] = 0;
 		}
 		this.setWeights(weights);
-		this.setLogReturns(computeLogReturns(data, weights));
+		//this.setLogReturns(computeLogReturns(data, weights));
 		this.setValueAtRisk(computeVaR(5.0));
 		this.setConditionalValueAtRisk(computeConditionalValueAtRisk(5.0));
 		this.setExpectedReturn(computeExpectedReturn());
@@ -193,7 +193,7 @@ public class Portfolio{
 		YahooData data = new YahooData(tickers);
 		this.tickers = tickers;
 		this.weights = weights;
-		this.logReturns = computeLogReturns(data, weights);
+		//this.logReturns = computeLogReturns(data, weights);
 		this.rawReturns = computeRawReturns(data, weights);
 		this.valueAtRisk = computeVaR(5.0);
 		this.conditionalValueAtRisk = computeConditionalValueAtRisk(5.0);
@@ -208,14 +208,14 @@ public class Portfolio{
 
 	public Portfolio clone(){
 		String[] tickers = this.tickers;
-		double[] cWeights = cloneArray(this.weights);
-		double[] cLogReturns = cloneArray(this.logReturns);
-		double[] cRawReturns = cloneArray(this.rawReturns);
+		double[] cWeights = Tools.cloneArray(this.weights);
+		//double[] cLogReturns = cloneArray(this.logReturns);
+		double[] cRawReturns = Tools.cloneArray(this.rawReturns);
 		double cVar = this.valueAtRisk;
 		double cCVar = this.conditionalValueAtRisk;
 		double cExpectedReturn = this.expectedReturn;
 
-		Portfolio clone = new Portfolio(tickers, cWeights,cLogReturns,cRawReturns,cVar,cCVar,cExpectedReturn);
+		Portfolio clone = new Portfolio(tickers, cWeights,cRawReturns,cVar,cCVar,cExpectedReturn);
 		return clone;
 
 	}
@@ -326,18 +326,18 @@ public class Portfolio{
 	/**
 	 * This method is used to store log returns and Value at Risk computations in a portfolio.
 	 * @param data are the historical data.
-	 */
+	 *//*
 	public void update(YahooData data){
 		//this.rawReturns = computeRawReturn(data, this.weights);
-		this.logReturns = computeLogReturns(data, this.weights);
+		//this.logReturns = computeLogReturns(data, this.weights);
 		this.valueAtRisk = computeVaR(5.0);
 	}
 
-	/**
+	*//**
 	 * This method is used to compute the 'Energy' for the Annealing algorithm.
 	 * @param targetReturn is the return an investor wants to achieve, minimizing the risk.
 	 * @return double 'Energy' to be minimized.
-	 */
+	 *//*
 	public double getEnergy(double targetReturn){
 		double ExpectedReturn = computeExpectedReturn();
 		double VAR = computeVaR(5.0);
@@ -345,7 +345,7 @@ public class Portfolio{
 		return energy;
 	}
 
-	/*
+	
 	 *//**
 	 * This method is used to store the Raw Returns in the portfolio object.
 	 * @param data the historical data
@@ -371,11 +371,11 @@ public class Portfolio{
 	public void setValueAtRisk(double[] portfolioReturn){
 		Percentile percentile = new Percentile();
 		this.valueAtRisk = percentile.evaluate(portfolioReturn, 5.0);
-	}*/
+	}
 
-	/**
+	*//**
 	 * This method displays portfolios features on the console.
-	 */	
+	 *//*	
 	public String toString(){
 		String strWeights = "poids : [";
 		for(int i=0; i < this.weights.length; i++){
@@ -393,18 +393,7 @@ public class Portfolio{
 			}
 		}
 		return strWeights;
-	}
+	}*/
 
-	/**
-	 * This method is used to clone an array of double.
-	 * @param array the array to be cloned
-	 * @return the cloned array.
-	 */
-	public double[] cloneArray(double[] array){
-		double[] cloned = new double[array.length];
-		for(int i=0; i<array.length;i++){
-			cloned[i]=array[i];
-		}
-		return cloned;
-	}
+
 }
