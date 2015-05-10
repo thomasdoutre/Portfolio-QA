@@ -2,6 +2,7 @@ import java.text.ParseException;
 
 import org.apache.commons.math3.stat.descriptive.moment.Mean;
 import org.apache.commons.math3.stat.descriptive.rank.Percentile;
+import modele.Etat;
 
 /**
  * This class decribes a portfolio
@@ -13,7 +14,7 @@ import org.apache.commons.math3.stat.descriptive.rank.Percentile;
  * @since   2015-04-30
  */
 
-public class Portfolio{
+public class Portfolio extends Etat{
 
 	public String[] tickers;
 	private double[] weights;
@@ -120,6 +121,8 @@ public class Portfolio{
 	public void setValueAtRisk(double valueAtRisk) {
 		this.valueAtRisk = valueAtRisk;
 	}
+	
+	
 
 	/**
 	 * This method is used to construct a portfolio with all its features.
