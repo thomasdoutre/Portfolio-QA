@@ -1,7 +1,3 @@
-import java.text.ParseException;
-
-import org.apache.commons.math3.stat.descriptive.moment.Mean;
-import org.apache.commons.math3.stat.descriptive.rank.Percentile;
 import modele.Etat;
 
 /**
