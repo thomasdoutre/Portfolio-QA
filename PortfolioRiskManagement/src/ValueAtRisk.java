@@ -1,11 +1,16 @@
 import org.apache.commons.math3.stat.descriptive.rank.Percentile;
 
+/**
+ * This class calculates portfolios' VaR
+ * @author  Thomas Doutre
+ * @version 1.0
+ * @since   2015-05-10
+ */
 
 public class ValueAtRisk extends Risk {
 
 	/**
 	 * This method is used to compute the Value at Risk of a portfolio.
-	 * @param alpha percentile.
 	 * @return double Value at Risk.
 	 */
 

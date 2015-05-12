@@ -1,5 +1,11 @@
 import org.apache.commons.math3.stat.descriptive.rank.Percentile;
 
+/**
+ * This class calculates portfolios' CVaR
+ * @author  Thomas Doutre
+ * @version 1.0
+ * @since   2015-05-10
+ */
 
 public class ConditionalValueAtRisk extends Risk {
 
