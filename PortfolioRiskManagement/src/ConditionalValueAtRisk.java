@@ -1,0 +1,32 @@
+import org.apache.commons.math3.stat.descriptive.rank.Percentile;
+
+
+public class ConditionalValueAtRisk extends Risk {
+
+	/**
+	 * This method is used to compute the Conditional Value at Risk of a portfolio.
+	 * @return double Conditional Value at Risk.
+	 */
+
+	public double computeRisk(){
+		double[] portfolioReturns = super.portfolio.getReturns();
+		Percentile percentile = new Percentile();
+		double valueAtRisk;
+		valueAtRisk = - percentile.evaluate(portfolioReturns, 5.0);
+		System.out.println("VaR = "+valueAtRisk);
+		
+		double sum = 0;
+		int compt = 0;
+		
+		for(int i =0 ; i<portfolioReturns.length;i++){
+			if(portfolioReturns[i]<(-valueAtRisk)){
+				sum = sum + portfolioReturns[i];
+				compt++;
+			}
+		}
+		double conditionalVaR = - sum/compt;
+		System.out.println("Conditional VaR = " +conditionalVaR);
+		return conditionalVaR;
+	}
+
+}
