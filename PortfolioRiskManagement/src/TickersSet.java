@@ -6,4 +6,9 @@ public class TickersSet {
 		return 0;
 	}
 
+	public String getTickerString(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
