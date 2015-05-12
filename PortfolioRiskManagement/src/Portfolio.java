@@ -8,6 +8,27 @@ import modele.Etat;
  */
 
 public class Portfolio extends Etat{
+	
+	TickersSet tickersSet;
+
+	public TickersSet getTickers() {
+		return this.tickersSet;
+	}
+
+	public double[] getReturns() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public double[] getWeights() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setWeights(double[] weights) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 }

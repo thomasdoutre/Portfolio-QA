@@ -5,6 +5,12 @@ import java.util.Random;
 import modele.Probleme;
 import mutation.IMutation;
 
+/**
+ * This class decribes a portfolio
+ * @author  Raphael Couronne
+ * @version 1.0
+ * @since   2015-05-09
+ */
 
 public class SwapAssets implements IMutation {
 	int Asset1;
@@ -36,12 +42,12 @@ public class SwapAssets implements IMutation {
 	
 	
 	/**
-	 * Seule mÃ©thode utilisÃ©e dans la classe SwapAssets. Cette méthode utilise les attributs de la classe, qui sont pour l'instant générés aléatoirement par initialize()
-	 * Swap dÃ©signe une mutation du problème de portefeuille qui consiste à 
+	 * Seule mÃ©thode utilisÃ©e dans la classe SwapAssets. Cette mï¿½thode utilise les attributs de la classe, qui sont pour l'instant gï¿½nï¿½rï¿½s alï¿½atoirement par initialize()
+	 * Swap dÃ©signe une mutation du problï¿½me de portefeuille qui consiste ï¿½ 
 	 * @param p
-	 * Probleme considéré
+	 * Probleme considï¿½rï¿½
 	 * @param e
-	 * Etat du problème considéré
+	 * Etat du problï¿½me considï¿½rï¿½
 	 */
 	@Override
 	public void faire(Probleme p, Etat e) {
@@ -49,14 +55,14 @@ public class SwapAssets implements IMutation {
 		
 		
 		Portfolio portfolio = (Portfolio) e;
-		int NombreTickers = portfolio.getTickers().length;
+		int NombreTickers = portfolio.getTickers().getLength();
 		
 		// Ici initialisation un peu au pif pour tout avouer
 		this.initialize(NombreTickers);
 		
-		double R1 = portfolio.getRawReturns()[Asset1];
-		double R2 = portfolio.getRawReturns()[Asset2];
-		double R3 = portfolio.getRawReturns()[Asset3];
+		double R1 = portfolio.getReturns()[Asset1];
+		double R2 = portfolio.getReturns()[Asset2];
+		double R3 = portfolio.getReturns()[Asset3];
 		
 		double[] weights = portfolio.getWeights();
 		
@@ -69,7 +75,7 @@ public class SwapAssets implements IMutation {
 
 
 	/**
-	 * Initialize() initialise aléatoirement les numéros des 3 actifs que l'on va ensuite pouvoir swap, ainsi que la valeur de step
+	 * Initialize() initialise alï¿½atoirement les numï¿½ros des 3 actifs que l'on va ensuite pouvoir swap, ainsi que la valeur de step
 	 * @param nombreTickers
 	 * Nombre de Tickers 
 
