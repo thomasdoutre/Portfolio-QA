@@ -7,12 +7,19 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+/**
+ * This class retrieves historical data from YahooFinance csv files.
+ * @version 1.0
+ * @since   2015-05-10
+ */
 
 public class Data {
 
 	public TickersSet tickersSet;
 	public double[] expectedReturnsOfEachAsset;
+	public double[] pricesOfEachAsset;
 	public double[][] returnsMatrix;
+	public double[][] pricesMatrix;
 	public Calendar startCalendar;
 	public Calendar endCalendar;
 	
@@ -22,8 +29,71 @@ public class Data {
 		this.startCalendar = startCalendar;
 		this.endCalendar = endCalendar;
 		
+		this.pricesMatrix = this.computePricesMatrix();
 		this.returnsMatrix = this.computeReturnsMatrix();
 		this.expectedReturnsOfEachAsset = this.computeExpectedReturnsOfEachAsset();
+		
+	}
+
+	/**
+	 * This method stores the historical prices in a double[][] matrix.
+	 * Columns represents differents tickers.
+	 * Lines represents trading days.
+	 * The resulting matrix may not include all data available, because we only include data that is relevant for creating a portfolio.
+	 */
+	
+	private double[][] computePricesMatrix() {
+		
+		ArrayList<double[]> pricesArrayList = new ArrayList<double[]>();
+		int n = this.tickersSet.getLength();
+		for(int i=0;i<n;i++) {
+			try {
+
+				URL url  = new URL(constructURL(this.tickersSet.getTickerString(i),this.startCalendar,this.endCalendar));
+
+				int lines = getLinesNumber(url);
+				System.out.println("lines = "+lines);
+
+				URLConnection urlConn = url.openConnection();
+				InputStreamReader inStream = new InputStreamReader(urlConn.getInputStream());
+				BufferedReader buff= new BufferedReader(inStream);
+				String stringLine;
+				buff.readLine();
+
+				int j = 0;
+				double[] prices = new double[lines-1];
+
+				while((stringLine = buff.readLine()) != null)
+				{
+					String[] string = stringLine.split("\\,");
+					double adjClose = Double.parseDouble(string[6]);				
+					prices[j] = adjClose;
+					j++;
+				}
+
+				pricesArrayList.add(prices);
+
+
+			}catch (MalformedURLException e) {
+				System.out.println(e.getMessage());
+			}catch(IOException e){
+				System.out.println(e.getMessage());
+			}
+
+
+		}
+		int min = minimumTimeInterval(pricesArrayList);
+		System.out.println("minimumTimeInterval(pricesArrayList) = "+min);
+
+		double[][] pricesMatrix = new double[min][this.tickersSet.getLength()];
+
+		for(int i=0; i<tickersSet.getLength(); i++){
+			for(int j=0; j<min; j++){
+				pricesMatrix[j][i] = pricesArrayList.get(i)[j];
+			}
+		}
+		
+		return pricesMatrix;
 		
 	}
 
@@ -48,6 +118,23 @@ public class Data {
 
 		}
 		return expectedReturns;
+		
+	}
+	
+	/**
+	 * Get the prices of each assets.
+	 * @return the array with each price.
+	 */
+	
+	private double[] getPricesOfEachAsset() {
+
+		int n = this.tickersSet.getLength();
+		double[] pricesOfEachAsset = new double[n];
+		for (int i = 0; i<n;i++){
+			pricesOfEachAsset[i]=this.pricesMatrix[0][i];
+			//Vérifier les indices
+		}
+		return pricesOfEachAsset;
 		
 	}
 
@@ -125,6 +212,7 @@ public class Data {
 
 	private double[][] computeReturnsMatrix(){
 
+		if(this.pricesMatrix == null){
 
 			ArrayList<double[]> pricesArrayList = new ArrayList<double[]>();
 			int n = this.tickersSet.getLength();
@@ -174,6 +262,7 @@ public class Data {
 					pricesMatrix[j][i] = pricesArrayList.get(i)[j];
 				}
 			}
+		
 			
 			double[][] returnsMatrix = new double[min-1][n]; 
 			for(int i=0; i<n; i++){
@@ -185,6 +274,28 @@ public class Data {
 			}
 			
 			return returnsMatrix;
+		}
+		
+		else {
+			
+			
+			int n = this.tickersSet.getLength();
+			int min = this.pricesMatrix.length;
+			System.out.println("n="+ n);
+			System.out.println("min="+ min);
+
+			double[][] returnsMatrix = new double[min-1][n]; 
+			for(int i=0; i<n; i++){
+				double mem = this.pricesMatrix[0][i];
+				for(int j=0; j<(min-1); j++){
+					returnsMatrix[j][i] = (mem/this.pricesMatrix[j+1][i] - 1)*100;
+					mem = this.pricesMatrix[j][i];
+				}
+			}
+			
+			return returnsMatrix;
+			
+		}
 
 	}
 

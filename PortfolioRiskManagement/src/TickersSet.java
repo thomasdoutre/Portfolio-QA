@@ -1,7 +1,6 @@
 
 /**
  * This class decribes set of tickers
- * @author  Thomas Doutre
  * @version 1.0
  * @since   2015-05-10
  */

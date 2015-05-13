@@ -2,7 +2,6 @@ import org.apache.commons.math3.stat.descriptive.rank.Percentile;
 
 /**
  * This class calculates portfolios' VaR
- * @author  Thomas Doutre
  * @version 1.0
  * @since   2015-05-10
  */
