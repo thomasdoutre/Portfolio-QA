@@ -4,7 +4,7 @@ public class Main {
 
 		/*String[] tickers = {"GSPC","AAPL","FCHI","LG.PA","GSZ.PA","KER.PA","RNO.PA","AIR.PA"};
 		double[] weights = {0.125,0.125,0.125,0.125,0.125,0.125,0.125,0.125};*/
-
+		//
 	}
 
 }
