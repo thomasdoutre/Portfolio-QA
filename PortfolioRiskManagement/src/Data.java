@@ -15,13 +15,13 @@ import java.util.Calendar;
 
 public class Data {
 
-	public TickersSet tickersSet;
-	public double[] expectedReturnsOfEachAsset;
-	public double[] pricesOfEachAsset;
-	public double[][] returnsMatrix;
-	public double[][] pricesMatrix;
-	public Calendar startCalendar;
-	public Calendar endCalendar;
+	private TickersSet tickersSet;
+	private double[] expectedReturnsOfEachAsset;
+	private double[] pricesOfEachAsset;
+	private double[][] returnsMatrix;
+	private double[][] pricesMatrix;
+	private Calendar startCalendar;
+	private Calendar endCalendar;
 	
 	public Data(TickersSet tickersSet, Calendar startCalendar, Calendar endCalendar){
 		
@@ -297,6 +297,97 @@ public class Data {
 			
 		}
 
+	}
+
+	/**
+	 * @return the tickersSet
+	 */
+	public TickersSet getTickersSet() {
+		return tickersSet;
+	}
+
+	/**
+	 * @param tickersSet the tickersSet to set
+	 */
+	public void setTickersSet(TickersSet tickersSet) {
+		this.tickersSet = tickersSet;
+	}
+
+	/**
+	 * @return the expectedReturnsOfEachAsset
+	 */
+	public double[] getExpectedReturnsOfEachAsset() {
+		return expectedReturnsOfEachAsset;
+	}
+
+	/**
+	 * @param expectedReturnsOfEachAsset the expectedReturnsOfEachAsset to set
+	 */
+	public void setExpectedReturnsOfEachAsset(double[] expectedReturnsOfEachAsset) {
+		this.expectedReturnsOfEachAsset = expectedReturnsOfEachAsset;
+	}
+
+	/**
+	 * @return the returnsMatrix
+	 */
+	public double[][] getReturnsMatrix() {
+		return returnsMatrix;
+	}
+
+	/**
+	 * @param returnsMatrix the returnsMatrix to set
+	 */
+	public void setReturnsMatrix(double[][] returnsMatrix) {
+		this.returnsMatrix = returnsMatrix;
+	}
+
+	/**
+	 * @return the pricesMatrix
+	 */
+	public double[][] getPricesMatrix() {
+		return pricesMatrix;
+	}
+
+	/**
+	 * @param pricesMatrix the pricesMatrix to set
+	 */
+	public void setPricesMatrix(double[][] pricesMatrix) {
+		this.pricesMatrix = pricesMatrix;
+	}
+
+	/**
+	 * @return the startCalendar
+	 */
+	public Calendar getStartCalendar() {
+		return startCalendar;
+	}
+
+	/**
+	 * @param startCalendar the startCalendar to set
+	 */
+	public void setStartCalendar(Calendar startCalendar) {
+		this.startCalendar = startCalendar;
+	}
+
+	/**
+	 * @return the endCalendar
+	 */
+	public Calendar getEndCalendar() {
+		return endCalendar;
+	}
+
+	/**
+	 * @param endCalendar the endCalendar to set
+	 */
+	public void setEndCalendar(Calendar endCalendar) {
+		this.endCalendar = endCalendar;
+	}
+
+	/**
+	 * @param pricesOfEachAsset the pricesOfEachAsset to set
+	 */
+	public void setPricesOfEachAsset(double[] pricesOfEachAsset) {
+		this.pricesOfEachAsset = pricesOfEachAsset;
 	}
 
 	

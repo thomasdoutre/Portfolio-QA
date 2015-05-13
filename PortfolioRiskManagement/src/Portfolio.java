@@ -7,11 +7,22 @@
 
 public class Portfolio {
 	
-	TickersSet tickersSet;
+	private TickersSet tickersSet;
 
-	public TickersSet getTickers() {
-		return this.tickersSet;
+	/**
+	 * @return the tickersSet
+	 */
+	public TickersSet getTickersSet() {
+		return tickersSet;
 	}
+
+	/**
+	 * @param tickersSet the tickersSet to set
+	 */
+	public void setTickersSet(TickersSet tickersSet) {
+		this.tickersSet = tickersSet;
+	}
+
 
 	public double[] getReturns() {
 		// TODO Auto-generated method stub

@@ -7,7 +7,38 @@
 
 public class TickersSet {
 
-	String[] tickers;
+	private String[] tickers;
+	private Data data;
+	
+	/**
+	 * @return the tickers
+	 */
+	public String[] getTickers() {
+		return tickers;
+	}
+
+	/**
+	 * @param tickers the tickers to set
+	 */
+	public void setTickers(String[] tickers) {
+		this.tickers = tickers;
+	}
+
+	/**
+	 * @return the data
+	 */
+	public Data getData() {
+		return data;
+	}
+
+	/**
+	 * @param data the data to set
+	 */
+	public void setData(Data data) {
+		this.data = data;
+	}
+
+	
 	
 	/**
 	 * This method returns the number of tickers in the set.

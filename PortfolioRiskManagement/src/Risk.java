@@ -7,7 +7,21 @@ public abstract class Risk {
 	 * @since   2015-05-10
 	 */
 
-	public Portfolio portfolio;
+	private Portfolio portfolio;
+
+	/**
+	 * @return the portfolio
+	 */
+	public Portfolio getPortfolio() {
+		return portfolio;
+	}
+
+	/**
+	 * @param portfolio the portfolio to set
+	 */
+	public void setPortfolio(Portfolio portfolio) {
+		this.portfolio = portfolio;
+	}
 
 	public abstract double computeRisk();
 
