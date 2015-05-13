@@ -15,7 +15,7 @@ public class ConditionalValueAtRisk extends Risk {
 	 */
 
 	public double computeRisk(){
-		double[] portfolioReturns = super.portfolio.getReturns();
+		double[] portfolioReturns = super.getPortfolio().getReturns();
 		Percentile percentile = new Percentile();
 		double valueAtRisk;
 		valueAtRisk = - percentile.evaluate(portfolioReturns, 5.0);
