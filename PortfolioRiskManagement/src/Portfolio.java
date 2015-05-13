@@ -1,4 +1,3 @@
-import modele.Etat;
 
 /**
  * This class decribes a portfolio
@@ -6,7 +5,7 @@ import modele.Etat;
  * @since   2015-04-30
  */
 
-public class Portfolio extends Etat{
+public class Portfolio {
 	
 	TickersSet tickersSet;
 

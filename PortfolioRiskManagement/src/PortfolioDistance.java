@@ -1,4 +1,3 @@
-import modele.Particule;
 import modele.Routage;
 import parametrage.EnergieCinetique;
 import modele.Etat;
