@@ -8,21 +8,13 @@ import org.apache.commons.math3.stat.descriptive.rank.Percentile;
  */
 
 public class ConditionalValueAtRisk extends Risk {
+
 	
-	public ConditionalValueAtRisk() {
-		super();
-		this.cVaR = this.computeRisk();
+	public ConditionalValueAtRisk(Portfolio portfolio) {
+		super.setPortfolio(portfolio);
 	}
 
-	double cVaR;
 	
-	/**
-	 * @param cVaR
-	 */
-	public ConditionalValueAtRisk(double cVaR) {
-		super();
-		this.cVaR = cVaR;
-	}
 	
 	/**
 	 * This method is used to compute the Conditional Value at Risk of a portfolio.

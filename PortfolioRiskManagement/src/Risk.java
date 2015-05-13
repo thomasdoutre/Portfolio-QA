@@ -6,30 +6,20 @@ public abstract class Risk {
 	 * @version 1.0
 	 * @since   2015-05-10
 	 */
-
 	private Portfolio portfolio;
-
-
-	public Risk() {
-		// TODO Auto-generated constructor stub
-	}
-
+	public abstract double computeRisk();
+	
 	/**
 	 * @return the portfolio
 	 */
 	public Portfolio getPortfolio() {
 		return portfolio;
 	}
-
 	/**
 	 * @param portfolio the portfolio to set
 	 */
 	public void setPortfolio(Portfolio portfolio) {
 		this.portfolio = portfolio;
 	}
-
-	public abstract double computeRisk();
-
-	
 
 }

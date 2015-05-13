@@ -7,13 +7,14 @@ import org.apache.commons.math3.stat.descriptive.rank.Percentile;
  */
 
 public class ValueAtRisk extends Risk {
-	
-	private double vaR;
-	
-	public ValueAtRisk() {
-		super();
-		this.vaR = this.computeRisk();
+
+
+	public ValueAtRisk(Portfolio portfolio) {
+		super.setPortfolio(portfolio);
 	}
+	
+
+
 
 	/**
 	 * This method is used to compute the Value at Risk of a portfolio.
@@ -21,7 +22,7 @@ public class ValueAtRisk extends Risk {
 	 */
 
 	public double computeRisk(){
-		double[] portfolioReturns = super.getPortfolio().getReturns();
+		double[] portfolioReturns = this.getPortfolio().getReturns();
 		Percentile percentile = new Percentile();
 		double valueAtRisk;
 		valueAtRisk = - percentile.evaluate(portfolioReturns, 5.0);
