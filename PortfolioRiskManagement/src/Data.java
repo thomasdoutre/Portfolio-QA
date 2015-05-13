@@ -83,7 +83,6 @@ public class Data {
 
 		}
 		int min = minimumTimeInterval(pricesArrayList);
-		System.out.println("minimumTimeInterval(pricesArrayList) = "+min);
 
 		double[][] pricesMatrix = new double[min][this.tickersSet.getLength()];
 
@@ -114,8 +113,6 @@ public class Data {
 				compt ++;
 			}
 			expectedReturns[i] = sum/compt;
-			System.out.println("expectedReturnsOfEachAssets[i] = "+ expectedReturns[i]);
-
 		}
 		return expectedReturns;
 		
@@ -193,7 +190,6 @@ public class Data {
 	private static int minimumTimeInterval(ArrayList<double[]> arrayList){
 
 		int n = arrayList.size();
-		System.out.println("n="+n);
 		int min = arrayList.get(0).length;
 		for(int i=0; i<n; i++){
 			if (arrayList.get(i).length<min){
@@ -253,7 +249,6 @@ public class Data {
 
 			}
 			int min = minimumTimeInterval(pricesArrayList);
-			System.out.println("minimumTimeInterval(pricesArrayList) = "+min);
 
 			double[][] pricesMatrix = new double[min][this.tickersSet.getLength()];
 
@@ -281,8 +276,8 @@ public class Data {
 			
 			int n = this.tickersSet.getLength();
 			int min = this.pricesMatrix.length;
-			System.out.println("n="+ n);
-			System.out.println("min="+ min);
+			System.out.println("Number of assets ="+ n);
+			System.out.println("Number of historical returns ="+ min);
 
 			double[][] returnsMatrix = new double[min-1][n]; 
 			for(int i=0; i<n; i++){
