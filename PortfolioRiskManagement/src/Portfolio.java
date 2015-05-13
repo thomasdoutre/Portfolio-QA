@@ -59,8 +59,12 @@ public class Portfolio {
 	
 	public Portfolio clone(){
 		double[] cWeights = Tools.cloneArray(this.weights);
-		double[] cReturns = Tools.cloneArray(this.returns);
-		Portfolio newPortfolio = new Portfolio(this.tickersSet,cWeights,cReturns);
+		Portfolio newPortfolio = new Portfolio(this.tickersSet,cWeights);
+		return newPortfolio;
+		
+	}
+	public Portfolio cloneWithDifferentWeights(double[] weights){
+		Portfolio newPortfolio = new Portfolio(this.tickersSet,weights);
 		return newPortfolio;
 		
 	}
@@ -93,6 +97,7 @@ public class Portfolio {
 				rawReturns[i] += weights[j]*rawReturnsMatrix[i][j];
 			}
 		}
+		this.returns = rawReturns;
 		return rawReturns;
 	}
 
