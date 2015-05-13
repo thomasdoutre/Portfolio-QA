@@ -9,6 +9,11 @@ public abstract class Risk {
 
 	private Portfolio portfolio;
 
+
+	public Risk() {
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * @return the portfolio
 	 */
@@ -24,5 +29,7 @@ public abstract class Risk {
 	}
 
 	public abstract double computeRisk();
+
+	
 
 }

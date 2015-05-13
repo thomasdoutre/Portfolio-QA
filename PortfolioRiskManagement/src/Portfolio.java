@@ -1,3 +1,5 @@
+import java.util.Calendar;
+
 
 /**
  * This class decribes a portfolio
@@ -35,6 +37,25 @@ public class Portfolio {
 		this.setExpectedReturn(expectedReturn);
 		
 	}
+	
+	/**
+	 * This method is used to construct a portfolio.
+	 * Portfolio is initialized with pre-definite weights.
+	 * @param tickers we want to invest in.
+	 * @param weights the weights of the portfolio.
+	 * @throws ParseException 
+	 */
+
+	public Portfolio(TickersSet tickers, double[] weights,Calendar startCalendar, Calendar endCalendar) {
+		Data data = new Data(tickers,startCalendar,endCalendar);
+		this.tickersSet = tickers;
+		this.weights = weights;
+		this.returns = computeReturns(data, weights, startCalendar, endCalendar);
+		this.risk = new Risk(this);
+		this.expectedReturn = computeExpectedReturn();
+	}
+	
+	
 
 	/**
 	 * @return the risk
