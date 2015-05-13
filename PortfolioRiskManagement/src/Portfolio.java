@@ -32,12 +32,12 @@ public class Portfolio {
 	// ATTENTION : ici on ne clone pas, les références aux objets type double[] sont les mêmes, on clonera
 	// ces pointeurs avant de faire appel à ce constructeur.
 	
-	public Portfolio(TickersSet tickers,double[] weights,double[] returns, Risk risk, double expectedReturn){
+	public Portfolio(TickersSet tickers,double[] weights,double[] returns){
 		this.setTickersSet(tickers);
 		this.setWeights(weights);
 		this.setReturns(returns);
-		this.setRisk(risk);
-		this.setExpectedReturn(expectedReturn);
+		this.risk = new ConditionalValueAtRisk(this);
+		this.expectedReturn = computeExpectedReturn();
 		
 	}
 	
@@ -57,6 +57,13 @@ public class Portfolio {
 		this.expectedReturn = computeExpectedReturn();
 	}
 	
+	public Portfolio clone(){
+		double[] cWeights = Tools.cloneArray(this.weights);
+		double[] cReturns = Tools.cloneArray(this.returns);
+		Portfolio newPortfolio = new Portfolio(this.tickersSet,cWeights,cReturns);
+		return newPortfolio;
+		
+	}
 	
 
 	/**
