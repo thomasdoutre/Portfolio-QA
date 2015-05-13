@@ -3,22 +3,22 @@ package solver.parametres;
 /**
  * {@inheritDoc}
  * <p>
- * A chaque appel de modification de la température, la température descend d'un pas exponentiellement décroissant.
- * Le nombre réel d'itérations est une approximation puisque le pas exponentiel est un double à précision limitée.
- * Le coefficient normalisé(variable) permet de choisir la pente indépendamment de 
- * la température de début, de celle de fin et du nombre d'itérations.
+ * A chaque appel de modification de la tempÃ©rature, la tempÃ©rature descend d'un pas exponentiellement dÃ©croissant.
+ * Le nombre rÃ©el d'itÃ©rations est une approximation puisque le pas exponentiel est un double Ã© prÃ©cision limitÃ©e.
+ * Le coefficient normalisÃ©(variable) permet de choisir la pente indÃ©pendamment de 
+ * la tempÃ©rature de dÃ©but, de celle de fin et du nombre d'itÃ©rations.
  * @see FonctionExpoExplicite
  */
 public class FonctionExpoRecursive extends Fonction {
 
 	/**
-	 * Facteur normalisé.Il permet de choisir la pente indépendamment de 
-	 * la température de début, de celle de fin et du nombre d'itérations.
+	 * Facteur normalisÃ©.Il permet de choisir la pente indÃ©pendamment de 
+	 * la tempÃ©rature de dÃ©but, de celle de fin et du nombre d'itÃ©rations.
 	 */
 	double facteur; 
 	                                            
 	/**
-	 * Création d'une variable facteur(normalisé).
+	 * CrÃ©ation d'une variable facteur(normalisÃ©).
 	 */
 	public FonctionExpoRecursive(double tdebut, double tfinal, int nbIteration, double coef ) {
 		super(tdebut,tfinal,nbIteration);
@@ -29,8 +29,8 @@ public class FonctionExpoRecursive extends Fonction {
 	/**
 	 * {@inheritDoc}
 	 * <p>
-	 * Ici, diminue la distance de la température actuelle à la température finale d'un certain facteur.
-	 * Le calcul est moins lourd que pour FonctionExpoExplicite mais aussi moins précis(assez précis pour nos besoins par contre)
+	 * Ici, diminue la distance de la tempÃ©rature actuelle Ã© la tempÃ©rature finale d'un certain facteur.
+	 * Le calcul est moins lourd que pour FonctionExpoExplicite mais aussi moins prÃ©cis(assez prÃ©cis pour nos besoins par contre)
 	 */
 	public boolean modifierT() {
 		if (this.t < this.Tfinal) return false;

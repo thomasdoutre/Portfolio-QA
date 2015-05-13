@@ -4,11 +4,11 @@ public abstract class ConstanteK {
  public double k ;
  
  /**
-  * Classe qui décrit le comportement de la "constante" k dans le calcul de la probabilité.
+  * Classe qui dÃ©crit le comportement de la "constante" k dans le calcul de la probabilitÃ©.
   * <p>
-  * Dans la majorité des cas, elle est constante.
-  * Cependant, elle dispose de méthodes qui permettrait de changer le comportement en fonction des 
-  * dernières valeurs d'énergie (moyenne sur une fenêtre par exemple).
+  * Dans la majoritÃ© des cas, elle est constante.
+  * Cependant, elle dispose de mÃ©thodes qui permettrait de changer le comportement en fonction des 
+  * derniÃ©res valeurs d'Ã©nergie (moyenne sur une fenÃ©tre par exemple).
   * <p>
   * Le but de la constante K est de garder en moyenne le rapport deltaE/K unitaire.
   * Ainsi la proba d'accepation est de l'ordre de exp(-1/T).
@@ -16,7 +16,7 @@ public abstract class ConstanteK {
   *
   * NB : il faut toujours eviter que k soit proche de 0.
   * Dans ce cas, la proba explose independament de T, on ne sort plus des minimums locaux.
-  * Il faut essayer de garder toujours k strictement supérieur à 1.
+  * Il faut essayer de garder toujours k strictement supÃ©rieur Ã© 1.
   */
  public ConstanteK() {} ; 
  

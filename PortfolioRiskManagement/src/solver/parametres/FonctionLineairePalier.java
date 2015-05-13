@@ -3,24 +3,24 @@ package solver.parametres;
 /**
  * {@inheritDoc}
  * <p>
- * La température ne descend qu'après un certain nombre d'appels de modification de température, dépendant du palier.
- * La descente est constante(linéaire).
- * Le nombre réel d'itérations est une approximation puisque le pas linéaire est un double à précision limitée.
+ * La tempÃ©rature ne descend qu'aprÃ©s un certain nombre d'appels de modification de tempÃ©rature, dÃ©pendant du palier.
+ * La descente est constante(linÃ©aire).
+ * Le nombre rÃ©el d'itÃ©rations est une approximation puisque le pas linÃ©aire est un double Ã© prÃ©cision limitÃ©e.
  */
 public class FonctionLineairePalier extends Fonction {
 	
 	/**
-	 * Valeur approximée du pas(en négatif) pour descendre de la 
-	 * température de début à celle de fin en le nombre d'itérations voulu.
+	 * Valeur approximÃ©e du pas(en nÃ©gatif) pour descendre de la 
+	 * tempÃ©rature de dÃ©but Ã© celle de fin en le nombre d'itÃ©rations voulu.
 	 */
 	double pasLineaire;
 	
 	/**
-	 * Nombre d'itérations que l'on va faire avant de descendre de température.
+	 * Nombre d'itÃ©rations que l'on va faire avant de descendre de tempÃ©rature.
 	 */
 	int palier;
 	/**
-	 * Nombre d'itérations faites sur le palier courant
+	 * Nombre d'itÃ©rations faites sur le palier courant
 	 */
 	int compteurPalier;
 	
@@ -30,7 +30,7 @@ public class FonctionLineairePalier extends Fonction {
 	}
 	
 	/**
-	 * Création des variables pasLineaire et compteurPalier.
+	 * CrÃ©ation des variables pasLineaire et compteurPalier.
 	 */
 	public FonctionLineairePalier(double tdebut, double tfinal,int nbIteration, int palier) {
 		super(tdebut, tfinal, nbIteration);
@@ -42,8 +42,8 @@ public class FonctionLineairePalier extends Fonction {
 	/**
 	 * {@inheritDoc}
 	 * <p>
-	 * Ici, on vérifie si on doit incrémenter le nombre d'itérations faites sur le présent palier ou aller au prochain palier de température.
-	 * Dans le deuxième cas, on ajoute le pas à la température.
+	 * Ici, on vÃ©rifie si on doit incrÃ©menter le nombre d'itÃ©rations faites sur le prÃ©sent palier ou aller au prochain palier de tempÃ©rature.
+	 * Dans le deuxiÃ©me cas, on ajoute le pas Ã© la tempÃ©rature.
 	 */
 	public boolean modifierT() {
 		if (this.t < this.Tfinal) {

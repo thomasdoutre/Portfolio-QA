@@ -3,19 +3,19 @@ package solver.parametres;
 /**
  * {@inheritDoc}
  * <p>
- * A chaque appel de modification de la température, la température descend d'un pas constant.
- * Le nombre réel d'itérations est une approximation puisque le pas linéaire est un double à précision limitée.
+ * A chaque appel de modification de la tempÃ©rature, la tempÃ©rature descend d'un pas constant.
+ * Le nombre rÃ©el d'itÃ©rations est une approximation puisque le pas linÃ©aire est un double Ã© prÃ©cision limitÃ©e.
  */
 public class FonctionLineaire extends Fonction {
 
 	/**
-	 * Valeur approximée du pas(en négatif) pour descendre de la 
-	 * température de début à celle de fin en le nombre d'itérations voulu.
+	 * Valeur approximÃ©e du pas(en nÃ©gatif) pour descendre de la 
+	 * tempÃ©rature de dÃ©but Ã© celle de fin en le nombre d'itÃ©rations voulu.
 	 */
 	double pasLineaire;
 	
 	/**
-	 * Création d'une variable pasLineaire.
+	 * CrÃ©ation d'une variable pasLineaire.
 	 */
 	public FonctionLineaire(double tdebut, double tfinal, int nbIteration) {
 		super(tdebut,tfinal,nbIteration); 
@@ -25,7 +25,7 @@ public class FonctionLineaire extends Fonction {
 	/**
 	 * {@inheritDoc}
 	 * <p>
-	 * Ici, on ajoute le pas à la température et on vérifie si la température résultante est inférieure à la température de fin.
+	 * Ici, on ajoute le pas Ã© la tempÃ©rature et on vÃ©rifie si la tempÃ©rature rÃ©sultante est infÃ©rieure Ã© la tempÃ©rature de fin.
 	 */
 	public boolean modifierT() {
 		if (this.t+this.pasLineaire < this.Tfinal) {

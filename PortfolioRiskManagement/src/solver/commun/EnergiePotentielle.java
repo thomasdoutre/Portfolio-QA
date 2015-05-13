@@ -1,28 +1,28 @@
 package solver.commun;
 
 /**
- * Classe abstraite qui sert de template pour les énergies potentielles des recuits.
- * Concrètement, cette classe correspond à une méthode de calcul de l'énergie potentielle spécifique à un problème.
+ * Classe abstraite qui sert de template pour les Ã©nergies potentielles des recuits.
+ * ConcrÃ©tement, cette classe correspond Ã© une mÃ©thode de calcul de l'Ã©nergie potentielle spÃ©cifique Ã© un problÃ©me.
  * <p>
- * Il est nécessaire de coder une sous-classe fille pour chaque projet, et d'y implémenter calculer() et et calculerDeltaE().
+ * Il est nÃ©cessaire de coder une sous-classe fille pour chaque projet, et d'y implÃ©menter calculer() et et calculerDeltaE().
  */
 public abstract class EnergiePotentielle{
 	
 	/**
 	 * 
 	 * @param etat
-	 * Etat modifié par la mutation.
-	 * @return L'énergie potentielle de l'état modifié.
+	 * Etat modifiÃ© par la mutation.
+	 * @return L'Ã©nergie potentielle de l'Ã©tat modifiÃ©.
 	 */
 	abstract public double calculer(Etat etat);
 	
 	/**
 	 * 
 	 * @param etat
-	 * Etat modifié par la mutation.
+	 * Etat modifiÃ© par la mutation.
 	 * @param mutation
-	 * Mutation affectant l'état en question.
-	 * @return La différence d'énergie potentielle sur l'état modifié par la mutation donnée.
+	 * Mutation affectant l'Ã©tat en question.
+	 * @return La diffÃ©rence d'Ã©nergie potentielle sur l'Ã©tat modifiÃ© par la mutation donnÃ©e.
 	 */
 	abstract public double calculerDeltaE(Etat etat, MutationElementaire mutation);
 	

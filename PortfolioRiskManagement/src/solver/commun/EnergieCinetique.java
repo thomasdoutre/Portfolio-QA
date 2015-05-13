@@ -2,33 +2,33 @@ package solver.commun;
 
 /**
  * 
- * Classe abstraite qui sert de template pour les énergies cinétiques du recuit quantique.
- * Concrètement, cette classe correspond à une méthode de calcul de l'énergie cinétique spécifique à un problème.
+ * Classe abstraite qui sert de template pour les Ã©nergies cinÃ©tiques du recuit quantique.
+ * ConcrÃ©tement, cette classe correspond Ã© une mÃ©thode de calcul de l'Ã©nergie cinÃ©tique spÃ©cifique Ã© un problÃ©me.
  * <p>
- * Il est nécessaire d'implémenter une sous-classe fille, et d'y implémenter calculer() et calculerDeltaE().
- * Il faut aussi implémenter calculerDeltaEUB() pour pouvoir utiliser le Recuit Quantique Accéléré.
+ * Il est nÃ©cessaire d'implÃ©menter une sous-classe fille, et d'y implÃ©menter calculer() et calculerDeltaE().
+ * Il faut aussi implÃ©menter calculerDeltaEUB() pour pouvoir utiliser le Recuit Quantique AccÃ©lÃ©rÃ©.
  */
 public abstract class EnergieCinetique{
 	
 	/**
 	 * 
 	 * @param probleme
-	 * 	Le problème dont on calcule l'énergie cinétique.
-	 * @return Un double correspondant à l'énergie cinétique totale de la particule.
+	 * 	Le problÃ©me dont on calcule l'Ã©nergie cinÃ©tique.
+	 * @return Un double correspondant Ã© l'Ã©nergie cinÃ©tique totale de la particule.
 	 */
 	abstract public double calculer(Probleme probleme);
 	
 	/**
 	 * 
 	 * @param etat
-	 * 	L'état que l'on modifie.
+	 * 	L'Ã©tat que l'on modifie.
 	 * @param prev
-	 * 	L'état situé avant l'état modifié.
+	 * 	L'Ã©tat situÃ© avant l'Ã©tat modifiÃ©.
 	 * @param next
-	 * 	L'état situé après l'état modifié.
+	 * 	L'Ã©tat situÃ© aprÃ©s l'Ã©tat modifiÃ©.
 	 * @param mutation
-	 * 	La mutation que subit l'état centre et dont l'on veut calculer le changement d'énergie cinétique provoqué.
-	 * @return Le changement d'énergie cinétique provoqué par la mutation sur l'état centre.
+	 * 	La mutation que subit l'Ã©tat centre et dont l'on veut calculer le changement d'Ã©nergie cinÃ©tique provoquÃ©.
+	 * @return Le changement d'Ã©nergie cinÃ©tique provoquÃ© par la mutation sur l'Ã©tat centre.
 	 * 		
 	 */
 	abstract public double calculerDeltaE(Etat etat, Etat prev, Etat next, MutationElementaire mutation);
@@ -36,14 +36,14 @@ public abstract class EnergieCinetique{
 	/**
 	 * 
 	 * @param etat
-	 * 	L'état que l'on modifie.
+	 * 	L'Ã©tat que l'on modifie.
 	 * @param prev
-	 * 	L'état situé avant l'état modifié.
+	 * 	L'Ã©tat situÃ© avant l'Ã©tat modifiÃ©.
 	 * @param next
-	 * 	L'état situé après l'état modifié.
+	 * 	L'Ã©tat situÃ© aprÃ©s l'Ã©tat modifiÃ©.
 	 * @param mutation
-	 * 	La mutation que subit l'état centre et dont l'on veut calculer la borne supérieure du changement d'énergie cinétique provoqué.
-	 * @return La borne supérieure du changement d'énergie cinétique provoqué par la mutation sur l'état centre.
+	 * 	La mutation que subit l'Ã©tat centre et dont l'on veut calculer la borne supÃ©rieure du changement d'Ã©nergie cinÃ©tique provoquÃ©.
+	 * @return La borne supÃ©rieure du changement d'Ã©nergie cinÃ©tique provoquÃ© par la mutation sur l'Ã©tat centre.
 	 * 		
 	 */
 	abstract public double calculerDeltaEUB(Etat etat, Etat prev, Etat next, MutationElementaire mutation);

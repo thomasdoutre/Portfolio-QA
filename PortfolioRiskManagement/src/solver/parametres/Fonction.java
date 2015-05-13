@@ -1,28 +1,28 @@
 package solver.parametres;
 
 /**
- * Classe qui décrit un comportement (par exemple linéaire ou exponentiel), et qui est utilisé entre autre pour la température.
- * Cette classe permet de modéliser le comportement des paramètres comme la température dans le recuit simulé ou le
- * paramètre Gamma dans le recuit quantique.
+ * Classe qui dÃ©crit un comportement (par exemple linÃ©aire ou exponentiel), et qui est utilisÃ© entre autre pour la tempÃ©rature.
+ * Cette classe permet de modÃ©liser le comportement des paramÃ©tres comme la tempÃ©rature dans le recuit simulÃ© ou le
+ * paramÃ©tre Gamma dans le recuit quantique.
  *
  */
 public abstract  class Fonction {       
 
 	/**
-	 * Température de départ de la fonction
+	 * TempÃ©rature de dÃ©part de la fonction
 	 */
 	double Tdebut;
 	/**
-	 * Température de fin de la fonction
+	 * TempÃ©rature de fin de la fonction
 	 */
 	double Tfinal;
 	/**
-	 * Nombre d'itérations théoriques effectués(en vrai, peut être un peu différent)
+	 * Nombre d'itÃ©rations thÃ©oriques effectuÃ©s(en vrai, peut Ã©tre un peu diffÃ©rent)
 	 */
 	public int nbIteration ; 
 	
 	/**
-	 * Température actuelle de la fonction
+	 * TempÃ©rature actuelle de la fonction
 	 */
 	public double t;
 	
@@ -39,7 +39,7 @@ public abstract  class Fonction {
 	}
 
 	/**
-	 * Fonction qui change la temperature et indique si on est à la temperature finale.
+	 * Fonction qui change la temperature et indique si on est Ã© la temperature finale.
 	 * @return True s'il faut continuer, false sinon.
 	 */
 	 public boolean  modifierT() {
@@ -47,9 +47,9 @@ public abstract  class Fonction {
 	} 
 		
 	/**
-	 * Fonction d'initialisation(ou plus précisemment réinitialisation) de l'instance. 
-	 * La température gardée dans l'instance est réinitialisée à la température de début donnée
-	 * à l'instanciation de l'objet.
+	 * Fonction d'initialisation(ou plus prÃ©cisemment rÃ©initialisation) de l'instance. 
+	 * La tempÃ©rature gardÃ©e dans l'instance est rÃ©initialisÃ©e Ã© la tempÃ©rature de dÃ©but donnÃ©e
+	 * Ã© l'instanciation de l'objet.
 	 */
 	public void init(){
 		this.t = this.Tdebut;
@@ -57,9 +57,9 @@ public abstract  class Fonction {
 	 
 	/**
 	 * Constructeur.
-	 * @param tdebut Température de début, gardée em mémoire pour une réinitialisation possible.
-	 * @param tfinal Température de fin, gardée en mémoire.
-	 * @param nbIteration Le nombre d'itérations, gardé en mémoire.
+	 * @param tdebut TempÃ©rature de dÃ©but, gardÃ©e em mÃ©moire pour une rÃ©initialisation possible.
+	 * @param tfinal TempÃ©rature de fin, gardÃ©e en mÃ©moire.
+	 * @param nbIteration Le nombre d'itÃ©rations, gardÃ© en mÃ©moire.
 	 */
 	 public Fonction(double tdebut, double tfinal, int nbIteration) {
 		this.Tdebut = tdebut;

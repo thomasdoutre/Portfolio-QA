@@ -1,31 +1,31 @@
 package solver.commun;
 
 /**
- * Interface représentant le concept abstrait de mutation dans l'algorithme de recuit.
+ * Interface reprÃ©sentant le concept abstrait de mutation dans l'algorithme de recuit.
  * <p>
- * Il est nécessaire de coder une classe qui implémente cette interface. Elle doit implémenter les deux fonctions 
+ * Il est nÃ©cessaire de coder une classe qui implÃ©mente cette interface. Elle doit implÃ©menter les deux fonctions 
  * getMutationElementaire() et faire().
  */
 public interface IMutation {
 
 	/**
-	 * Renvoie une MutationElementaire possible selon le problème et l'état envoyés, sans l'effectuer.
+	 * Renvoie une MutationElementaire possible selon le problÃ©me et l'Ã©tat envoyÃ©s, sans l'effectuer.
 	 * @param probleme
-	 * Le problème dont on cherche une mutation élementaire possible.
+	 * Le problÃ©me dont on cherche une mutation Ã©lementaire possible.
 	 * @param etat
-	 * L'état dont on cherche une mutation élementaire possible.
+	 * L'Ã©tat dont on cherche une mutation Ã©lementaire possible.
 	 * @return Un objet MutationElementaire
 	 */
 	abstract public MutationElementaire getMutationElementaire(Probleme probleme, Etat etat);
 	
 	/**
-	 * Le problème fait une mutation sur demande.
+	 * Le problÃ©me fait une mutation sur demande.
 	 * @param probleme
-	 * Le problème sur lequel on cherche à réaliser la mutation.
+	 * Le problÃ©me sur lequel on cherche Ã© rÃ©aliser la mutation.
 	 * @param etat
-	 * L'état sur lequel on cherche à réaliser la mutation.
+	 * L'Ã©tat sur lequel on cherche Ã© rÃ©aliser la mutation.
 	 * @param mutation
-	 * La mutation à réaliser.
+	 * La mutation Ã© rÃ©aliser.
 	 */
 	public void faire(Probleme probleme, Etat etat, MutationElementaire mutation);
 	

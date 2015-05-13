@@ -13,8 +13,8 @@ import solver.parametres.Fonction;
 /**
  * {@inheritDoc}
  * <p>
- * On utilise ici la limite supérieure de la différence d'énergie cinétique locale pour réduire les temps de calcul.
- * Cependant, cela demande que le problème dispose d'une borne supériere d'énergie cinétique pour toute mutation possible effectuée.
+ * On utilise ici la limite supÃ©rieure de la diffÃ©rence d'Ã©nergie cinÃ©tique locale pour rÃ©duire les temps de calcul.
+ * Cependant, cela demande que le problÃ©me dispose d'une borne supÃ©riere d'Ã©nergie cinÃ©tique pour toute mutation possible effectuÃ©e.
  *
  */
 public class RecuitQuantiqueAccelere extends RecuitQuantique{ 				
@@ -26,10 +26,10 @@ public class RecuitQuantiqueAccelere extends RecuitQuantique{
 	/**
 	 * {@inheritDoc}
 	 * <p>
-	 * Ici on utilise la limite supérieure de la différence d'énergie cinétique locale pour déterminer
-	 * dans le cas où notre différence d'énergie potentielle est non négative, si la différence d'énergie totale
-	 * liée à cette borne supérieure est négative, et sinon faire un premier calcul de probabilité.
-	 * Cela va accélérer les calculs puisque la borne supérieure se calcule facilement, en temps constant.
+	 * Ici on utilise la limite supÃ©rieure de la diffÃ©rence d'Ã©nergie cinÃ©tique locale pour dÃ©terminer
+	 * dans le cas oÃ© notre diffÃ©rence d'Ã©nergie potentielle est non nÃ©gative, si la diffÃ©rence d'Ã©nergie totale
+	 * liÃ©e Ã© cette borne supÃ©rieure est nÃ©gative, et sinon faire un premier calcul de probabilitÃ©.
+	 * Cela va accÃ©lÃ©rer les calculs puisque la borne supÃ©rieure se calcule facilement, en temps constant.
 	 * 
 	 */
 	public void lancer(Probleme probleme) {
@@ -95,11 +95,11 @@ public class RecuitQuantiqueAccelere extends RecuitQuantique{
 				
 				for (int j = 0; j < this.palier; j++){
 					MutationElementaire mutation = probleme.getMutationElementaire(etat);	// trouver une mutation possible
-					mutationsTentees++; //permet d'avoir une référence indépendante pour les améliorations de l'algorithme, mais aussi sur son temps
+					mutationsTentees++; //permet d'avoir une rÃ©fÃ©rence indÃ©pendante pour les amÃ©liorations de l'algorithme, mais aussi sur son temps
 					
 					deltaEp = probleme.calculerDeltaEp(etat, mutation);	// calculer deltaEp si la mutation etait acceptee
 					deltaEcUB = probleme.calculerDeltaEcUB(etat, previous, next, mutation);  // calculer deltaIEcUB si la mutation etait acceptee
-					//différences du hamiltonien total
+					//diffÃ©rences du hamiltonien total
 					//multiplier deltaIEcUB par JGamma
 					deltaE = deltaEp/nombreRepliques - deltaEcUB*Jr;
 
@@ -124,7 +124,7 @@ public class RecuitQuantiqueAccelere extends RecuitQuantique{
 						}
 					}
 					else {
-						//deltaE ici correspond à deltaEUB, il dépend de EcUB
+						//deltaE ici correspond Ã© deltaEUB, il dÃ©pend de EcUB
 						if (deltaE <= 0) proba = 1;
 						else proba = Expo.expf(-deltaE / (this.K.k * this.temperature));
 						

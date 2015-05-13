@@ -1,12 +1,12 @@
 package solver.commun;
 
 /**
- * Classe abstraite servant de template pour les états d'un problème. Un état représente une configuration 
- * possible d'une particule. Un état dispose nécessairement d'un lien vers une énergie potentielle. 
+ * Classe abstraite servant de template pour les Ã©tats d'un problÃ©me. Un Ã©tat reprÃ©sente une configuration 
+ * possible d'une particule. Un Ã©tat dispose nÃ©cessairement d'un lien vers une Ã©nergie potentielle. 
  * <p>
- * Il est nécessaire d'implémenter une sous-classe fille, avec les informations du problème en particulier.
- * Il doit aussi y avoir moyen de l'initialiser, pour que ce soit utiliser par la fonction initialiser() du problème.
- * Il y a aussi moyen de décomposer les fonctionnalités de faire() de l'implémentation de IMutation pour qu'elle appelle
+ * Il est nÃ©cessaire d'implÃ©menter une sous-classe fille, avec les informations du problÃ©me en particulier.
+ * Il doit aussi y avoir moyen de l'initialiser, pour que ce soit utiliser par la fonction initialiser() du problÃ©me.
+ * Il y a aussi moyen de dÃ©composer les fonctionnalitÃ©s de faire() de l'implÃ©mentation de IMutation pour qu'elle appelle
  * une fonction dans Etat qui effectue la mutation sur les variables internes.
  * @see EnergiePotentielle
  * @see Particule

@@ -10,7 +10,7 @@ int indice ;											// un indice de lieu d'ecriture dans le tableau
 	this.tailleTab= nbValeur;
 	this.tabDeltaE= new double[nbValeur] ;				// alors normalement, le tableau est automatique initialise a zero partout
 	this.indice=0;										// c'est la bible "programmer en java" qui le dit ! ... si ca ne le fait cette classe ne fonctionnera pas
-	this.k=1 ; 											// initialisation bidon ! mais pas tant que ça car k sera toujours > 1
+	this.k=1 ; 											// initialisation bidon ! mais pas tant que Ã©a car k sera toujours > 1
  }
  
  public void calculerK(double deltaE) {						// on recalcule la moyenne en prenant compte de la n ieme valeur precendente a ecraser

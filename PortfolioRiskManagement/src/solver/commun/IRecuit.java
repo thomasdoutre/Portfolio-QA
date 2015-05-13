@@ -1,14 +1,14 @@
 package solver.commun;
 
 /**
- * Template pour le recuit. Tous les recuits doivent implémenter cette interface ou hériter d'une classe le faisant.
+ * Template pour le recuit. Tous les recuits doivent implÃ©menter cette interface ou hÃ©riter d'une classe le faisant.
  */
 public interface IRecuit {
 	
 	/**
-	 * Effectue le recuit sur le problème.
+	 * Effectue le recuit sur le problÃ©me.
 	 * @param problem
-	 * Le problème sur lequel on veut effectuer le recuit.
+	 * Le problÃ©me sur lequel on veut effectuer le recuit.
 	 */
 	public void lancer(Probleme problem);
 	

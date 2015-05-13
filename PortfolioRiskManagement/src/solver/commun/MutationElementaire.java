@@ -1,10 +1,10 @@
 package solver.commun;
 
 /**
- * Représente le concept abstrait de la plus petite mutation possible du problème.
+ * ReprÃ©sente le concept abstrait de la plus petite mutation possible du problÃ©me.
  *<p>
  * Chaque projet doit disposer d'une variation fille de cette classe. Le but de cette classe
- * est de pouvoir stocker les informations relatives à une mutation.
+ * est de pouvoir stocker les informations relatives Ã  une mutation.
  */
 public abstract class MutationElementaire {
 

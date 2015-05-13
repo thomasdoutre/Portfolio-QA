@@ -3,15 +3,15 @@ package solver.commun;
 
 
 /**
- * Classe abstraite représentant un problème générique soluble par recuit.
+ * Classe abstraite reprÃ©sentant un problÃ©me gÃ©nÃ©rique soluble par recuit.
  * <p>
- * Pour résoudre un problème grâce au recuit, il faut faire une classe fille qui implémente
- * les différentes méthodes abstraites utilisées par l'algorithme.
- * Elle hérite de particules et disposent donc d'attributs en conséquence.
- * On utilise pour l'aléatoire une classe appelée HighQualityRandom.
+ * Pour rÃ©soudre un problÃ©me grÃ©ce au recuit, il faut faire une classe fille qui implÃ©mente
+ * les diffÃ©rentes mÃ©thodes abstraites utilisÃ©es par l'algorithme.
+ * Elle hÃ©rite de particules et disposent donc d'attributs en consÃ©quence.
+ * On utilise pour l'alÃ©atoire une classe appelÃ©e HighQualityRandom.
  * <p>
- * Pour utiliser un recuit, il faut implémenter un Probleme spécifique à notre problème,
- * et implémenter la fonction initialiser(), qui initialise le problème ainsi que les états.
+ * Pour utiliser un recuit, il faut implÃ©menter un Probleme spÃ©cifique Ã© notre problÃ©me,
+ * et implÃ©menter la fonction initialiser(), qui initialise le problÃ©me ainsi que les Ã©tats.
  * @see IMutation
  * @see HighQualityRandom
  * @see Particule
@@ -23,7 +23,7 @@ public abstract class Probleme extends Particule{
 	public HighQualityRandom gen = new HighQualityRandom(getSeed());
 	
 	/**
-	 * Initialise le problème
+	 * Initialise le problÃ©me
 	 */
 	public abstract void initialiser();
 	
@@ -33,16 +33,16 @@ public abstract class Probleme extends Particule{
 	public abstract void sauvegarderSolution();
 	
 	/**
-	 * Calcule et retourne l'énergie totale
-	 * @return Energie totale de la particule (Energie cinétique + énergie potentielle)
+	 * Calcule et retourne l'Ã©nergie totale
+	 * @return Energie totale de la particule (Energie cinÃ©tique + Ã©nergie potentielle)
 	 */
 	public double calculerEnergie(){
 		return ( this.Ec.calculer(this) + calculerEnergiePotentielle() );
-		//peut-être pas très utile
+		//peut-Ã©tre pas trÃ©s utile
 	}
 	
 	/**
-	 * Calcule l'énergie potentielle de chaque etat et les somme
+	 * Calcule l'Ã©nergie potentielle de chaque etat et les somme
 	 * @return Energie potentielle de la particule
 	 */
 	public double calculerEnergiePotentielle(){
@@ -51,68 +51,68 @@ public abstract class Probleme extends Particule{
 			energiePotentiel += etat.Ep.calculer(etat);
 		}
 		return energiePotentiel;
-		// peut-être renvoyer energiePotentielle / nombre de répliques??
+		// peut-Ã©tre renvoyer energiePotentielle / nombre de rÃ©pliques??
 	}
 	
 
 	/**
-	 * Calcule deltaEp à partir de la mutation proposée (sans effectuer la mutation)
+	 * Calcule deltaEp Ã© partir de la mutation proposÃ©e (sans effectuer la mutation)
 	 * @param etat
 	 * Etat que l'on veut muter
 	 * @param mutation
-	 * Mutation à effectuer
-	 * @return La différence d'énergie potentielle après que la mutation affecte l'état
+	 * Mutation Ã© effectuer
+	 * @return La diffÃ©rence d'Ã©nergie potentielle aprÃ©s que la mutation affecte l'Ã©tat
 	 */
 	public double calculerDeltaEp(Etat etat, MutationElementaire mutation){
 		return etat.Ep.calculerDeltaE(etat, mutation);
 	}
 	
 	/**
-	 * Calcule deltaEc à partir de la mutation proposée (sans effectuer la mutation)
+	 * Calcule deltaEc Ã© partir de la mutation proposÃ©e (sans effectuer la mutation)
 	 * @param etat
 	 * Etat que l'on veut muter
 	 * @param previous
-	 * Etat précédent sur la liste représentant les intéractions quantiques des spins entre particules
+	 * Etat prÃ©cÃ©dent sur la liste reprÃ©sentant les intÃ©ractions quantiques des spins entre particules
 	 * @param next
-	 * Etat suivant sur la liste représentant les intéractions quantiques des spins entre particules
+	 * Etat suivant sur la liste reprÃ©sentant les intÃ©ractions quantiques des spins entre particules
 	 * @param mutation
-	 * Mutation à effectuer
-	 * @return La différence d'énergie cinétique à un coefficient proportionnel JGamma près après que la mutation affecte l'état
+	 * Mutation Ã© effectuer
+	 * @return La diffÃ©rence d'Ã©nergie cinÃ©tique Ã© un coefficient proportionnel JGamma prÃ©s aprÃ©s que la mutation affecte l'Ã©tat
 	 */
 	public double calculerDeltaEc(Etat etat, Etat previous, Etat next, MutationElementaire mutation){
 		return this.Ec.calculerDeltaE(etat, previous, next, mutation);
 	}
 	
 	/**
-	 * Calcule une borne supérieure de deltaEc à partir de la mutation proposée (sans effectuer la mutation). Celle ci dépend
-	 * des tailles de la classe de coloriage précédant la mutation et de celle suivant la mutation.
+	 * Calcule une borne supÃ©rieure de deltaEc Ã© partir de la mutation proposÃ©e (sans effectuer la mutation). Celle ci dÃ©pend
+	 * des tailles de la classe de coloriage prÃ©cÃ©dant la mutation et de celle suivant la mutation.
 	 * @param etat
 	 * Etat que l'on veut muter
 	 * @param previous
-	 * Etat précédent sur la liste représentant les intéractions quantiques des spins entre particules
+	 * Etat prÃ©cÃ©dent sur la liste reprÃ©sentant les intÃ©ractions quantiques des spins entre particules
 	 * @param next
-	 * Etat suivant sur la liste représentant les intéractions quantiques des spins entre particules
+	 * Etat suivant sur la liste reprÃ©sentant les intÃ©ractions quantiques des spins entre particules
 	 * @param mutation
-	 * Mutation à effectuer
-	 * @return La borne supérieure de la différence d'énergie cinétique à un coefficient proportionnel JGamma près après que la mutation affecte l'état
+	 * Mutation Ã© effectuer
+	 * @return La borne supÃ©rieure de la diffÃ©rence d'Ã©nergie cinÃ©tique Ã© un coefficient proportionnel JGamma prÃ©s aprÃ©s que la mutation affecte l'Ã©tat
 	 */
 	public double calculerDeltaEcUB(Etat etat, Etat previous, Etat next, MutationElementaire mutation) {
-		return this.Ec.calculerDeltaEUB(etat, previous, next, mutation); // à voir si cette fonction doit être conforme (elle sera héritée et changée normalement)
+		return this.Ec.calculerDeltaEUB(etat, previous, next, mutation); // Ã© voir si cette fonction doit Ã©tre conforme (elle sera hÃ©ritÃ©e et changÃ©e normalement)
 	}
 	
 	/**
-	 * Effectue une mutation élémentaire du problème
+	 * Effectue une mutation Ã©lÃ©mentaire du problÃ©me
 	 * @param etat
 	 * Etat sur lequel on veut effectuer une MutationElementaire
 	 * @param mutation
-	 * MutationElementaire à effectuer
+	 * MutationElementaire Ã© effectuer
 	 */
 	public void modifElem(Etat etat, MutationElementaire mutation){
 		this.mutation.faire(this, etat, mutation);
 	}
 
 	/**
-	 * Renvoie une mutation élémentaire de l'état
+	 * Renvoie une mutation Ã©lÃ©mentaire de l'Ã©tat
 	 * @param etat
 	 * Etat sur lequel on veut obtenir une MutationElementaire
 	 * @return Une MutationElementaire possible
@@ -123,15 +123,15 @@ public abstract class Probleme extends Particule{
 	
 	/**
 	 * 
-	 * @return Seed du problème
+	 * @return Seed du problÃ©me
 	 */
 	public int getSeed() {
 		return seed;
 	}
 	/**
-	 * Change le seed du générateur aléatoire du problème
+	 * Change le seed du gÃ©nÃ©rateur alÃ©atoire du problÃ©me
 	 * @param seed
-	 * Seed du générateur aléatoire du problème
+	 * Seed du gÃ©nÃ©rateur alÃ©atoire du problÃ©me
 	 */
 	public void setSeed(int seed) {
 		this.seed = seed;

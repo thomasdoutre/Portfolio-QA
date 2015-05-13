@@ -1,10 +1,10 @@
 package solver.commun;
 
 /**
- * Classe abstraite servant de template pour les particules d'un problème. 
+ * Classe abstraite servant de template pour les particules d'un problÃ©me. 
  * <p>
- * Une particule dispose de plusieurs états, qui sont des possibilités pour la particule. 
- * Elle dispose d'un lien vers une énergie cinétique et vers une mutation(template).
+ * Une particule dispose de plusieurs Ã©tats, qui sont des possibilitÃ©s pour la particule. 
+ * Elle dispose d'un lien vers une Ã©nergie cinÃ©tique et vers une mutation(template).
  * @see EnergieCinetique
  * @see IMutation
  * @see Etat

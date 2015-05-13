@@ -3,30 +3,30 @@ package solver.parametres;
 /**
  * {@inheritDoc}
  * <p>
- * Calcul explicite de la température avec une exponentielle.
- * Le coefficient normalisé(variable) permet de choisir la pente indépendamment de 
- * la température de début, de celle de fin et du nombre d'itérations.
+ * Calcul explicite de la tempÃ©rature avec une exponentielle.
+ * Le coefficient normalisÃ©(variable) permet de choisir la pente indÃ©pendamment de 
+ * la tempÃ©rature de dÃ©but, de celle de fin et du nombre d'itÃ©rations.
  * <p>
- * En effet, T(0) = Tdébut <br>
- * Et T(nbIter) = Tfinal+(Tdébut-Tfinal)*exp(coefPente*nbIter) 
- *				= Tfinal+(Tdébut-Tfinal)*exp(-coef*nbIter/nbIter) 
- *              = Tfinal+(Tdébut-Tfinal)*exp(-coef)  <br>
+ * En effet, T(0) = TdÃ©but <br>
+ * Et T(nbIter) = Tfinal+(TdÃ©but-Tfinal)*exp(coefPente*nbIter) 
+ *				= Tfinal+(TdÃ©but-Tfinal)*exp(-coef*nbIter/nbIter) 
+ *              = Tfinal+(TdÃ©but-Tfinal)*exp(-coef)  <br>
  * Or exp(-coef) est proche de zero. <br>
  *    T(nbIter) ~= Tfinal
  *<p>
- * Le coefficient est à prendre plutot entre 4 et 6, puisque exp(-4) = 0.02 et exp(-6) = 0.0025.
- * Ainsi, on a une bonne exponentielle, qui ne reste pas trop lontemps vers Tfin mais quand même un peu.
+ * Le coefficient est Ã© prendre plutot entre 4 et 6, puisque exp(-4) = 0.02 et exp(-6) = 0.0025.
+ * Ainsi, on a une bonne exponentielle, qui ne reste pas trop lontemps vers Tfin mais quand mÃ©me un peu.
  * @see FonctionExpoRecursive
  */
 public class FonctionExpoExplicite extends Fonction {
 
 	/**
-	 * Coefficient de la pente exponentiel normalisée. Il permet de choisir la pente indépendamment de 
-	 * la température de début, de celle de fin et du nombre d'itérations.
+	 * Coefficient de la pente exponentiel normalisÃ©e. Il permet de choisir la pente indÃ©pendamment de 
+	 * la tempÃ©rature de dÃ©but, de celle de fin et du nombre d'itÃ©rations.
 	 */
 	double coefPente; 
 	/**
-	 * Nombre d'itérations effectuées.
+	 * Nombre d'itÃ©rations effectuÃ©es.
 	 */
 	int k;
 	
@@ -36,7 +36,7 @@ public class FonctionExpoExplicite extends Fonction {
 	}
 	
 	/**
-	 * Création d'une variable coefPente(normalisée) et de k.
+	 * CrÃ©ation d'une variable coefPente(normalisÃ©e) et de k.
 	 */
 	public FonctionExpoExplicite(double tdebut, double tfinal, int nbIteration, double coef ) {
 		super(tdebut,tfinal,nbIteration);
@@ -47,8 +47,8 @@ public class FonctionExpoExplicite extends Fonction {
 	/**
 	 * {@inheritDoc}
 	 * <p>
-	 * Ici, diminue la distance de la température actuelle à la température finale du facteur(en variable).
-	 * Le calcul est un peu lourd, mais précis.
+	 * Ici, diminue la distance de la tempÃ©rature actuelle Ã© la tempÃ©rature finale du facteur(en variable).
+	 * Le calcul est un peu lourd, mais prÃ©cis.
 	 */
 	public boolean modifierT() {
 		if (this.t < this.Tfinal) return false;
