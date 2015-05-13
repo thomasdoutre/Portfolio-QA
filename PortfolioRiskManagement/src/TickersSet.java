@@ -10,6 +10,16 @@ public class TickersSet {
 	private String[] tickers;
 	private Data data;
 	
+	
+	
+	/**
+	 * @param tickers
+	 * @param data
+	 */
+	public TickersSet(String[] tickers) {
+		this.tickers = tickers;
+	}
+
 	/**
 	 * @return the tickers
 	 */

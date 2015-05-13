@@ -1,4 +1,7 @@
+import java.text.ParseException;
 import java.util.Calendar;
+
+import org.apache.commons.math3.stat.descriptive.moment.Mean;
 
 
 /**
@@ -46,16 +49,45 @@ public class Portfolio {
 	 * @throws ParseException 
 	 */
 
-	public Portfolio(TickersSet tickers, double[] weights,Calendar startCalendar, Calendar endCalendar) {
-		Data data = new Data(tickers,startCalendar,endCalendar);
+	public Portfolio(TickersSet tickers, double[] weights) {
 		this.tickersSet = tickers;
 		this.weights = weights;
-		this.returns = computeReturns(data, weights, startCalendar, endCalendar);
-		this.risk = new Risk(this);
+		this.returns = computeReturns(weights);
+		this.risk = new ConditionalValueAtRisk(this);
 		this.expectedReturn = computeExpectedReturn();
 	}
 	
 	
+
+	/**
+	 * This method is used to compute the Expected Return of a portfolio.
+	 * @return double Expected Return from historical data.
+	 */
+	public double computeExpectedReturn(){
+		Mean mean = new Mean();
+		double expectedReturn;
+		expectedReturn = mean.evaluate(this.returns);
+		System.out.println("Expected Return = " +expectedReturn);
+		return expectedReturn;
+	}
+
+	/**
+	 * This method is used to compute the raw returns of a portfolio.
+	 * @param data from YahooFinance.
+	 * @param weights Percentage we want to invest in each asset.
+	 * @return double[] raw returns are historically computed, the method returns an array of this raw returns, it allows us tio compute VaR.
+	 */
+	private double[] computeReturns(double[] weights){
+		double[][] rawReturnsMatrix = this.tickersSet.getData().getReturnsMatrix();
+		int n = rawReturnsMatrix.length;
+		double rawReturns[] = new double[n];
+		for(int i = 0; i < n; i++){
+			for(int j = 0; j < weights.length; j++){
+				rawReturns[i] += weights[j]*rawReturnsMatrix[i][j];
+			}
+		}
+		return rawReturns;
+	}
 
 	/**
 	 * @return the risk
