@@ -1,12 +1,19 @@
 
 
-import modele.Etat;
+import java.text.ParseException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Random;
-import modele.Probleme;
-import mutation.IMutation;
+
+
+import solver.commun.Etat;
+import solver.commun.MutationElementaire;
+import solver.commun.Probleme;
+import solver.commun.IMutation;
 
 /**
- * This class decribes a portfolio
+ * This class decribes a mutation that keeps returns unchanged by swapping 3 assets
  * @author  Raphael Couronne
  * @version 1.0
  * @since   2015-05-09
@@ -17,104 +24,67 @@ public class SwapAssets implements IMutation {
 	int Asset2;
 	int Asset3;
 	double step;
-	
-	
-	
-
-	public SwapAssets(int asset1, int asset2, int asset3, double step) {
-		Asset1 = asset1;
-		Asset2 = asset2;
-		Asset3 = asset3;
-		this.step = step;
-	}
-
 	@Override
-	public void faire(Probleme p) {
-		
-		
-	}
-
-	@Override
-	public double calculer(Probleme p) {
-		
-		return 0;
-	}
+	
 	
 	
 	/**
-	 * Seule méthode utilisée dans la classe SwapAssets. Cette m�thode utilise les attributs de la classe, qui sont pour l'instant g�n�r�s al�atoirement par initialize()
-	 * Swap désigne une mutation du probl�me de portefeuille qui consiste � 
-	 * @param p
-	 * Probleme consid�r�
-	 * @param e
-	 * Etat du probl�me consid�r�
+	 * This method is used to get an elementary mutation of asset's weights in the portfolio
+	 * This elementary mutation is randomly generated
+	 * @param probleme the problem chosen
+	 * @param etat the replica chosen
+	 * @throws ParseException 
 	 */
-	@Override
-	public void faire(Probleme p, Etat e) {
+	
+	public MutationElementaire getMutationElementaire(Probleme probleme,
+			Etat etat) {
+		Portfolio portfolio = (Portfolio) etat;
+		int NombreTickers = portfolio.getTickersSet().getLength();
 		
-		
-		
-		Portfolio portfolio = (Portfolio) e;
-		int NombreTickers = portfolio.getTickers().getLength();
-		
-		// Ici initialisation un peu au pif pour tout avouer
 		this.initialize(NombreTickers);
 		
 		double R1 = portfolio.getReturns()[Asset1];
 		double R2 = portfolio.getReturns()[Asset2];
 		double R3 = portfolio.getReturns()[Asset3];
 		
+		HashMap<Integer,Double> vect = new HashMap<Integer,Double>();
+		vect.put(Asset1, -step);
+		vect.put(Asset2, step*((R1-R3)/(R2-R3)));
+		vect.put(Asset3, step*((R2-R1)/(R2-R3)));
+	
+		return new Swap(vect);
+	}
+	
+	
+	
+	private void initialize(int nombreTickers) {
+		
+		Random generator = new Random();
+		this.Asset1 = generator.nextInt(nombreTickers-1);
+		
+		do {
+			this.Asset2 = generator.nextInt(nombreTickers-1);
+		} while (Asset2==Asset1);
+		
+		do {
+			this.Asset3 = generator.nextInt(nombreTickers-1);
+		} while (Asset2==Asset3 || Asset3 == Asset1);
+		
+		this.step = 0.1*Math.random();
+	}
+	
+	
+	public void faire(Probleme probleme, Etat etat, MutationElementaire mutation) {
+		Portfolio portfolio = (Portfolio) etat;
+		HashMap<Integer,Double> vect = ((Swap) mutation).getVecteur();
+		
 		double[] weights = portfolio.getWeights();
 		
-		weights[Asset1]=-step;
-		weights[Asset2]=+step*((R1-R3)/(R2-R3));
-		weights[Asset3]=+step*((R2-R1)/(R2-R3));
-		
+		for(Map.Entry<Integer, Double> entry : vect.entrySet()){
+		    weights[entry.getKey()]=+entry.getValue();
+		}
 		portfolio.setWeights(weights);
 	}
-
-
-	/**
-	 * Initialize() initialise al�atoirement les num�ros des 3 actifs que l'on va ensuite pouvoir swap, ainsi que la valeur de step
-	 * @param nombreTickers
-	 * Nombre de Tickers 
-
-	 */
-
-	private void initialize(int nombreTickers) {
-	
-			Random generator = new Random();
-		
-			
-			this.Asset1 = generator.nextInt(nombreTickers-1);
-			
-			do {
-				this.Asset2 = generator.nextInt(nombreTickers-1);
-			} while (Asset2==Asset1);
-			
-			do {
-				this.Asset3 = generator.nextInt(nombreTickers-1);
-			} while (Asset2==Asset3 || Asset3 == Asset1);
-			
-			this.step = 0.1*Math.random();
-			
-			
-		}
-		
-	
-
-	@Override
-	public double calculer(Probleme p, Etat e) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void maj() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	
 	
 	

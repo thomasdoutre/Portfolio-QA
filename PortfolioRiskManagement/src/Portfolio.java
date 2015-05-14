@@ -3,6 +3,8 @@ import java.util.Calendar;
 
 import org.apache.commons.math3.stat.descriptive.moment.Mean;
 
+import solver.commun.Etat;
+
 
 /**
  * This class decribes a portfolio
@@ -10,7 +12,7 @@ import org.apache.commons.math3.stat.descriptive.moment.Mean;
  * @since   2015-04-30
  */
 
-public class Portfolio {
+public class Portfolio extends Etat {
 	
 	private TickersSet tickersSet;
 	private double[] weights;

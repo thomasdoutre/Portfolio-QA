@@ -16,6 +16,8 @@ public interface IMutation {
 	 * L'état dont on cherche une mutation élementaire possible.
 	 * @return Un objet MutationElementaire
 	 */
+	
+	
 	abstract public MutationElementaire getMutationElementaire(Probleme probleme, Etat etat);
 	
 	/**
