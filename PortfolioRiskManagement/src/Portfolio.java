@@ -1,10 +1,7 @@
 import java.text.ParseException;
 import java.util.Calendar;
-
 import org.apache.commons.math3.stat.descriptive.moment.Mean;
-
 import solver.commun.Etat;
-
 
 /**
  * This class decribes a portfolio
@@ -172,7 +169,4 @@ public class Portfolio extends Etat {
 	public double[] getReturns() {
 		return returns;
 	}
-
-
-
 }
