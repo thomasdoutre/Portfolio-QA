@@ -100,6 +100,29 @@ public class Portfolio extends Etat {
 		this.returns = rawReturns;
 		return rawReturns;
 	}
+	
+	
+	/**
+	 * This method is used to initialize a portfolio.
+	 */
+	public void initialiser(){
+		int n = this.getTickersSet().getLength();
+		
+		double[] weights = new double[n];
+		
+		for(int i=0; i<n; i++){
+			weights[i]=0;
+		}
+		
+		
+	}
+	
+	/**
+	 * This method is used to save a solution at each iteration.
+	 */
+	public void sauvegarderSolution(){
+		//ZEBCEIUYJC
+	}
 
 	/**
 	 * @return the expectedReturn
