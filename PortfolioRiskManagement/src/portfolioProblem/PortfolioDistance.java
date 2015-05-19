@@ -1,3 +1,4 @@
+package portfolioProblem;
 import modele.Routage;
 import parametrage.EnergieCinetique;
 import modele.Etat;

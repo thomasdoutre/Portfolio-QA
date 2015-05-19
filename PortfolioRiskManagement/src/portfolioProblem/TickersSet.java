@@ -1,3 +1,4 @@
+package portfolioProblem;
 
 /**
  * This class decribes set of tickers

@@ -1,3 +1,4 @@
+package portfolioProblem;
 
 public class QuickSolver {
 	Portfolio portfolio;
