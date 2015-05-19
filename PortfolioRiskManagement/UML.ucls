@@ -100,16 +100,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="portfolioProblem.QuickSolver" project="PortfolioOptimization" 
-    file="/PortfolioOptimization/src/portfolioProblem/QuickSolver.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="670" y="951"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="13" language="java" name="portfolioProblem.PortfolioDistance" project="PortfolioOptimization" 
+  <class id="12" language="java" name="portfolioProblem.PortfolioDistance" project="PortfolioOptimization" 
     file="/PortfolioOptimization/src/portfolioProblem/PortfolioDistance.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="511" y="301"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -118,7 +109,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="portfolioProblem.SwapAssets" project="PortfolioOptimization" 
+  <class id="13" language="java" name="portfolioProblem.SwapAssets" project="PortfolioOptimization" 
     file="/PortfolioOptimization/src/portfolioProblem/SwapAssets.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1073" y="583"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -127,16 +118,16 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="portfolioProblem.PortfolioParticule" project="PortfolioOptimization" 
+  <class id="14" language="java" name="portfolioProblem.PortfolioParticule" project="PortfolioOptimization" 
     file="/PortfolioOptimization/src/portfolioProblem/PortfolioParticule.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="543" y="468"/>    
+    <position height="-1" width="-1" x="554" y="463"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="portfolioProblem.Main" project="PortfolioOptimization" 
+  <class id="15" language="java" name="portfolioProblem.Main" project="PortfolioOptimization" 
     file="/PortfolioOptimization/src/portfolioProblem/Main.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1664" y="75"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -145,7 +136,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="portfolioProblem.TickersSet" project="PortfolioOptimization" 
+  <class id="16" language="java" name="portfolioProblem.TickersSet" project="PortfolioOptimization" 
     file="/PortfolioOptimization/src/portfolioProblem/TickersSet.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1524" y="645"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -154,7 +145,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="portfolioProblem.ConditionalValueAtRisk" project="PortfolioOptimization" 
+  <class id="17" language="java" name="portfolioProblem.ConditionalValueAtRisk" project="PortfolioOptimization" 
     file="/PortfolioOptimization/src/portfolioProblem/ConditionalValueAtRisk.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1535" y="370"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -163,7 +154,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="portfolioProblem.Portfolio" project="PortfolioOptimization" 
+  <class id="18" language="java" name="portfolioProblem.Portfolio" project="PortfolioOptimization" 
     file="/PortfolioOptimization/src/portfolioProblem/Portfolio.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1269" y="919"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -172,7 +163,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="20" language="java" name="portfolioProblem.Data" project="PortfolioOptimization" 
+  <class id="19" language="java" name="portfolioProblem.Data" project="PortfolioOptimization" 
     file="/PortfolioOptimization/src/portfolioProblem/Data.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1868" y="715"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -181,7 +172,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="21" language="java" name="solver.parametres.ConstanteKDeltaE" project="PortfolioOptimization" 
+  <class id="20" language="java" name="solver.parametres.ConstanteKDeltaE" project="PortfolioOptimization" 
     file="/PortfolioOptimization/src/solver/parametres/ConstanteKDeltaE.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2149" y="808"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -190,7 +181,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="22" language="java" name="solver.parametres.ConstanteK" project="PortfolioOptimization" 
+  <class id="21" language="java" name="solver.parametres.ConstanteK" project="PortfolioOptimization" 
     file="/PortfolioOptimization/src/solver/parametres/ConstanteK.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2685" y="598"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -199,7 +190,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="23" language="java" name="solver.parametres.FonctionLineaire" project="PortfolioOptimization" 
+  <class id="22" language="java" name="solver.parametres.FonctionLineaire" project="PortfolioOptimization" 
     file="/PortfolioOptimization/src/solver/parametres/FonctionLineaire.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="3814" y="871"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -208,7 +199,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="24" language="java" name="solver.parametres.FonctionExpoRecursive" project="PortfolioOptimization" 
+  <class id="23" language="java" name="solver.parametres.FonctionExpoRecursive" project="PortfolioOptimization" 
     file="/PortfolioOptimization/src/solver/parametres/FonctionExpoRecursive.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="3514" y="871"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -217,7 +208,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="25" language="java" name="solver.parametres.Fonction" project="PortfolioOptimization" 
+  <class id="24" language="java" name="solver.parametres.Fonction" project="PortfolioOptimization" 
     file="/PortfolioOptimization/src/solver/parametres/Fonction.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="3381" y="296"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -226,7 +217,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="26" language="java" name="solver.parametres.ConstanteKMoyenneBetter" project="PortfolioOptimization" 
+  <class id="25" language="java" name="solver.parametres.ConstanteKMoyenneBetter" project="PortfolioOptimization" 
     file="/PortfolioOptimization/src/solver/parametres/ConstanteKMoyenneBetter.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2673" y="872"/>    
@@ -236,7 +227,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="27" language="java" name="solver.parametres.ConstanteKConstant" project="PortfolioOptimization" 
+  <class id="26" language="java" name="solver.parametres.ConstanteKConstant" project="PortfolioOptimization" 
     file="/PortfolioOptimization/src/solver/parametres/ConstanteKConstant.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2384" y="868"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -245,7 +236,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="28" language="java" name="solver.parametres.ConstanteKMoyennePositive" project="PortfolioOptimization" 
+  <class id="27" language="java" name="solver.parametres.ConstanteKMoyennePositive" project="PortfolioOptimization" 
     file="/PortfolioOptimization/src/solver/parametres/ConstanteKMoyennePositive.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="3212" y="853"/>    
@@ -255,7 +246,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="29" language="java" name="solver.parametres.ConstanteKMoyenneEasy" project="PortfolioOptimization" 
+  <class id="28" language="java" name="solver.parametres.ConstanteKMoyenneEasy" project="PortfolioOptimization" 
     file="/PortfolioOptimization/src/solver/parametres/ConstanteKMoyenneEasy.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2960" y="889"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -264,7 +255,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="30" language="java" name="solver.parametres.FonctionExpoExplicite" project="PortfolioOptimization" 
+  <class id="29" language="java" name="solver.parametres.FonctionExpoExplicite" project="PortfolioOptimization" 
     file="/PortfolioOptimization/src/solver/parametres/FonctionExpoExplicite.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="3828" y="391"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -273,7 +264,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="31" language="java" name="solver.parametres.FonctionLineairePalier" project="PortfolioOptimization" 
+  <class id="30" language="java" name="solver.parametres.FonctionLineairePalier" project="PortfolioOptimization" 
     file="/PortfolioOptimization/src/solver/parametres/FonctionLineairePalier.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="3970" y="632"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -282,7 +273,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="32" language="java" name="solver.quantique.RecuitQuantique" project="PortfolioOptimization" 
+  <class id="31" language="java" name="solver.quantique.RecuitQuantique" project="PortfolioOptimization" 
     file="/PortfolioOptimization/src/solver/quantique/RecuitQuantique.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2381" y="246"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -291,7 +282,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="33" language="java" name="solver.quantique.RecuitQuantiqueAccelere" project="PortfolioOptimization" 
+  <class id="32" language="java" name="solver.quantique.RecuitQuantiqueAccelere" project="PortfolioOptimization" 
     file="/PortfolioOptimization/src/solver/quantique/RecuitQuantiqueAccelere.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2288" y="541"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -300,7 +291,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="34" language="java" name="solver.quantique.RecuitQuantiqueExpf" project="PortfolioOptimization" 
+  <class id="33" language="java" name="solver.quantique.RecuitQuantiqueExpf" project="PortfolioOptimization" 
     file="/PortfolioOptimization/src/solver/quantique/RecuitQuantiqueExpf.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="3070" y="508"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -309,193 +300,185 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="35">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="36" name="portfolio"/>      
-      <multiplicity id="37" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="38">    
-    <end type="SOURCE" refId="34"/>    
+  <realization id="34">    
+    <end type="SOURCE" refId="33"/>    
     <end type="TARGET" refId="5"/>  
   </realization>  
-  <association id="39">    
+  <association id="35">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="40" name="mutation"/>      
-      <multiplicity id="41" minimum="0" maximum="1"/>    
+      <attribute id="36" name="mutation"/>      
+      <multiplicity id="37" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="42">    
+  <association id="38">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="43" name="mutation"/>      
-      <multiplicity id="44" minimum="0" maximum="1"/>    
+      <attribute id="39" name="mutation"/>      
+      <multiplicity id="40" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="41">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <association id="42">    
+    <end type="SOURCE" refId="33" navigable="false">      
+      <attribute id="43" name="Gamma"/>      
+      <multiplicity id="44" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <generalization id="45">    
-    <end type="SOURCE" refId="29"/>    
-    <end type="TARGET" refId="22"/>  
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="7"/>  
   </generalization>  
   <association id="46">    
-    <end type="SOURCE" refId="34" navigable="false">      
+    <end type="SOURCE" refId="31" navigable="false">      
       <attribute id="47" name="Gamma"/>      
       <multiplicity id="48" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="25" navigable="true"/>    
+    <end type="TARGET" refId="24" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="49">    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="7"/>  
-  </generalization>  
-  <association id="50">    
-    <end type="SOURCE" refId="32" navigable="false">      
-      <attribute id="51" name="Gamma"/>      
-      <multiplicity id="52" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="25" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="53">    
+  <association id="49">    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="54" name="Ep"/>      
-      <multiplicity id="55" minimum="0" maximum="1"/>    
+      <attribute id="50" name="Ep"/>      
+      <multiplicity id="51" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="56">    
-    <end type="SOURCE" refId="15"/>    
+  <generalization id="52">    
+    <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
-  <realization id="57">    
-    <end type="SOURCE" refId="14"/>    
+  <realization id="53">    
+    <end type="SOURCE" refId="13"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
-  <generalization id="58">    
+  <generalization id="54">    
     <end type="SOURCE" refId="11"/>    
     <end type="TARGET" refId="9"/>  
   </generalization>  
-  <generalization id="59">    
-    <end type="SOURCE" refId="21"/>    
-    <end type="TARGET" refId="22"/>  
+  <generalization id="55">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="21"/>  
   </generalization>  
-  <generalization id="60">    
+  <generalization id="56">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <generalization id="57">    
     <end type="SOURCE" refId="27"/>    
-    <end type="TARGET" refId="22"/>  
+    <end type="TARGET" refId="21"/>  
   </generalization>  
-  <generalization id="61">    
-    <end type="SOURCE" refId="28"/>    
-    <end type="TARGET" refId="22"/>  
+  <generalization id="58">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="24"/>  
   </generalization>  
-  <generalization id="62">    
-    <end type="SOURCE" refId="24"/>    
-    <end type="TARGET" refId="25"/>  
-  </generalization>  
-  <association id="63">    
+  <association id="59">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="64" name="Ec"/>      
-      <multiplicity id="65" minimum="0" maximum="1"/>    
+      <attribute id="60" name="Ec"/>      
+      <multiplicity id="61" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="66">    
-    <end type="SOURCE" refId="19"/>    
+  <generalization id="62">    
+    <end type="SOURCE" refId="18"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
-  <realization id="67">    
-    <end type="SOURCE" refId="32"/>    
+  <realization id="63">    
+    <end type="SOURCE" refId="31"/>    
     <end type="TARGET" refId="5"/>  
   </realization>  
-  <generalization id="68">    
-    <end type="SOURCE" refId="13"/>    
+  <generalization id="64">    
+    <end type="SOURCE" refId="12"/>    
     <end type="TARGET" refId="10"/>  
   </generalization>  
-  <association id="69">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="70" name="tickersSet"/>      
-      <multiplicity id="71" minimum="0" maximum="1"/>    
+  <association id="65">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="66" name="tickersSet"/>      
+      <multiplicity id="67" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
+    <end type="TARGET" refId="16" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="72">    
+  <association id="68">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="73" name="gen"/>      
-      <multiplicity id="74" minimum="0" maximum="1"/>    
+      <attribute id="69" name="gen"/>      
+      <multiplicity id="70" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="75">    
+  <association id="71">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="76" name="etats"/>      
-      <multiplicity id="77" minimum="0" maximum="2147483647"/>    
+      <attribute id="72" name="etats"/>      
+      <multiplicity id="73" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="78">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="79" name="data"/>      
-      <multiplicity id="80" minimum="0" maximum="1"/>    
+  <association id="74">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="75" name="data"/>      
+      <multiplicity id="76" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="20" navigable="true"/>    
+    <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="81">    
+  <generalization id="77">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
-  <association id="82">    
-    <end type="SOURCE" refId="20" navigable="false">      
-      <attribute id="83" name="tickersSet"/>      
-      <multiplicity id="84" minimum="0" maximum="1"/>    
+  <association id="78">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="79" name="tickersSet"/>      
+      <multiplicity id="80" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
+    <end type="TARGET" refId="16" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="85">    
-    <end type="SOURCE" refId="32" navigable="false">      
-      <attribute id="86" name="K"/>      
-      <multiplicity id="87" minimum="0" maximum="1"/>    
+  <association id="81">    
+    <end type="SOURCE" refId="31" navigable="false">      
+      <attribute id="82" name="K"/>      
+      <multiplicity id="83" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="22" navigable="true"/>    
+    <end type="TARGET" refId="21" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="88">    
-    <end type="SOURCE" refId="33"/>    
-    <end type="TARGET" refId="32"/>  
+  <generalization id="84">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="31"/>  
   </generalization>  
-  <generalization id="89">    
-    <end type="SOURCE" refId="31"/>    
-    <end type="TARGET" refId="25"/>  
-  </generalization>  
-  <association id="90">    
-    <end type="SOURCE" refId="34" navigable="false">      
-      <attribute id="91" name="K"/>      
-      <multiplicity id="92" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="22" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="93">    
+  <generalization id="85">    
     <end type="SOURCE" refId="30"/>    
-    <end type="TARGET" refId="25"/>  
+    <end type="TARGET" refId="24"/>  
   </generalization>  
-  <generalization id="94">    
-    <end type="SOURCE" refId="23"/>    
-    <end type="TARGET" refId="25"/>  
+  <association id="86">    
+    <end type="SOURCE" refId="33" navigable="false">      
+      <attribute id="87" name="K"/>      
+      <multiplicity id="88" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="89">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="24"/>  
   </generalization>  
-  <generalization id="95">    
-    <end type="SOURCE" refId="26"/>    
-    <end type="TARGET" refId="22"/>  
+  <generalization id="90">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="24"/>  
+  </generalization>  
+  <generalization id="91">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="21"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
