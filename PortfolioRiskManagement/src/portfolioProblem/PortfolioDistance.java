@@ -1,9 +1,12 @@
 package portfolioProblem;
-import modele.Routage;
-import parametrage.EnergieCinetique;
-import modele.Etat;
-import mutation.IMutation;
-import mutation.TwoOptMove;
+
+import solver.commun.EnergieCinetique;
+import solver.commun.Etat;
+import solver.commun.IMutation;
+import solver.commun.MutationElementaire;
+import solver.commun.Particule;
+import solver.commun.Probleme;
+
 
 
 public class PortfolioDistance extends EnergieCinetique {
@@ -39,10 +42,11 @@ public class PortfolioDistance extends EnergieCinetique {
 		
 		
 		
-		
+		/*
 		
 		double EcSuivant= Math.pow(position2Dnext.getX()- position2D.getX()-mutation2D.deltaX,2)+Math.pow(position2Dnext.getY()- position2D.getY()-mutation2D.deltaY,2)+
 				(Math.pow(position2Dprev.getX()- position2D.getX()-mutation2D.deltaX,2)+Math.pow(position2Dprev.getY()- position2D.getY()-mutation2D.deltaY,2));
+		
 		
 		double deltaE=EcSuivant-EcPrecedent;
 		double signe = Math.signum(deltaE);
@@ -51,6 +55,31 @@ public class PortfolioDistance extends EnergieCinetique {
 		
 		return -DeltaEc;
 		
+		*/
+		
+	}
+
+
+	@Override
+	public double calculer(Probleme probleme) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public double calculerDeltaE(Etat etat, Etat prev, Etat next,
+			MutationElementaire mutation) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public double calculerDeltaEUB(Etat etat, Etat prev, Etat next,
+			MutationElementaire mutation) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	

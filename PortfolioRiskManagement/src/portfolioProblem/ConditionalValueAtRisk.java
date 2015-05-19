@@ -1,6 +1,10 @@
 package portfolioProblem;
 import org.apache.commons.math3.stat.descriptive.rank.Percentile;
 
+import solver.commun.EnergiePotentielle;
+import solver.commun.Etat;
+import solver.commun.MutationElementaire;
+
 /**
  * This class calculates portfolios' CVaR
  * @author  Thomas Doutre
@@ -8,8 +12,9 @@ import org.apache.commons.math3.stat.descriptive.rank.Percentile;
  * @since   2015-05-10
  */
 
-public class ConditionalValueAtRisk extends Risk {
+public class ConditionalValueAtRisk extends EnergiePotentielle {
 
+	/*
 	
 	public ConditionalValueAtRisk(Portfolio portfolio) {
 		super.setPortfolio(portfolio);
@@ -22,6 +27,7 @@ public class ConditionalValueAtRisk extends Risk {
 	 * @return double Conditional Value at Risk.
 	 */
 
+	/*
 	public double computeRisk(){
 		double[] portfolioReturns = super.getPortfolio().getReturns();
 		Percentile percentile = new Percentile();
@@ -41,6 +47,22 @@ public class ConditionalValueAtRisk extends Risk {
 		double conditionalVaR = - sum/compt;
 		System.out.println("Conditional VaR = " +conditionalVaR);
 		return conditionalVaR;
+	}
+	*/
+
+
+	@Override
+	public double calculer(Etat etat) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+	@Override
+	public double calculerDeltaE(Etat etat, MutationElementaire mutation) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 

@@ -1,6 +1,9 @@
-package portfolioProblem;
+package Optionnel;
 
-public abstract class Risk {
+import portfolioProblem.Portfolio;
+import solver.commun.EnergiePotentielle;
+
+public abstract class Risk extends EnergiePotentielle {
 
 	/**
 	 * This class is an abstract gathering of different risk metrics

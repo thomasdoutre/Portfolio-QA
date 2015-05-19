@@ -1,5 +1,8 @@
-package portfolioProblem;
+package Optionnel;
 import org.apache.commons.math3.stat.descriptive.rank.Percentile;
+
+import portfolioProblem.Portfolio;
+
 
 /**
  * This class calculates portfolios' VaR

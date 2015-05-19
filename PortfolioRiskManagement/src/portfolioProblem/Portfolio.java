@@ -2,6 +2,9 @@ package portfolioProblem;
 import java.text.ParseException;
 import java.util.Calendar;
 import org.apache.commons.math3.stat.descriptive.moment.Mean;
+
+import Optionnel.Risk;
+import Optionnel.Tools;
 import solver.commun.Etat;
 
 /**
@@ -15,7 +18,6 @@ public class Portfolio extends Etat {
 	private TickersSet tickersSet;
 	private double[] weights;
 	private double[] returns;
-	private Risk risk;
 	private double expectedReturn;
 	
 	/**
