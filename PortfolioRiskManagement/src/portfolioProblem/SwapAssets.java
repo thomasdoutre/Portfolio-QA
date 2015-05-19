@@ -25,6 +25,10 @@ public class SwapAssets implements IMutation {
 	int Asset2;
 	int Asset3;
 	double step;
+	double delta1;
+	double delta2;
+	double delta3;
+	
 	@Override
 	
 	
@@ -44,9 +48,9 @@ public class SwapAssets implements IMutation {
 		
 		this.initialize(NombreTickers);
 		
-		double R1 = portfolio.getReturns()[Asset1];
-		double R2 = portfolio.getReturns()[Asset2];
-		double R3 = portfolio.getReturns()[Asset3];
+		double R1 = portfolio.getTickersSet().getData().getExpectedReturnsOfEachAsset()[Asset1];
+		double R2 = portfolio.getTickersSet().getData().getExpectedReturnsOfEachAsset()[Asset2];
+		double R3 = portfolio.getTickersSet().getData().getExpectedReturnsOfEachAsset()[Asset3];
 		
 		HashMap<Integer,Double> vect = new HashMap<Integer,Double>();
 		vect.put(Asset1, -step);

@@ -1,4 +1,6 @@
-package portfolioProblem;
+package Optionnel;
+
+import portfolioProblem.Portfolio;
 
 public class QuickSolver {
 	Portfolio portfolio;
