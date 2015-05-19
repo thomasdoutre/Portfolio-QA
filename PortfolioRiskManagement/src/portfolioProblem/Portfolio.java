@@ -38,7 +38,6 @@ public class Portfolio extends Etat {
 		this.setTickersSet(tickers);
 		this.setWeights(weights);
 		this.setReturns(returns);
-		this.risk = new ConditionalValueAtRisk(this);
 		this.expectedReturn = computeExpectedReturn();
 		
 	}
@@ -55,7 +54,6 @@ public class Portfolio extends Etat {
 		this.tickersSet = tickers;
 		this.weights = weights;
 		this.returns = computeReturns(weights);
-		this.risk = new ConditionalValueAtRisk(this);
 		this.expectedReturn = computeExpectedReturn();
 	}
 	
@@ -101,20 +99,6 @@ public class Portfolio extends Etat {
 		}
 		this.returns = rawReturns;
 		return rawReturns;
-	}
-
-	/**
-	 * @return the risk
-	 */
-	public Risk getRisk() {
-		return risk;
-	}
-
-	/**
-	 * @param risk the risk to set
-	 */
-	public void setRisk(Risk risk) {
-		this.risk = risk;
 	}
 
 	/**
