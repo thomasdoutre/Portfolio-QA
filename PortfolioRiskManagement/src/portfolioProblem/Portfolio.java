@@ -5,6 +5,7 @@ import org.apache.commons.math3.stat.descriptive.moment.Mean;
 
 import Optionnel.Risk;
 import Optionnel.Tools;
+import solver.commun.EnergiePotentielle;
 import solver.commun.Etat;
 
 /**
@@ -19,6 +20,8 @@ public class Portfolio extends Etat {
 	private double[] weights;
 	private double[] returns;
 	private double expectedReturn;
+	private double[] meilleursPoids;
+
 	
 	/**
 	 * This method is used to construct a portfolio with all its features.
@@ -34,7 +37,7 @@ public class Portfolio extends Etat {
 	// ATTENTION : ici on ne clone pas, les références aux objets type double[] sont les mêmes, on clonera
 	// ces pointeurs avant de faire appel à ce constructeur.
 	
-	public Portfolio(TickersSet tickers,double[] weights,double[] returns){
+	public Portfolio(EnergiePotentielle Ep, TickersSet tickers,double[] weights,double[] returns){
 		this.setTickersSet(tickers);
 		this.setWeights(weights);
 		this.setReturns(returns);
@@ -142,7 +145,11 @@ public class Portfolio extends Etat {
 	 * This method is used to save a solution at each iteration.
 	 */
 	public void sauvegarderSolution(){
-		//ZEBCEIUYJC
+		//Affectation des poids
+				for (int j = 0; j < this.tickersSet.getLength(); j++) {
+					this.meilleursPoids[j] = this.weights[j];
+					
+				}
 	}
 
 	/**
