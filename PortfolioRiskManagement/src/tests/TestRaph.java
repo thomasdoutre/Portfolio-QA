@@ -28,7 +28,7 @@ public class TestRaph {
 		
 		
 		String[] tickers = {"GSPC","AAPL","FCHI","LG.PA","GSZ.PA","KER.PA","RNO.PA","AIR.PA"};
-		Calendar startCalendar = new GregorianCalendar(2014,0,27);
+		Calendar startCalendar = new GregorianCalendar(2010,0,27);
 		Calendar endCalendar = Calendar.getInstance();
 
 		//On récupère les données et on fait les liens avec l'ensemble d'actifs.
