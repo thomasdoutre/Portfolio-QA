@@ -38,6 +38,7 @@ public class Portfolio extends Etat {
 	// ces pointeurs avant de faire appel à ce constructeur.
 	
 	public Portfolio(EnergiePotentielle Ep, TickersSet tickers,double[] weights,double[] returns){
+		this.Ep=Ep;
 		this.setTickersSet(tickers);
 		this.setWeights(weights);
 		this.setReturns(returns);

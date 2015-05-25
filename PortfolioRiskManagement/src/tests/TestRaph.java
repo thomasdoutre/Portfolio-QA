@@ -35,6 +35,7 @@ public class TestRaph {
 		TickersSet tickersSet = new TickersSet(tickers);
 		Data data = new Data(tickersSet,startCalendar,endCalendar);
 		tickersSet.setData(data);
+		data.setExpectedReturnsOfEachAsset(data.computeExpectedReturnsOfEachAsset());
 		int nombreTickers = tickersSet.getLength();
 		
 		// Initialisation

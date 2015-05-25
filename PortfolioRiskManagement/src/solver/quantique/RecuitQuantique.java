@@ -4,6 +4,7 @@ package solver.quantique;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import solver.commun.EnergiePotentielle;
 import solver.commun.Etat;
 import solver.commun.IRecuit;
 import solver.commun.MutationElementaire;
@@ -116,6 +117,7 @@ public class RecuitQuantique implements IRecuit {
 		Etat previous = probleme.etats[nombreRepliques-1];
 		Etat next = probleme.etats[1];
 		for (int i = 0; i < nombreRepliques; i++){	// initialisation de meilleureEnergie
+			
 			double energie = probleme.etats[i].Ep.calculer(probleme.etats[i]) ;
 			if (energie < this.meilleureEnergie){
 				this.meilleureEnergie = energie ;

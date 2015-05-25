@@ -90,6 +90,10 @@ public class Data {
 		for(int i=0; i<tickersSet.getLength(); i++){
 			for(int j=0; j<min; j++){
 				pricesMatrix[j][i] = pricesArrayList.get(i)[j];
+				System.out.println("j "+j);
+				System.out.println("i "+i);
+				System.out.println("min "+min);
+				System.out.println("nombre Tickers "+this.tickersSet.getLength());
 			}
 		}
 		
@@ -103,7 +107,7 @@ public class Data {
 	 * @return the array with each expected returns.
 	 */
 	
-	private double[] computeExpectedReturnsOfEachAsset() {
+	public double[] computeExpectedReturnsOfEachAsset() {
 
 		double[] expectedReturns = new double[this.tickersSet.getLength()];
 		for(int i = 0; i<this.tickersSet.getLength(); i++){
