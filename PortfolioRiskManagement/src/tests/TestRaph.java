@@ -35,7 +35,7 @@ public class TestRaph {
 		TickersSet tickersSet = new TickersSet(tickers);
 		Data data = new Data(tickersSet,startCalendar,endCalendar);
 		tickersSet.setData(data);
-		int NombreTickers = tickersSet.getLength();
+		int nombreTickers = tickersSet.getLength();
 		
 		// Initialisation
 		
@@ -55,11 +55,11 @@ public class TestRaph {
 		
 		// construire liste d'etats
 			
-		double[] weights = new double[NombreTickers];
+		double[] weights = new double[nombreTickers];
 		
 		double sum=0;
-		for(int i=0; i < NombreTickers;i++){
-			weights[i]=1/NombreTickers;
+		for(int i=0; i < nombreTickers;i++){
+			weights[i]=1/nombreTickers;
 		}
 			
 		PortfolioParticule particule = new PortfolioParticule(Ep, mutation, Ec, P, tickersSet, weights);
