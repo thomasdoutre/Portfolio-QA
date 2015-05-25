@@ -105,6 +105,10 @@ public class Portfolio extends Etat {
 	/**
 	 * This method is used to initialize a portfolio.
 	 */
+	
+	// ATTENTION :
+	// ici le retour fixé R barre n'est pas fixé par l'utilisateur explicitement, il est déduit des poids mis sur chaque ticker.
+	
 	public void initialiser(){
 		
 		int n = this.getTickersSet().getLength();
