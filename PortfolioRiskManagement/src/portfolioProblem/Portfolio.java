@@ -106,13 +106,30 @@ public class Portfolio extends Etat {
 	 * This method is used to initialize a portfolio.
 	 */
 	public void initialiser(){
-		int n = this.getTickersSet().getLength();
 		
+		int n = this.getTickersSet().getLength();
 		double[] weights = new double[n];
+		
+		int low = 0;
+		int up = 0;
+		double lowReturn = this.getTickersSet().getData().getExpectedReturnsOfEachAsset()[0];
+		double upReturn = lowReturn;
 		
 		for(int i=0; i<n; i++){
 			weights[i]=0;
+
+			if(this.getTickersSet().getData().getExpectedReturnsOfEachAsset()[i]<=this.expectedReturn){
+				low = i;
+				lowReturn = this.getTickersSet().getData().getExpectedReturnsOfEachAsset()[i];
+			}
+			else {
+				up = i;
+				upReturn = this.getTickersSet().getData().getExpectedReturnsOfEachAsset()[i];
+			}
 		}
+		
+		weights[low] = (upReturn - this.expectedReturn)/(upReturn-lowReturn);
+		weights[up] = (this.expectedReturn-lowReturn)/(upReturn-lowReturn);
 		
 		
 	}
