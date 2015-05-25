@@ -56,6 +56,11 @@ public class TestRaph {
 		// construire liste d'etats
 			
 		double[] weights = new double[NombreTickers];
+		
+		double sum=0;
+		for(int i=0; i < NombreTickers;i++){
+			weights[i]=1/NombreTickers;
+		}
 			
 		PortfolioParticule particule = new PortfolioParticule(Ep, mutation, Ec, P, tickersSet, weights);
 		particule.initialiser();

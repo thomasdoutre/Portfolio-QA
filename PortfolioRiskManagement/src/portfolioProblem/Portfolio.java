@@ -138,6 +138,8 @@ public class Portfolio extends Etat {
 		weights[low] = (upReturn - this.expectedReturn)/(upReturn-lowReturn);
 		weights[up] = (this.expectedReturn-lowReturn)/(upReturn-lowReturn);
 		
+		this.weights = weights;
+		
 		
 	}
 	
