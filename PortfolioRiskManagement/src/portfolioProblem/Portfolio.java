@@ -82,7 +82,11 @@ public class Portfolio extends Etat {
 		Mean mean = new Mean();
 		double expectedReturn;
 		expectedReturn = mean.evaluate(this.returns);
-		System.out.println("Expected Return = " +expectedReturn);
+		
+		//Tools.printArray(this.returns);
+		
+		
+	//	System.out.println("Expected Return = " +expectedReturn);
 		return expectedReturn;
 	}
 
@@ -115,6 +119,11 @@ public class Portfolio extends Etat {
 	
 	public void initialiser(){
 		
+		System.out.println("");
+		System.out.println("Initializing a new Portfolio (State)");
+		
+		double R = 0.1;
+		
 		int n = this.getTickersSet().getLength();
 		double[] weights = new double[n];
 		
@@ -126,21 +135,34 @@ public class Portfolio extends Etat {
 		for(int i=0; i<n; i++){
 			weights[i]=0;
 
-			if(this.getTickersSet().getData().getExpectedReturnsOfEachAsset()[i]<=this.expectedReturn){
+			if(this.getTickersSet().getData().getExpectedReturnsOfEachAsset()[i]<=R){
 				low = i;
 				lowReturn = this.getTickersSet().getData().getExpectedReturnsOfEachAsset()[i];
+				/*System.out.println("low = "+low);
+				System.out.println("lowReturn = "+lowReturn);*/
+
 			}
 			else {
 				up = i;
 				upReturn = this.getTickersSet().getData().getExpectedReturnsOfEachAsset()[i];
+				/*System.out.println("up = "+up);
+				System.out.println("upReturn = "+upReturn);*/
 			}
 		}
 		
-		weights[low] = (upReturn - this.expectedReturn)/(upReturn-lowReturn);
-		weights[up] = (this.expectedReturn-lowReturn)/(upReturn-lowReturn);
+		if (low == up){
+			System.out.println("WARNING : Expected return level may be too extreme");
+		}
+		weights[low] = (upReturn - R)/(upReturn-lowReturn);
+		weights[up] = (R-lowReturn)/(upReturn-lowReturn);
+		
 		
 		this.weights = weights;
-		
+		System.out.println("weights of this state :");
+		Tools.printArray(weights);
+		this.returns = computeReturns(weights);
+		this.setExpectedReturn(this.computeExpectedReturn());
+		System.out.println("expectedReturn of this state = "+ this.expectedReturn);
 		
 	}
 	

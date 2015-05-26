@@ -90,10 +90,10 @@ public class Data {
 		for(int i=0; i<tickersSet.getLength(); i++){
 			for(int j=0; j<min; j++){
 				pricesMatrix[j][i] = pricesArrayList.get(i)[j];
-				System.out.println("j "+j);
+				/*System.out.println("j "+j);
 				System.out.println("i "+i);
 				System.out.println("min "+min);
-				System.out.println("nombre Tickers "+this.tickersSet.getLength());
+				System.out.println("nombre Tickers "+this.tickersSet.getLength());*/
 			}
 		}
 		

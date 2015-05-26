@@ -35,11 +35,13 @@ public class Tools {
 	 */
 
 	public static void printArray(double[] v) {
+		System.out.println();
 		System.out.println("=================================================================");
 		for (double i : v) {
 			System.out.print(i);
 			System.out.print("\t");
 		}
+		System.out.println();
 		System.out.println("=================================================================");
 
 	}
