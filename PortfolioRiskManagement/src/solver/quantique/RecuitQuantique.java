@@ -106,6 +106,7 @@ public class RecuitQuantique implements IRecuit {
 	 * Le probléme sur lequel on veut effectuer le recuit quantique.
 	 */
 	public void lancer(Probleme probleme) {
+		System.out.println("utilise la méthode 'lancer(Probleme probleme')");
 
 		this.init();
 
@@ -143,12 +144,17 @@ public class RecuitQuantique implements IRecuit {
 		System.out.println("END");
 		
 		boolean bool = false;
+		System.out.println("se trouve avant la boucle Gamma.modifierT() =");
+
 		while(Gamma.modifierT() /*&& this.meilleureEnergie!=0*/){
+			System.out.println("entre dans la boucle Gamma.modifierT() =");
 
 			Collections.shuffle(indiceEtats, probleme.gen);	// melanger l'ordre de parcours des indices
 			Jr = -this.temperature/2*Math.log(Math.tanh(this.Gamma.t/nombreRepliques/this.temperature));	// calcul de Jr pour ce palier
+			System.out.println("indiceEtats.size() ="+indiceEtats.size());
 
 			for (Integer p : indiceEtats){	
+				System.out.println("entre dans la boucle des p : indiceEtats");
 
 				etat = probleme.etats[p];	
 
@@ -167,6 +173,7 @@ public class RecuitQuantique implements IRecuit {
 				}
 
 				for (int j = 0; j < this.palier; j++){
+					System.out.println("entre dans la boucle jusqua this.palier");
 
 					MutationElementaire mutation = probleme.getMutationElementaire(etat);	// trouver une mutation possible
 					mutationsTentees++; //permet d'avoir une référence indépendante pour les améliorations de l'algorithme, mais aussi sur son temps
@@ -180,13 +187,17 @@ public class RecuitQuantique implements IRecuit {
 
 					//K.calculerK(deltaE);
 
+					System.out.println("deltaE = "+deltaE+" : doit etre négative ou nulle pour accepter");
+					System.out.println("deltaEp = "+deltaEp+" : doit etre négative pour accepter");
+
 					if( deltaE <= 0 || deltaEp < 0) {
 						proba = 1;
 					}
 					else	proba = Math.exp(-deltaE / (this.K.k * this.temperature));
 					if (proba == 1 || proba >= probleme.gen.nextDouble()) {
 						mutationsAcceptees++;
-						probleme.modifElem(etat, mutation);				// faire la mutation
+						probleme.modifElem(etat, mutation);	// faire la mutation
+						System.out.println("Entrée dans proba == 1 || proba >= probleme.gen.nextDouble()");
 						
 						if (deltaEp < 0){
 							EpActuelle = etat.Ep.calculer(etat);		// energie potentielle temporelle
