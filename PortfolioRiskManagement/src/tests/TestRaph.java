@@ -27,7 +27,7 @@ public class TestRaph {
 		// Initialisation des Data
 		
 		
-		String[] tickers = {"GSPC","AAPL","FCHI","LG.PA","GSZ.PA","KER.PA","RNO.PA","AIR.PA"};
+		String[] tickers = {"GSPC","AAPL","FCHI","LG.PA"/*,"GSZ.PA","KER.PA","RNO.PA","AIR.PA"*/};
 		Calendar startCalendar = new GregorianCalendar(2010,0,27);
 		Calendar endCalendar = Calendar.getInstance();
 
@@ -59,10 +59,10 @@ public class TestRaph {
 			
 		double[] weights = new double[nombreTickers];
 		
-		double sum=0;
+	/*	double sum=0;
 		for(int i=0; i < nombreTickers;i++){
 			weights[i]=1/nombreTickers;
-		}
+		}*/
 			
 		PortfolioParticule particule = new PortfolioParticule(Ep, mutation, Ec, P, tickersSet, weights);
 		particule.initialiser();

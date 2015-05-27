@@ -4,6 +4,8 @@ package solver.quantique;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import portfolioProblem.Portfolio;
+import Optionnel.Tools;
 import solver.commun.EnergiePotentielle;
 import solver.commun.Etat;
 import solver.commun.IRecuit;
@@ -45,7 +47,7 @@ public class RecuitQuantique implements IRecuit {
 	 * Température du recuit intervenant dans les calculs de probabilité, constante dans le recuit quantique.
 	 */
 	public double temperature;
-	
+
 	/**
 	 * Nombre maximal d'itérations si la solution n'est pas trouvée, en redondance avec T.nbIteration
 	 */
@@ -54,7 +56,7 @@ public class RecuitQuantique implements IRecuit {
 	 * Nombre d'itérations consécutives sur un seul état.
 	 */
 	public int palier;
-	
+
 	public int mutationTentess;
 
 
@@ -107,17 +109,17 @@ public class RecuitQuantique implements IRecuit {
 	public void lancer(Probleme probleme) {
 
 		this.init();
-		
+
 		int mutationsTentees = 0;
 		int mutationsAcceptees = 0;
-		
+
 		int nombreRepliques = probleme.etats.length;
-		
+
 		Etat etat = probleme.etats[0];
 		Etat previous = probleme.etats[nombreRepliques-1];
 		Etat next = probleme.etats[1];
+		System.out.println("Energie de depart de l'état 0 = "+ probleme.etats[0].Ep.calculer(probleme.etats[0]));
 		for (int i = 0; i < nombreRepliques; i++){	// initialisation de meilleureEnergie
-			
 			double energie = probleme.etats[i].Ep.calculer(probleme.etats[i]) ;
 			if (energie < this.meilleureEnergie){
 				this.meilleureEnergie = energie ;
@@ -137,73 +139,90 @@ public class RecuitQuantique implements IRecuit {
 		for( int i = 0; i < nombreRepliques ; i++){
 			indiceEtats.add(i);
 		}
-		
-		while(Gamma.modifierT() && this.meilleureEnergie!=0){
-			
+
+		while(Gamma.modifierT() /*&& this.meilleureEnergie!=0*/){
+
 			Collections.shuffle(indiceEtats, probleme.gen);	// melanger l'ordre de parcours des indices
 			Jr = -this.temperature/2*Math.log(Math.tanh(this.Gamma.t/nombreRepliques/this.temperature));	// calcul de Jr pour ce palier
 
 			for (Integer p : indiceEtats){	
-				
+
 				etat = probleme.etats[p];	
-				
+
 				if(p == 0){
 					previous = probleme.etats[nombreRepliques-1];
 				}
 				else{
 					previous = probleme.etats[p-1];
 				}
-				
+
 				if (p == nombreRepliques - 1){
 					next = probleme.etats[0];
 				}
 				else{
 					next = probleme.etats[p+1];
 				}
-				
+
 				for (int j = 0; j < this.palier; j++){
 
 					MutationElementaire mutation = probleme.getMutationElementaire(etat);	// trouver une mutation possible
 					mutationsTentees++; //permet d'avoir une référence indépendante pour les améliorations de l'algorithme, mais aussi sur son temps
-					
+
 					deltaEp = probleme.calculerDeltaEp(etat, mutation);	// calculer deltaEp si la mutation etait acceptee
 					deltaEc = probleme.calculerDeltaEc(etat, previous, next, mutation);  // calculer deltaIEc si la mutation etait acceptee
-					
+
 					//différences du hamiltonien total
 					//multiplier deltaIEc par JGamma
 					deltaE = deltaEp/nombreRepliques - deltaEc*Jr;
-					
+
 					//K.calculerK(deltaE);
-					
-					if( deltaE <= 0 || deltaEp < 0) proba = 1;
+
+					if( deltaE <= 0 || deltaEp < 0) {
+						proba = 1;
+					}
 					else	proba = Math.exp(-deltaE / (this.K.k * this.temperature));
-					
+
 					if (proba == 1 || proba >= probleme.gen.nextDouble()) {
 						mutationsAcceptees++;
 						probleme.modifElem(etat, mutation);				// faire la mutation
 						if (deltaEp < 0){
 							EpActuelle = etat.Ep.calculer(etat);		// energie potentielle temporelle
+							System.out.println("Ep Actuelle : " + EpActuelle);
+
+							
 							if( EpActuelle < this.meilleureEnergie ){		// mettre a jour la meilleur energie
+								System.out.println("ACTUALISATION DE L ENERGIE : " + EpActuelle);
+
 								this.meilleureEnergie = EpActuelle;
 								System.out.println("meilleureEnergie = "+ this.meilleureEnergie);
 								System.out.println("mutationsTentees = "+ mutationsTentees);
-								if (this.meilleureEnergie == 0){	// fin du programme
+								/*if (this.meilleureEnergie == 0){	// fin du programme
 									System.out.println("Mutations tentées : " + mutationsTentees);
 									System.out.println("Mutations acceptées : " + mutationsAcceptees);
 									this.mutationTentess=mutationsTentees;
 									return;
-								}
+								}*/
 							}
 						}
+						
 					}
 				}
-				
+
 			}
 		}
-		
-		
+
+
 		System.out.println("Mutations tentées : " + mutationsTentees);
 		System.out.println("Mutations acceptées : " + mutationsAcceptees);
+		System.out.println("Meilleur Ep :"+ this.meilleureEnergie);
+		System.out.println("Meilleur Poids :");
+		Tools.printArray(((Portfolio)probleme.etats[0]).getWeights());
+		double sum =0;
+		for(int i = 0; i<((Portfolio)probleme.etats[0]).getWeights().length;i++){
+			sum += ((Portfolio)probleme.etats[0]).getWeights()[i];
+		}
+		System.out.println("sum = "+sum);
+		System.out.println("Expected Return :"+ ((Portfolio)probleme.etats[0]).computeExpectedReturn());
 		this.mutationTentess=mutationsTentees;
 		return;
 	}
@@ -215,9 +234,9 @@ public class RecuitQuantique implements IRecuit {
 	public int getMutationTentess() {
 		return mutationTentess;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 }

@@ -119,9 +119,6 @@ public class Portfolio extends Etat {
 	
 	public void initialiser(){
 		
-		System.out.println("");
-		System.out.println("Initializing a new Portfolio (State)");
-		
 		double R = 0.1;
 		
 		int n = this.getTickersSet().getLength();
@@ -158,11 +155,10 @@ public class Portfolio extends Etat {
 		
 		
 		this.weights = weights;
-		System.out.println("weights of this state :");
-		Tools.printArray(weights);
+		/*System.out.println("weights of this state :");
+		Tools.printArray(weights);*/
 		this.returns = computeReturns(weights);
 		this.setExpectedReturn(this.computeExpectedReturn());
-		System.out.println("expectedReturn of this state = "+ this.expectedReturn);
 		
 	}
 	
