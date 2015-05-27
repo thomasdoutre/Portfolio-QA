@@ -118,7 +118,7 @@ public class RecuitQuantique implements IRecuit {
 		Etat etat = probleme.etats[0];
 		Etat previous = probleme.etats[nombreRepliques-1];
 		Etat next = probleme.etats[1];
-		System.out.println("Energie de depart de l'Ã©tat 0 = "+ probleme.etats[0].Ep.calculer(probleme.etats[0]));
+		System.out.println("Energie de depart de l'état 0 = "+ probleme.etats[0].Ep.calculer(probleme.etats[0]));
 		for (int i = 0; i < nombreRepliques; i++){	// initialisation de meilleureEnergie
 			double energie = probleme.etats[i].Ep.calculer(probleme.etats[i]) ;
 			if (energie < this.meilleureEnergie){

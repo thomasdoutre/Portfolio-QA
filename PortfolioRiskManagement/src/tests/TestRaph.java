@@ -6,6 +6,7 @@ import java.util.GregorianCalendar;
 
 import portfolioProblem.ConditionalValueAtRisk;
 import portfolioProblem.Data;
+import portfolioProblem.Portfolio;
 import portfolioProblem.PortfolioDistance;
 import portfolioProblem.PortfolioParticule;
 import portfolioProblem.SwapAssets;
@@ -52,20 +53,29 @@ public class TestRaph {
 		int P = 10;
 		int maxSteps = (int) Math.pow(10,2);
 		int seed = 22;
-		double T = 0.35/P;
+		double T = 1/P;
 		
 		
 		// construire liste d'etats
 			
 		double[] weights = new double[nombreTickers];
+		double[] returns = new double[nombreTickers];
 		
 	/*	double sum=0;
 		for(int i=0; i < nombreTickers;i++){
 			weights[i]=1/nombreTickers;
 		}*/
 			
-		PortfolioParticule particule = new PortfolioParticule(Ep, mutation, Ec, P, tickersSet, weights);
+		PortfolioParticule particule = new PortfolioParticule(Ep, mutation, Ec, P, tickersSet, weights, returns);
 		particule.initialiser();
+		System.out.println("Initialisation");
+		for (int i=0;i<particule.getNombrerepliques();i++) {
+			System.out.println("Réplique numéro "+i);
+			System.out.println("Vecteur des poids :"+((Portfolio)(particule.etats[i])).toStringWeights());
+			System.out.println("Somme des poids :"+((Portfolio)(particule.etats[i])).sumWeights());
+		}
+		
+		
 		FonctionLineaire Tparam = new FonctionLineaire(G0,0,maxSteps);
 		ConstanteKConstant Kparam = new ConstanteKConstant(k);
 		RecuitQuantique recuit = new RecuitQuantique(Tparam,Kparam, M, T);

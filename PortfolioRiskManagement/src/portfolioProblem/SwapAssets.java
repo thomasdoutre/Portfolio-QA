@@ -90,7 +90,10 @@ public class SwapAssets implements IMutation {
 		    weights[entry.getKey()]=+entry.getValue();
 		}
 		portfolio.setWeights(weights);
+		//System.out.println("Mutation faite");
 	}
+	
+	
 	
 	
 	
