@@ -13,7 +13,7 @@ import solver.parametres.ConstanteKConstant;
 import solver.parametres.FonctionLineaire;
 import solver.quantique.RecuitQuantique;
 
-public class TestClass {
+public class TestRaph {
 
 	/**
 	 * @param args
