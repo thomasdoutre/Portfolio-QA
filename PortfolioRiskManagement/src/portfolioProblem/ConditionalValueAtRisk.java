@@ -70,9 +70,8 @@ public class ConditionalValueAtRisk extends EnergiePotentielle {
 			
 		}
 		
-		double DeltaEp= calculer(newPortfolioReturns)-calculer(etat);
-		//System.out.println("DeltaEp ="+DeltaEp);
-		return DeltaEp;
+		return calculer(newPortfolioReturns)-calculer(etat);
+		
 		
 		
 		

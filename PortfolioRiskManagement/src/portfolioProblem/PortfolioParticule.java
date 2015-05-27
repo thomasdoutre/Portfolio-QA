@@ -14,7 +14,7 @@ public class PortfolioParticule extends Probleme {
 	
 	
 	
-	public PortfolioParticule(EnergiePotentielle Ep, IMutation mutation, EnergieCinetique Ec, int nombrerepliques,TickersSet tickersSet, double[] weights, double[] returns) {
+	public PortfolioParticule(EnergiePotentielle Ep, IMutation mutation, EnergieCinetique Ec, int nombrerepliques,TickersSet tickersSet, double[] weights,double[] returns) {
 		this.Ec = Ec;
 		this.mutation = mutation;
 		this.Nombrerepliques = nombrerepliques;

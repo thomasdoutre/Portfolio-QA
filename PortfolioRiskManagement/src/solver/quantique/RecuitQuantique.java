@@ -118,7 +118,7 @@ public class RecuitQuantique implements IRecuit {
 		Etat etat = probleme.etats[0];
 		Etat previous = probleme.etats[nombreRepliques-1];
 		Etat next = probleme.etats[1];
-		System.out.println("Energie de depart de l'�tat 0 = "+ probleme.etats[0].Ep.calculer(probleme.etats[0]));
+		System.out.println("Energie de depart de l'état 0 = "+ probleme.etats[0].Ep.calculer(probleme.etats[0]));
 		for (int i = 0; i < nombreRepliques; i++){	// initialisation de meilleureEnergie
 			double energie = probleme.etats[i].Ep.calculer(probleme.etats[i]) ;
 			if (energie < this.meilleureEnergie){
@@ -139,7 +139,11 @@ public class RecuitQuantique implements IRecuit {
 		for( int i = 0; i < nombreRepliques ; i++){
 			indiceEtats.add(i);
 		}
-
+		System.out.println("INITIAL WEIGHTS");
+		Tools.printArray(((Portfolio)probleme.etats[0]).getWeights());
+		System.out.println("END");
+		
+		boolean bool = false;
 		while(Gamma.modifierT() /*&& this.meilleureEnergie!=0*/){
 
 			Collections.shuffle(indiceEtats, probleme.gen);	// melanger l'ordre de parcours des indices
@@ -181,10 +185,10 @@ public class RecuitQuantique implements IRecuit {
 						proba = 1;
 					}
 					else	proba = Math.exp(-deltaE / (this.K.k * this.temperature));
-
 					if (proba == 1 || proba >= probleme.gen.nextDouble()) {
 						mutationsAcceptees++;
 						probleme.modifElem(etat, mutation);				// faire la mutation
+						
 						if (deltaEp < 0){
 							EpActuelle = etat.Ep.calculer(etat);		// energie potentielle temporelle
 							System.out.println("Ep Actuelle : " + EpActuelle);
@@ -196,12 +200,6 @@ public class RecuitQuantique implements IRecuit {
 								this.meilleureEnergie = EpActuelle;
 								System.out.println("meilleureEnergie = "+ this.meilleureEnergie);
 								System.out.println("mutationsTentees = "+ mutationsTentees);
-								/*if (this.meilleureEnergie == 0){	// fin du programme
-									System.out.println("Mutations tentées : " + mutationsTentees);
-									System.out.println("Mutations acceptées : " + mutationsAcceptees);
-									this.mutationTentess=mutationsTentees;
-									return;
-								}*/
 							}
 						}
 						

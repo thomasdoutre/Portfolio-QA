@@ -1,6 +1,7 @@
 package portfolioProblem;
 import java.text.ParseException;
 import java.util.Calendar;
+
 import org.apache.commons.math3.stat.descriptive.moment.Mean;
 
 import Optionnel.Risk;
@@ -15,14 +16,14 @@ import solver.commun.Etat;
  */
 
 public class Portfolio extends Etat {
-
+	
 	private TickersSet tickersSet;
 	private double[] weights;
 	private double[] returns;
 	private double expectedReturn;
 	private double[] meilleursPoids;
 
-
+	
 	/**
 	 * This method is used to construct a portfolio with all its features.
 	 * Useful for cloning
@@ -36,16 +37,16 @@ public class Portfolio extends Etat {
 	 */
 	// ATTENTION : ici on ne clone pas, les références aux objets type double[] sont les mêmes, on clonera
 	// ces pointeurs avant de faire appel à ce constructeur.
-
+	
 	public Portfolio(EnergiePotentielle Ep, TickersSet tickers,double[] weights,double[] returns){
 		this.Ep=Ep;
 		this.setTickersSet(tickers);
 		this.setWeights(weights);
 		this.setReturns(returns);
 		this.expectedReturn = computeExpectedReturn();
-
+		
 	}
-
+	
 	/**
 	 * This method is used to construct a portfolio.
 	 * Portfolio is initialized with pre-definite weights.
@@ -60,19 +61,19 @@ public class Portfolio extends Etat {
 		this.returns = computeReturns(weights);
 		this.expectedReturn = computeExpectedReturn();
 	}
-
+	
 	public Portfolio clone(){
 		double[] cWeights = Tools.cloneArray(this.weights);
 		Portfolio newPortfolio = new Portfolio(this.tickersSet,cWeights);
 		return newPortfolio;
-
+		
 	}
 	public Portfolio cloneWithDifferentWeights(double[] weights){
 		Portfolio newPortfolio = new Portfolio(this.tickersSet,weights);
 		return newPortfolio;
-
+		
 	}
-
+	
 
 	/**
 	 * This method is used to compute the Expected Return of a portfolio.
@@ -82,11 +83,11 @@ public class Portfolio extends Etat {
 		Mean mean = new Mean();
 		double expectedReturn;
 		expectedReturn = mean.evaluate(this.returns);
-
+		
 		//Tools.printArray(this.returns);
-
-
-		//	System.out.println("Expected Return = " +expectedReturn);
+		
+		
+	//	System.out.println("Expected Return = " +expectedReturn);
 		return expectedReturn;
 	}
 
@@ -108,27 +109,27 @@ public class Portfolio extends Etat {
 		this.returns = rawReturns;
 		return rawReturns;
 	}
-
-
+	
+	
 	/**
 	 * This method is used to initialize a portfolio.
 	 */
-
+	
 	// ATTENTION :
 	// ici le retour fixé R barre n'est pas fixé par l'utilisateur explicitement, il est déduit des poids mis sur chaque ticker.
-
+	
 	public void initialiser(){
-
+		
 		double R = 0.1;
-
+		
 		int n = this.getTickersSet().getLength();
 		double[] weights = new double[n];
-
+		
 		int low = 0;
 		int up = 0;
 		double lowReturn = this.getTickersSet().getData().getExpectedReturnsOfEachAsset()[0];
 		double upReturn = lowReturn;
-
+		
 		for(int i=0; i<n; i++){
 			weights[i]=0;
 
@@ -146,49 +147,31 @@ public class Portfolio extends Etat {
 				System.out.println("upReturn = "+upReturn);*/
 			}
 		}
-
+		
 		if (low == up){
 			System.out.println("WARNING : Expected return level may be too extreme");
 		}
 		weights[low] = (upReturn - R)/(upReturn-lowReturn);
 		weights[up] = (R-lowReturn)/(upReturn-lowReturn);
-
-
+		
+		
 		this.weights = weights;
 		/*System.out.println("weights of this state :");
 		Tools.printArray(weights);*/
 		this.returns = computeReturns(weights);
 		this.setExpectedReturn(this.computeExpectedReturn());
-
+		
 	}
-
+	
 	/**
 	 * This method is used to save a solution at each iteration.
 	 */
 	public void sauvegarderSolution(){
 		//Affectation des poids
-		for (int j = 0; j < this.tickersSet.getLength(); j++) {
-			this.meilleursPoids[j] = this.weights[j];
-
-		}
-	}
-
-	public String toStringWeights() {
-		String u ="[";
-		for (int i=0;i<weights.length;i++) {
-			u=u+weights[i]+", ";
-		}
-		u=u+"]";
-		return u;
-	}
-
-	public double sumWeights() {
-		double w=0;
-		for (int i=0;i<weights.length;i++) {
-			w=w+weights[i];
-
-		}
-		return w;
+				for (int j = 0; j < this.tickersSet.getLength(); j++) {
+					this.meilleursPoids[j] = this.weights[j];
+					
+				}
 	}
 
 	/**

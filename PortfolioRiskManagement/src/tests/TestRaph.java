@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import Optionnel.Tools;
 import portfolioProblem.ConditionalValueAtRisk;
 import portfolioProblem.Data;
-import portfolioProblem.Portfolio;
 import portfolioProblem.PortfolioDistance;
 import portfolioProblem.PortfolioParticule;
 import portfolioProblem.SwapAssets;
 import portfolioProblem.TickersSet;
-
 import solver.commun.Etat;
 import solver.parametres.ConstanteKConstant;
 import solver.parametres.FonctionLineaire;
@@ -28,7 +27,7 @@ public class TestRaph {
 		// Initialisation des Data
 		
 		
-		String[] tickers = {"GSPC","AAPL","FCHI","LG.PA"/*,"GSZ.PA","KER.PA","RNO.PA","AIR.PA"*/};
+		String[] tickers = {"GSPC","AAPL","FCHI","LG.PA","GSZ.PA",/*"KER.PA","RNO.PA","AIR.PA"*/};
 		Calendar startCalendar = new GregorianCalendar(2010,0,27);
 		Calendar endCalendar = Calendar.getInstance();
 
@@ -53,28 +52,21 @@ public class TestRaph {
 		int P = 10;
 		int maxSteps = (int) Math.pow(10,2);
 		int seed = 22;
-		double T = 1/P;
+		double T = 0.35/P;
 		
 		
 		// construire liste d'etats
 			
 		double[] weights = new double[nombreTickers];
-		double[] returns = new double[nombreTickers];
 		
 	/*	double sum=0;
 		for(int i=0; i < nombreTickers;i++){
 			weights[i]=1/nombreTickers;
 		}*/
-			
+		double[] returns = new double[nombreTickers];
+		
 		PortfolioParticule particule = new PortfolioParticule(Ep, mutation, Ec, P, tickersSet, weights, returns);
 		particule.initialiser();
-		System.out.println("Initialisation");
-		for (int i=0;i<particule.getNombrerepliques();i++) {
-			System.out.println("Réplique numéro "+i);
-			System.out.println("Vecteur des poids :"+((Portfolio)(particule.etats[i])).toStringWeights());
-			System.out.println("Somme des poids :"+((Portfolio)(particule.etats[i])).sumWeights());
-		}
-		
 		
 		FonctionLineaire Tparam = new FonctionLineaire(G0,0,maxSteps);
 		ConstanteKConstant Kparam = new ConstanteKConstant(k);
