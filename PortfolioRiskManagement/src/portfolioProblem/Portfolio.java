@@ -1,13 +1,11 @@
 package portfolioProblem;
 import java.text.ParseException;
-import java.util.Calendar;
 
 import org.apache.commons.math3.stat.descriptive.moment.Mean;
 
-import Optionnel.Risk;
-import Optionnel.Tools;
 import solver.commun.EnergiePotentielle;
 import solver.commun.Etat;
+import Optionnel.Tools;
 
 /**
  * This class decribes a portfolio

@@ -4,10 +4,10 @@ import java.util.Map;
 
 import org.apache.commons.math3.stat.descriptive.rank.Percentile;
 
-import Optionnel.Tools;
 import solver.commun.EnergiePotentielle;
 import solver.commun.Etat;
 import solver.commun.MutationElementaire;
+import Optionnel.Tools;
 
 /**
  * This class calculates portfolios' CVaR

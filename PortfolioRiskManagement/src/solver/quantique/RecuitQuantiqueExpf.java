@@ -6,7 +6,7 @@
 	import java.util.ArrayList;
 import java.util.Collections;
 
-	import solver.commun.Etat;
+import solver.commun.Etat;
 import solver.commun.IRecuit;
 import solver.commun.MutationElementaire;
 import solver.commun.Probleme;

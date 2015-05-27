@@ -5,14 +5,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import portfolioProblem.Portfolio;
-import Optionnel.Tools;
-import solver.commun.EnergiePotentielle;
 import solver.commun.Etat;
 import solver.commun.IRecuit;
 import solver.commun.MutationElementaire;
 import solver.commun.Probleme;
 import solver.parametres.ConstanteK;
 import solver.parametres.Fonction;
+import Optionnel.Tools;
 
 /**
  * Classe implémentant le Recuit Quantique, qui prend en paramétres un Gamma et un K modulables ainsi qu'une température constante

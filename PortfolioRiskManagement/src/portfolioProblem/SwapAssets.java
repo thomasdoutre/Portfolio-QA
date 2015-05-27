@@ -1,17 +1,14 @@
 package portfolioProblem;
 
 
-import java.text.ParseException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
-import Optionnel.Tools;
 import solver.commun.Etat;
+import solver.commun.IMutation;
 import solver.commun.MutationElementaire;
 import solver.commun.Probleme;
-import solver.commun.IMutation;
 
 /**
  * This class decribes a mutation that keeps returns unchanged by swapping 3 assets
