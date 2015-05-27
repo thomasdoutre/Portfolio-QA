@@ -1,21 +1,17 @@
 package tests;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import Optionnel.Tools;
 import portfolioProblem.ConditionalValueAtRisk;
 import portfolioProblem.Data;
 import portfolioProblem.PortfolioDistance;
 import portfolioProblem.PortfolioParticule;
 import portfolioProblem.SwapAssets;
 import portfolioProblem.TickersSet;
-import solver.commun.Etat;
 import solver.parametres.ConstanteKConstant;
 import solver.parametres.FonctionLineaire;
 import solver.quantique.RecuitQuantique;
-import solver.quantique.RecuitQuantiqueAccelere;
 
 public class TestRaph {
 
