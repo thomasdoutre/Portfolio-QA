@@ -69,7 +69,9 @@ public class TestRaph {
 		RecuitQuantique recuit = new RecuitQuantique(Tparam,Kparam, M, T);
 		
 		long startTime = System.nanoTime();
+		System.out.println("1111111111111111111111111111111");
 		recuit.lancer(particule);
+		
 		long endTime = System.nanoTime();
 		
 	
