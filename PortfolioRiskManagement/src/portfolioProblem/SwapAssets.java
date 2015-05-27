@@ -19,7 +19,7 @@ import solver.commun.IMutation;
  * @version 1.0
  * @since   2015-05-09
  */
-
+// extend MutationElementaire ?
 public class SwapAssets implements IMutation {
 	int Asset1;
 	int Asset2;
@@ -29,9 +29,10 @@ public class SwapAssets implements IMutation {
 	double delta2;
 	double delta3;
 	
+	
+
+	
 	@Override
-	
-	
 	
 	/**
 	 * This method is used to get an elementary mutation of asset's weights in the portfolio
@@ -62,7 +63,7 @@ public class SwapAssets implements IMutation {
 	
 	
 	
-	private void initialize(int nombreTickers) {
+	public void initialize(int nombreTickers) {
 		
 		Random generator = new Random();
 		this.Asset1 = generator.nextInt(nombreTickers-1);

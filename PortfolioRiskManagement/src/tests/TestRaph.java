@@ -44,6 +44,7 @@ public class TestRaph {
 		PortfolioDistance Ec = new PortfolioDistance();
 		
 		SwapAssets mutation = new SwapAssets();
+		mutation.initialize(nombreTickers);
 
 		int k = 1;
 		int M = 50;
