@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
-
+import Optionnel.Tools;
 import solver.commun.Etat;
 import solver.commun.MutationElementaire;
 import solver.commun.Probleme;
@@ -19,7 +19,7 @@ import solver.commun.IMutation;
  * @version 1.0
  * @since   2015-05-09
  */
-
+// extend MutationElementaire ?
 public class SwapAssets implements IMutation {
 	int Asset1;
 	int Asset2;
@@ -29,9 +29,10 @@ public class SwapAssets implements IMutation {
 	double delta2;
 	double delta3;
 	
+	
+
+	
 	@Override
-	
-	
 	
 	/**
 	 * This method is used to get an elementary mutation of asset's weights in the portfolio
@@ -45,7 +46,14 @@ public class SwapAssets implements IMutation {
 			Etat etat) {
 		Portfolio portfolio = (Portfolio) etat;
 		int NombreTickers = portfolio.getTickersSet().getLength();
-		
+		/*
+		double sum =0;
+		for(int i = 0; i<((Portfolio)probleme.etats[0]).getWeights().length;i++){
+			sum += ((Portfolio)probleme.etats[0]).getWeights()[i];
+		}
+		System.out.println("sum = "+sum);
+		*/
+		//Tools.printArray(((Portfolio)probleme.etats[0]).getWeights());
 		this.initialize(NombreTickers);
 		
 		double R1 = portfolio.getTickersSet().getData().getExpectedReturnsOfEachAsset()[Asset1];
@@ -53,26 +61,29 @@ public class SwapAssets implements IMutation {
 		double R3 = portfolio.getTickersSet().getData().getExpectedReturnsOfEachAsset()[Asset3];
 		
 		HashMap<Integer,Double> vect = new HashMap<Integer,Double>();
-		vect.put(Asset1, -step);
-		vect.put(Asset2, step*((R1-R3)/(R2-R3)));
-		vect.put(Asset3, step*((R2-R1)/(R2-R3)));
-	
+		double avant1 = portfolio.getWeights()[Asset1];
+		double avant2  = portfolio.getWeights()[Asset2];
+		double avant3 = portfolio.getWeights()[Asset3];
+		vect.put(Asset1, avant1-step);
+		vect.put(Asset2, avant2+step*((R1-R3)/(R2-R3)));
+		vect.put(Asset3, avant3+step*((R2-R1)/(R2-R3)));
+		
 		return new Swap(vect);
 	}
 	
 	
 	
-	private void initialize(int nombreTickers) {
+	public void initialize(int nombreTickers) {
 		
 		Random generator = new Random();
-		this.Asset1 = generator.nextInt(nombreTickers-1);
+		this.Asset1 = generator.nextInt(nombreTickers);
 		
 		do {
-			this.Asset2 = generator.nextInt(nombreTickers-1);
+			this.Asset2 = generator.nextInt(nombreTickers);
 		} while (Asset2==Asset1);
 		
 		do {
-			this.Asset3 = generator.nextInt(nombreTickers-1);
+			this.Asset3 = generator.nextInt(nombreTickers);
 		} while (Asset2==Asset3 || Asset3 == Asset1);
 		
 		this.step = 0.1*Math.random();

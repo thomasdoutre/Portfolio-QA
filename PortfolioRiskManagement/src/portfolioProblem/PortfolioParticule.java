@@ -14,14 +14,14 @@ public class PortfolioParticule extends Probleme {
 	
 	
 	
-	public PortfolioParticule(EnergiePotentielle Ep, IMutation mutation, EnergieCinetique Ec, int nombrerepliques,TickersSet tickersSet, double[] weights) {
+	public PortfolioParticule(EnergiePotentielle Ep, IMutation mutation, EnergieCinetique Ec, int nombrerepliques,TickersSet tickersSet, double[] weights,double[] returns) {
 		this.Ec = Ec;
 		this.mutation = mutation;
 		this.Nombrerepliques = nombrerepliques;
 		
 		this.etats = new Etat[Nombrerepliques];
 		for (int i = 0; i < this.Nombrerepliques; i++){
-			this.etats[i] = new Portfolio(Ep , tickersSet, weights, weights  );
+			this.etats[i] = new Portfolio(Ep , tickersSet, weights, returns );
 		}
 	}
 
