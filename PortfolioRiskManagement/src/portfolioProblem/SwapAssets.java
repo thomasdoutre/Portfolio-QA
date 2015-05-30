@@ -124,6 +124,7 @@ public class SwapAssets implements IMutation {
 		//	Tools.printArray(Tools.normArray(weights, 1));
 		Tools.printArray(weights);
 		portfolio.setWeights(weights);
+		portfolio.setReturns(portfolio.updateReturns());
 	}
 
 

@@ -108,6 +108,19 @@ public class Portfolio extends Etat {
 		return rawReturns;
 	}
 	
+	public double[] updateReturns(){
+		double[][] rawReturnsMatrix = this.tickersSet.getData().getReturnsMatrix();
+		int n = rawReturnsMatrix.length;
+		double rawReturns[] = new double[n];
+		for(int i = 0; i < n; i++){
+			for(int j = 0; j < weights.length; j++){
+				rawReturns[i] += weights[j]*rawReturnsMatrix[i][j];
+			}
+		}
+		this.returns = rawReturns;
+		return rawReturns;
+	}
+	
 	
 	/**
 	 * This method is used to initialize a portfolio.

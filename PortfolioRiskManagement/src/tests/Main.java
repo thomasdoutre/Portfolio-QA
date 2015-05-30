@@ -2,6 +2,7 @@ package tests;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import Optionnel.ValueAtRisk;
 import portfolioProblem.Data;
 import portfolioProblem.DebugRisk;
 import portfolioProblem.PortfolioDistance;
@@ -31,7 +32,7 @@ public class Main {
 
 		// Initialisation
 
-		DebugRisk Ep = new DebugRisk();
+		ValueAtRisk Ep = new ValueAtRisk();
 		PortfolioDistance Ec = new PortfolioDistance();
 
 		SwapAssets mutation = new SwapAssets();

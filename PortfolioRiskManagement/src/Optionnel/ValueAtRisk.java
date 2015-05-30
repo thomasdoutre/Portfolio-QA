@@ -40,7 +40,7 @@ public class ValueAtRisk extends EnergiePotentielle {
 
 
 
-	@Override
+/*	@Override
 	public double calculer(Etat etat) {
 		Portfolio port = (Portfolio)etat;
 		double[] portfolioReturns = port.getReturns();
@@ -53,16 +53,33 @@ public class ValueAtRisk extends EnergiePotentielle {
 		double valueAtRisk;
 		valueAtRisk = - percentile.evaluate(tab, 5.0);
 		return valueAtRisk;
+	}*/
+	
+	@Override
+	public double calculer(Etat etat) {
+		Portfolio port = (Portfolio)etat;
+		double[] portfolioReturns = port.getReturns();
+		
+		return calculer(portfolioReturns);
+	}
+
+	private double calculer(double[] tab){
+		Percentile percentile = new Percentile();
+		double valueAtRisk;
+		valueAtRisk = - percentile.evaluate(tab, 5.0);
+		System.out.println("value at risk = "+valueAtRisk);
+		return valueAtRisk;
 	}
 
 
 	@Override
 	public double calculerDeltaE(Etat etat, MutationElementaire mutation) {
+		
 		Portfolio portfolio = (Portfolio) etat;
 		Swap m = (Swap) mutation;
 		HashMap<Integer, Double> vect = m.getVecteur();
 	
-		portfolio.getTickersSet().getData().getReturnsMatrix();
+		// portfolio.getTickersSet().getData().getReturnsMatrix();
 		
 		double[] newPortfolioReturns = Tools.cloneArray(portfolio.getReturns());
 		
@@ -74,8 +91,8 @@ public class ValueAtRisk extends EnergiePotentielle {
 			}
 			
 		}
-		
-		return (calculer(newPortfolioReturns)-calculer(etat)); //TEST A CHANGER EN MOINS
+		System.out.println("(calculer(newPortfolioReturns)-calculer(etat)) = "+ (calculer(newPortfolioReturns)-calculer(etat)));
+		return (calculer(newPortfolioReturns)-calculer(etat));
 	
 	}
 
