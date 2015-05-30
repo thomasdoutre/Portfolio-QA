@@ -27,8 +27,6 @@ public class SwapAssets implements IMutation {
 	double delta3;
 
 
-
-
 	@Override
 
 	/**
@@ -43,14 +41,7 @@ public class SwapAssets implements IMutation {
 			Etat etat) {
 		Portfolio portfolio = (Portfolio) etat;
 		int NombreTickers = portfolio.getTickersSet().getLength();
-		/*
-		double sum =0;
-		for(int i = 0; i<((Portfolio)probleme.etats[0]).getWeights().length;i++){
-			sum += ((Portfolio)probleme.etats[0]).getWeights()[i];
-		}
-		System.out.println("sum = "+sum);
-		 */
-		//Tools.printArray(((Portfolio)probleme.etats[0]).getWeights());
+
 		this.initialize(NombreTickers);
 
 		double R1 = portfolio.getTickersSet().getData().getExpectedReturnsOfEachAsset()[Asset1];
@@ -82,33 +73,22 @@ public class SwapAssets implements IMutation {
 		} while (Asset2==Asset3 || Asset3 == Asset1);
 
 		this.step = 0.1*Math.random();
-		//System.out.println("step = "+step);
 	}
 
 
 	public void faire(Probleme probleme, Etat etat, MutationElementaire mutation) {
-		//System.out.println("faire");
 		Portfolio portfolio = (Portfolio) etat;
 		HashMap<Integer,Double> vect = ((Swap) mutation).getVecteur();
 
 		double[] weights = portfolio.getWeights();
-		//Tools.printArray(weights);
 		boolean weightIsNegative = false;
 		for(Map.Entry<Integer, Double> entry : vect.entrySet()){
-			//System.out.println("weights[entry.getKey()] init ="+weights[entry.getKey()]);
 			if((weights[entry.getKey()]+entry.getValue())<0){
 				weightIsNegative = true;
 			}
 
-			/* double value = weights[entry.getKey()];
-		    double delta = entry.getValue();
-		    weights[entry.getKey()] = value+delta;*/
-			//System.out.println("entry.getValue()="+entry.getValue());
-			//System.out.println("weights[entry.getKey()]="+weights[entry.getKey()]);
-			//System.out.println();
 		}
 
-		System.out.println("weightIsNegative ="+weightIsNegative);
 
 		if(weightIsNegative==false){
 
@@ -120,9 +100,6 @@ public class SwapAssets implements IMutation {
 			}
 		}
 
-		//Tools.printArray(weights);
-		//	Tools.printArray(Tools.normArray(weights, 1));
-		Tools.printArray(weights);
 		portfolio.setWeights(weights);
 		portfolio.setReturns(portfolio.updateReturns());
 	}

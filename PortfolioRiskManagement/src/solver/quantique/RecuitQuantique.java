@@ -140,27 +140,12 @@ public class RecuitQuantique implements IRecuit {
 		for( int i = 0; i < nombreRepliques ; i++){
 			indiceEtats.add(i);
 		}
-		System.out.println("INITIAL WEIGHTS");
-		Tools.printArray(((Portfolio)probleme.etats[0]).getWeights());
-		System.out.println("INITIAL EXPECTED RETURN");
-		System.out.println(((Portfolio)probleme.etats[0]).computeExpectedReturn());
-		
 		boolean bool = false;
 		while(Gamma.modifierT() /*&& this.meilleureEnergie!=0*/){
 			Collections.shuffle(indiceEtats, probleme.gen);	// melanger l'ordre de parcours des indices
 			Jr = -this.temperature/2*Math.log(Math.tanh(this.Gamma.t/nombreRepliques/this.temperature));	// calcul de Jr pour ce palier
 
 			for (Integer p : indiceEtats){	
-
-				System.out.println();
-				System.out.println();
-				System.out.println();
-				System.out.println();
-				System.out.println("indice de l'état :"+ p);
-				System.out.println();
-				System.out.println();
-				System.out.println();
-				System.out.println();
 
 				etat = probleme.etats[p];	
 
@@ -185,14 +170,10 @@ public class RecuitQuantique implements IRecuit {
 
 					deltaEp = probleme.calculerDeltaEp(etat, mutation);	// calculer deltaEp si la mutation etait acceptee
 					deltaEc = probleme.calculerDeltaEc(etat, previous, next, mutation);  // calculer deltaIEc si la mutation etait acceptee
-					System.out.println("deltaEp = "+deltaEp);
-					//System.out.println("deltaEc = "+deltaEc);
-
 
 					//différences du hamiltonien total
 					//multiplier deltaIEc par JGamma
 					deltaE = deltaEp/nombreRepliques - deltaEc*Jr;
-//System.out.println("deltaE = "+deltaE);
 					//K.calculerK(deltaE);
 
 					if( deltaE <= 0 || deltaEp < 0) {
@@ -201,41 +182,29 @@ public class RecuitQuantique implements IRecuit {
 					else	proba = Math.exp(-deltaE / (this.K.k * this.temperature));
 					if (proba == 1 || proba >= probleme.gen.nextDouble()) {
 						mutationsAcceptees++;
-						System.out.println("FAIRE MUTATION");
 						probleme.modifElem(etat, mutation);				// faire la mutation
 						//System.out.println("apres le faire :");
 
 						if (deltaEp < 0){
 							EpActuelle = etat.Ep.calculer(etat);		// energie potentielle temporelle
-							System.out.println("Ep Actuelle : " + EpActuelle);
-
 							
 							if( EpActuelle < this.meilleureEnergie ){		// mettre a jour la meilleur energie
 								System.out.println("ACTUALISATION DE LA MEILLEURE ENERGIE : " + EpActuelle);
 
 								this.meilleureEnergie = EpActuelle;
-								System.out.println("meilleureEnergie = "+ this.meilleureEnergie);
-								System.out.println("mutationsTentees = "+ mutationsTentees);
 							}
 						}
 						
 					}
 				}
 				
-				System.out.println("fin de 'this.palier' : fin d'un état");
-
 			}
-			System.out.println("fin des états, bouclage sur la température");
-
-			
 		}
 
 
 		System.out.println("Mutations tentées : " + mutationsTentees);
 		System.out.println("Mutations acceptées : " + mutationsAcceptees);
 		System.out.println("Meilleur Ep :"+ this.meilleureEnergie);
-		System.out.println("Meilleur Poids :");
-		Tools.printArray(((Portfolio)probleme.etats[0]).getWeights());
 		double sum =0;
 		for(int i = 0; i<((Portfolio)probleme.etats[0]).getWeights().length;i++){
 			sum += ((Portfolio)probleme.etats[0]).getWeights()[i];

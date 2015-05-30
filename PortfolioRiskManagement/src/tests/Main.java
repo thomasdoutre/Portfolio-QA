@@ -2,7 +2,6 @@ package tests;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import portfolioProblem.ConditionalValueAtRisk;
 import portfolioProblem.Data;
 import portfolioProblem.PortfolioDistance;
 import portfolioProblem.PortfolioParticule;
@@ -11,6 +10,7 @@ import portfolioProblem.TickersSet;
 import solver.parametres.ConstanteKConstant;
 import solver.parametres.FonctionLineaire;
 import solver.quantique.RecuitQuantique;
+import Optionnel.ValueAtRisk;
 
 public class Main {
 
@@ -31,14 +31,14 @@ public class Main {
 
 		// Initialisation
 
-		ConditionalValueAtRisk Ep = new ConditionalValueAtRisk();
+		ValueAtRisk Ep = new ValueAtRisk();
 		PortfolioDistance Ec = new PortfolioDistance();
 
 		SwapAssets mutation = new SwapAssets();
 		mutation.initialize(nombreTickers);
 
 		int k = 1;
-		int M = 50;
+		int M = 100;
 		double G0 = 0.55;
 		int P = 10;
 		int maxSteps = (int) Math.pow(10,2);

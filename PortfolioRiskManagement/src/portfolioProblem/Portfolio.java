@@ -130,8 +130,6 @@ public class Portfolio extends Etat {
 	// ici le retour fixé R barre n'est pas fixé par l'utilisateur explicitement, il est déduit des poids mis sur chaque ticker.
 	
 	public void initialiser(){
-		System.out.println("INITIALISATION DE PORTFO");
-
 		double R = 0.1;
 		
 		int n = this.getTickersSet().getLength();

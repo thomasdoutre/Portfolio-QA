@@ -42,9 +42,7 @@ public class ConditionalValueAtRisk extends EnergiePotentielle {
 				compt++;
 			}
 		}
-		//System.out.println("compt = "+compt);
 		double conditionalVaR = - sum/compt;
-		//System.out.println("Conditional VaR = " +conditionalVaR);
 		return conditionalVaR;
 	}
 
@@ -70,7 +68,6 @@ public class ConditionalValueAtRisk extends EnergiePotentielle {
 			}
 			
 		}
-		System.out.println("(calculer(newPortfolioReturns)-calculer(etat)) = "+(calculer(newPortfolioReturns)-calculer(etat)));
 		return (calculer(newPortfolioReturns)-calculer(portfolio.getReturns()));
 		
 		
