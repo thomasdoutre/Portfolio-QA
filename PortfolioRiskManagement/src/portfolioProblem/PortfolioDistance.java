@@ -7,6 +7,7 @@ import solver.commun.EnergieCinetique;
 import solver.commun.Etat;
 import solver.commun.MutationElementaire;
 import solver.commun.Probleme;
+import Optionnel.Tools;
 
 
 
@@ -30,18 +31,18 @@ public class PortfolioDistance extends EnergieCinetique {
 			double[] poidsNext = etatNext.getWeights();
 
 			for (int i=0;i<longueur;i++) {
-				Ec=+Math.pow(poidsNext[i]-poidsActuel[i], 2);
+				Ec+=Math.pow(poidsNext[i]-poidsActuel[i], 2);
 			}
 		}
 
-		Portfolio etat = (Portfolio) probleme.etats[NombreRepliques];
-		Portfolio etatNext = (Portfolio) probleme.etats[0];
+		Portfolio dernierEtat = (Portfolio) probleme.etats[NombreRepliques];
+		Portfolio premierEtat = (Portfolio) probleme.etats[0];
 
-		double[] poidsActuel = etat.getWeights();
-		double[] poidsNext = etatNext.getWeights();
+		double[] poidsActuel = dernierEtat.getWeights();
+		double[] poidsNext = premierEtat.getWeights();
 
 		for (int i=0;i<longueur;i++) {
-			Ec=+Math.pow(poidsNext[i]-poidsActuel[i], 2);
+			Ec+=Math.pow(poidsNext[i]-poidsActuel[i], 2);
 		}
 
 		Ec=Math.sqrt(2*Ec);
@@ -69,19 +70,20 @@ public class PortfolioDistance extends EnergieCinetique {
 		double EcPrecedent =0;
 
 		for (int i=0;i<longueur;i++) {
-			EcPrecedent=+Math.pow(poidsnext[i]-poids[i], 2)+Math.pow(poidsprev[i]-poids[i], 2);
+			EcPrecedent+=Math.pow(poidsnext[i]-poids[i], 2)+Math.pow(poidsprev[i]-poids[i], 2);
 		}
 
 		double EcSuivant=0; 
 
+		double[] nouveauxPoidsFactices = Tools.cloneArray(poids);
 		for(Map.Entry<Integer, Double> entry : vect.entrySet()){
-			poids[entry.getKey()]=+entry.getValue();
+			nouveauxPoidsFactices[entry.getKey()] += entry.getValue();
 		}
 
 		for (int i=0;i<longueur;i++) {
-			EcSuivant=+Math.pow(poidsnext[i]-poids[i], 2)+Math.pow(poidsprev[i]-poids[i], 2);
+			EcSuivant+=Math.pow(poidsnext[i]-nouveauxPoidsFactices[i], 2)+Math.pow(poidsprev[i]-nouveauxPoidsFactices[i], 2);
 		}
-
+		
 		return Math.sqrt(EcSuivant-EcPrecedent);
 	}
 

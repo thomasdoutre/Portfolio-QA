@@ -40,7 +40,7 @@ public class Portfolio extends Etat {
 		this.Ep=Ep;
 		this.setTickersSet(tickers);
 		this.setWeights(weights);
-		this.setReturns(returns);
+		this.setReturns(this.computeReturns(weights));
 		this.expectedReturn = computeExpectedReturn();
 		
 	}
@@ -117,7 +117,8 @@ public class Portfolio extends Etat {
 	// ici le retour fixé R barre n'est pas fixé par l'utilisateur explicitement, il est déduit des poids mis sur chaque ticker.
 	
 	public void initialiser(){
-		
+		System.out.println("INITIALISATION DE PORTFO");
+
 		double R = 0.1;
 		
 		int n = this.getTickersSet().getLength();
@@ -166,10 +167,11 @@ public class Portfolio extends Etat {
 	 */
 	public void sauvegarderSolution(){
 		//Affectation des poids
-				for (int j = 0; j < this.tickersSet.getLength(); j++) {
+		this.meilleursPoids = Tools.cloneArray(this.weights);
+			/*	for (int j = 0; j < this.tickersSet.getLength(); j++) {
 					this.meilleursPoids[j] = this.weights[j];
 					
-				}
+				}*/
 	}
 
 	/**
@@ -211,7 +213,7 @@ public class Portfolio extends Etat {
 	 * @return the weights
 	 */
 	public double[] getWeights() {
-		return weights;
+		return this.weights;
 	}
 
 	/**

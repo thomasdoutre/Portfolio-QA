@@ -75,7 +75,7 @@ public class ValueAtRisk extends EnergiePotentielle {
 			
 		}
 		
-		return calculer(newPortfolioReturns)-calculer(etat);
+		return (calculer(newPortfolioReturns)-calculer(etat)); //TEST A CHANGER EN MOINS
 	
 	}
 

@@ -9,10 +9,10 @@ import solver.commun.Etat;
 import solver.commun.IMutation;
 import solver.commun.MutationElementaire;
 import solver.commun.Probleme;
+import Optionnel.Tools;
 
 /**
  * This class decribes a mutation that keeps returns unchanged by swapping 3 assets
- * @author  Raphael Couronne
  * @version 1.0
  * @since   2015-05-09
  */
@@ -25,12 +25,12 @@ public class SwapAssets implements IMutation {
 	double delta1;
 	double delta2;
 	double delta3;
-	
-	
 
-	
+
+
+
 	@Override
-	
+
 	/**
 	 * This method is used to get an elementary mutation of asset's weights in the portfolio
 	 * This elementary mutation is randomly generated
@@ -38,7 +38,7 @@ public class SwapAssets implements IMutation {
 	 * @param etat the replica chosen
 	 * @throws ParseException 
 	 */
-	
+
 	public MutationElementaire getMutationElementaire(Probleme probleme,
 			Etat etat) {
 		Portfolio portfolio = (Portfolio) etat;
@@ -49,56 +49,83 @@ public class SwapAssets implements IMutation {
 			sum += ((Portfolio)probleme.etats[0]).getWeights()[i];
 		}
 		System.out.println("sum = "+sum);
-		*/
+		 */
 		//Tools.printArray(((Portfolio)probleme.etats[0]).getWeights());
 		this.initialize(NombreTickers);
-		
+
 		double R1 = portfolio.getTickersSet().getData().getExpectedReturnsOfEachAsset()[Asset1];
 		double R2 = portfolio.getTickersSet().getData().getExpectedReturnsOfEachAsset()[Asset2];
 		double R3 = portfolio.getTickersSet().getData().getExpectedReturnsOfEachAsset()[Asset3];
-		
+
 		HashMap<Integer,Double> vect = new HashMap<Integer,Double>();
-		double avant1 = portfolio.getWeights()[Asset1];
-		double avant2  = portfolio.getWeights()[Asset2];
-		double avant3 = portfolio.getWeights()[Asset3];
-		vect.put(Asset1, avant1-step);
-		vect.put(Asset2, avant2+step*((R1-R3)/(R2-R3)));
-		vect.put(Asset3, avant3+step*((R2-R1)/(R2-R3)));
-		
+
+		vect.put(Asset1, -step);
+		vect.put(Asset2, step*((R1-R3)/(R2-R3)));
+		vect.put(Asset3, step*((R2-R1)/(R2-R3)));
+
 		return new Swap(vect);
 	}
-	
-	
-	
+
+
+
 	public void initialize(int nombreTickers) {
-		
+
 		Random generator = new Random();
 		this.Asset1 = generator.nextInt(nombreTickers);
-		
+
 		do {
 			this.Asset2 = generator.nextInt(nombreTickers);
 		} while (Asset2==Asset1);
-		
+
 		do {
 			this.Asset3 = generator.nextInt(nombreTickers);
 		} while (Asset2==Asset3 || Asset3 == Asset1);
-		
+
 		this.step = 0.1*Math.random();
+		//System.out.println("step = "+step);
 	}
-	
-	
+
+
 	public void faire(Probleme probleme, Etat etat, MutationElementaire mutation) {
+		//System.out.println("faire");
 		Portfolio portfolio = (Portfolio) etat;
 		HashMap<Integer,Double> vect = ((Swap) mutation).getVecteur();
-		
+
 		double[] weights = portfolio.getWeights();
-		
+		//Tools.printArray(weights);
+		boolean weightIsNegative = false;
 		for(Map.Entry<Integer, Double> entry : vect.entrySet()){
-		    weights[entry.getKey()]=+entry.getValue();
+			//System.out.println("weights[entry.getKey()] init ="+weights[entry.getKey()]);
+			if((weights[entry.getKey()]+entry.getValue())<0){
+				weightIsNegative = true;
+			}
+
+			/* double value = weights[entry.getKey()];
+		    double delta = entry.getValue();
+		    weights[entry.getKey()] = value+delta;*/
+			//System.out.println("entry.getValue()="+entry.getValue());
+			//System.out.println("weights[entry.getKey()]="+weights[entry.getKey()]);
+			//System.out.println();
 		}
+
+		System.out.println("weightIsNegative ="+weightIsNegative);
+
+		if(weightIsNegative==false){
+
+
+			for(Map.Entry<Integer, Double> entry : vect.entrySet()){
+
+			    double delta = entry.getValue();
+			    weights[entry.getKey()] += delta;
+			}
+		}
+
+		//Tools.printArray(weights);
+		//	Tools.printArray(Tools.normArray(weights, 1));
+		Tools.printArray(weights);
 		portfolio.setWeights(weights);
 	}
-	
-	
-	
+
+
+
 }

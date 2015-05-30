@@ -66,11 +66,12 @@ public class ConditionalValueAtRisk extends EnergiePotentielle {
 			
 			for(int i =0; i<newPortfolioReturns.length;i++){
 			newPortfolioReturns[entry.getKey()] += entry.getValue()*(portfolio.getTickersSet().getData().getReturnsMatrix()[i][entry.getKey()]);
+			//System.out.println("=="+ entry.getValue()*(portfolio.getTickersSet().getData().getReturnsMatrix()[i][entry.getKey()]));
 			}
 			
 		}
-		
-		return calculer(newPortfolioReturns)-calculer(etat);
+		System.out.println("(calculer(newPortfolioReturns)-calculer(etat)) = "+(calculer(newPortfolioReturns)-calculer(etat)));
+		return (calculer(newPortfolioReturns)-calculer(portfolio.getReturns()));
 		
 		
 		
