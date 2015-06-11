@@ -47,6 +47,23 @@ public class Tools {
 	}
 	
 	/**
+	 * This method is used to display an array of int is the console.
+	 * @param v This is the array to be displayed
+	 */
+
+	public static void printArray(int[] v) {
+		System.out.println();
+		System.out.println("=================================================================");
+		for (int i : v) {
+			System.out.print(i);
+			System.out.print("\t");
+		}
+		System.out.println();
+		System.out.println("=================================================================");
+
+	}
+	
+	/**
 	 * This method is used to clone an array of double.
 	 * @param array the array to be cloned
 	 * @return the cloned array.
@@ -57,6 +74,33 @@ public class Tools {
 			cloned[i]=array[i];
 		}
 		return cloned;
+	}
+	
+	public static void printSumArray(double[] array){
+		double sum =0;
+		for(int i=0; i<array.length;i++){
+			sum+=array[i];
+		}
+		System.out.println("sumArray = "+sum);
+	}
+	public static double[] normArray(double[] array,double total){
+		double sum =0;
+		for(int i=0; i<array.length;i++){
+			sum+=array[i];
+		}
+		System.out.println("sum = "+sum);
+		for(int i=0; i<array.length;i++){
+			array[i]=array[i]*total/sum;
+		}
+		return array;
+	}
+	
+	public static double sumArray(double[] array){
+		double sum =0;
+		for(int i=0; i<array.length;i++){
+			sum+=array[i];
+		}
+		return sum;
 	}
 	
 }

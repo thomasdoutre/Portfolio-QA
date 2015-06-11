@@ -129,8 +129,8 @@ public class Portfolio extends Etat {
 	// ATTENTION :
 	// ici le retour fixé R barre n'est pas fixé par l'utilisateur explicitement, il est déduit des poids mis sur chaque ticker.
 	
-	public void initialiser(){
-		double R = 0.1;
+	public void initialiserB(){
+		double R = 0.08;
 		
 		int n = this.getTickersSet().getLength();
 		double[] weights = new double[n];
@@ -172,6 +172,154 @@ public class Portfolio extends Etat {
 		this.setExpectedReturn(this.computeExpectedReturn());
 		
 	}
+	
+
+	public void initialiser(){
+		
+		double R = 0.06;
+		
+		int n = this.getTickersSet().getLength();
+		int nombreTickersAuDessus = 0;
+		double[] retours = this.getTickersSet().getData().getExpectedReturnsOfEachAsset();
+		
+		for(int i=0;i<n;i++){
+			if(retours[i]>R){
+				nombreTickersAuDessus++;
+			}
+		}
+		int[] indicesTickersAuDessus = new int[nombreTickersAuDessus];
+		int compt = 0;
+		for(int i=0;i<n;i++){
+			if(retours[i]>R){
+				indicesTickersAuDessus[compt]=i;
+				compt++;
+			}
+		}
+
+		int nombreTickersAuDessous = n-nombreTickersAuDessus;
+		int[] indicesTickersAuDessous = new int[nombreTickersAuDessous];
+		compt = 0;
+		for(int i=0;i<n;i++){
+			if(retours[i]<=R){
+				indicesTickersAuDessous[compt]=i;
+				compt++;
+			}
+		}
+
+		double sommeAuDessus = 0;
+		for(int i=0;i<nombreTickersAuDessus;i++){
+			int indiceDuTicker = indicesTickersAuDessus[i];
+			double retourDuTicker = this.getTickersSet().getData().getExpectedReturnsOfEachAsset()[indiceDuTicker];
+			sommeAuDessus = sommeAuDessus + retourDuTicker - R;
+		}
+
+		double sommeAuDessous = 0;
+		for(int i=0;i<nombreTickersAuDessous;i++){
+			int indiceDuTicker = indicesTickersAuDessous[i];
+			double retourDuTicker = this.getTickersSet().getData().getExpectedReturnsOfEachAsset()[indiceDuTicker];
+			sommeAuDessous = sommeAuDessous + retourDuTicker - R;
+		}
+
+		
+		
+		double[] poidsTickers = new double[n];
+
+		//faire l'autre cas
+		if(sommeAuDessous<sommeAuDessus){
+
+			double sommeARetablir = 0;
+			for(int i=0; i<nombreTickersAuDessous;i++){
+				int indiceTicker = indicesTickersAuDessous[i];
+				double retourDuTicker = retours[indiceTicker];
+				double poidsAleatoire = Math.random();
+				poidsTickers[indiceTicker] = poidsAleatoire;
+				sommeARetablir = sommeARetablir + poidsAleatoire*(R-retourDuTicker);
+			}
+
+			//trier indicesAuDessus
+			int nbis = indicesTickersAuDessus.length - 1;
+			for (int i = nbis; i >= 1; i--)
+				for (int j = 1 ; j <= i; j++ ) 
+					if (this.getTickersSet().getData().getExpectedReturnsOfEachAsset()[indicesTickersAuDessus[j-1]] > this.getTickersSet().getData().getExpectedReturnsOfEachAsset()[indicesTickersAuDessus[j]])
+					{
+						int temp = indicesTickersAuDessus[j-1] ;
+						indicesTickersAuDessus[j-1] = indicesTickersAuDessus[j] ;
+						indicesTickersAuDessus[j] = temp ;
+					}
+			
+			double[] deltaR = new double[nombreTickersAuDessus];
+			for (int i=0; i<nombreTickersAuDessus; i++){
+				int indiceTicker = indicesTickersAuDessus[i];
+				deltaR[i] = retours[indiceTicker]-R;
+			}
+			
+			System.out.println("indicesAuDessus = ");
+			Tools.printArray(indicesTickersAuDessus);
+			
+			System.out.println("indicesAuDessous = ");
+			Tools.printArray(indicesTickersAuDessous);
+			
+			System.out.println("deltaR = ");
+			Tools.printArray(deltaR);
+			
+			System.out.println("sommeARetablir = "+sommeARetablir);
+			
+
+			
+			// FAIRE L'AUTRE CAS
+			if(deltaR[nombreTickersAuDessus-1]>sommeARetablir){
+				
+				System.out.println("r1 > sommeARetablir");
+
+				for(int i=0;i<nombreTickersAuDessus-1; i++){
+					
+					if(deltaR[i]<sommeARetablir){
+						int indiceTicker = indicesTickersAuDessus[i];
+						double poidsAleatoire = Math.random();
+						poidsTickers[indiceTicker] = poidsAleatoire;
+						sommeARetablir = sommeARetablir - deltaR[i]*poidsAleatoire;
+					}
+					
+					else {
+						
+						int indiceTicker = indicesTickersAuDessus[i];
+						double max = sommeARetablir/deltaR[i];
+						double poidsAleatoire = Math.random()*max;
+						poidsTickers[indiceTicker] = poidsAleatoire;
+						sommeARetablir = sommeARetablir - deltaR[i]*poidsAleatoire;
+						
+					}
+					
+				}
+
+				int indiceTickerFin = indicesTickersAuDessus[nombreTickersAuDessus-1];
+				poidsTickers[indiceTickerFin] = sommeARetablir/deltaR[indiceTickerFin];
+
+
+				double sumWeights = Tools.sumArray(poidsTickers);
+
+				for(int i = 0; i<n; i++){
+					poidsTickers[i]=poidsTickers[i]/sumWeights;
+				}
+
+				System.out.println("somme des poids : ");
+				Tools.printSumArray(poidsTickers);
+				
+				
+				this.weights = poidsTickers;
+				/*System.out.println("weights of this state :");
+				Tools.printArray(weights);*/
+				this.returns = computeReturns(weights);
+				this.setExpectedReturn(this.computeExpectedReturn());
+
+				System.out.println("retour des poids : " + this.expectedReturn);
+				
+			}
+
+		}
+
+	}
+
 	
 	/**
 	 * This method is used to save a solution at each iteration.
