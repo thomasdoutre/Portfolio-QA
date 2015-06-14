@@ -18,7 +18,7 @@ public class Main {
 
 		// Initialisation des Data
 
-		String[] tickers = {"GSPC","AAPL","FCHI","LG.PA","GSZ.PA"/*"KER.PA","RNO.PA","AIR.PA"*/};
+		String[] tickers = {"GSPC","AAPL","FCHI"/*,"LG.PA"*//*,"GSZ.PA"*//*"KER.PA","RNO.PA","AIR.PA"*/};
 		Calendar startCalendar = new GregorianCalendar(2010,0,27);
 		Calendar endCalendar = Calendar.getInstance();
 
