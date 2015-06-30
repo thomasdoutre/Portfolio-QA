@@ -9,11 +9,20 @@ import solver.commun.MutationElementaire;
 import solver.commun.Probleme;
 import Optionnel.Tools;
 
-
-
+/**
+ * This class decribes a portfolio
+ * @author thomasdoutre
+ * @version 1.0
+ * @since   2015-05-10
+ */
 
 public class PortfolioDistance extends EnergieCinetique {
 
+	/**
+	 * This method is used to calculate the Kinetic Energy of the problem.
+	 * @param probleme the problem considered.
+	 * @return the Kinetic Energy.
+	 */
 	@Override
 	public double calculer(Probleme probleme) {
 
@@ -50,6 +59,14 @@ public class PortfolioDistance extends EnergieCinetique {
 		return Ec;
 	}
 
+	/**
+	 * This method is used to calculate the distance in terms of energy between a state and its mutation
+	 * @param etat the state.
+	 * @param prev the previous state
+	 * @param next the next state
+	 * @param mutation the mutation to be applied
+	 * @return the energy.
+	 */
 	@Override
 	public double calculerDeltaE(Etat etat, Etat prev, Etat next,
 			MutationElementaire mutation) {
