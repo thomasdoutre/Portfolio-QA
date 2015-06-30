@@ -9,14 +9,13 @@ import solver.commun.Etat;
 import solver.commun.IMutation;
 import solver.commun.MutationElementaire;
 import solver.commun.Probleme;
-import Optionnel.Tools;
 
 /**
  * This class decribes a mutation that keeps returns unchanged by swapping 3 assets
  * @version 1.0
  * @since   2015-05-09
  */
-// extend MutationElementaire ?
+
 public class SwapAssets implements IMutation {
 	int Asset1;
 	int Asset2;
@@ -57,7 +56,10 @@ public class SwapAssets implements IMutation {
 		return new Swap(vect);
 	}
 
-
+	/**
+	 * This method is used to initialize the mutation (tickers and step)
+	 * @param nombreTickers the number of tickers.
+	 */
 
 	public void initialize(int nombreTickers) {
 
@@ -75,7 +77,12 @@ public class SwapAssets implements IMutation {
 		this.step = 0.1*Math.random();
 	}
 
-
+	/**
+	 * Apply a mutation to a problem's state. If a resulting weight is negative, the mutation is void.
+	 * @param probleme the problem.
+	 * @param etat the state
+	 * @param mutation the mutation
+	 */
 	public void faire(Probleme probleme, Etat etat, MutationElementaire mutation) {
 		Portfolio portfolio = (Portfolio) etat;
 		HashMap<Integer,Double> vect = ((Swap) mutation).getVecteur();
@@ -88,10 +95,8 @@ public class SwapAssets implements IMutation {
 			}
 
 		}
-
-
+		
 		if(weightIsNegative==false){
-
 
 			for(Map.Entry<Integer, Double> entry : vect.entrySet()){
 
