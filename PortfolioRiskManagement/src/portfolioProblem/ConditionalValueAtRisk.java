@@ -10,8 +10,8 @@ import solver.commun.MutationElementaire;
 import Optionnel.Tools;
 
 /**
- * This class calculates portfolios' CVaR
- * @author  Thomas Doutre
+ * This class calculates portfolios' Conditional Value at Risk
+ * @author thomasdoutre
  * @version 1.0
  * @since   2015-05-10
  */
@@ -19,23 +19,33 @@ import Optionnel.Tools;
 public class ConditionalValueAtRisk extends EnergiePotentielle {
 
 
+	/**
+	 * This method is used to calculate the CVaR of a portfolio (one of the problem's states).
+	 * @param etat the state considered.
+	 * @return the CVaR.
+	 */
 	@Override
 	public double calculer(Etat etat) {
 
 		Portfolio port = (Portfolio)etat;
 		double[] portfolioReturns = port.getReturns();
-		
+
 		return calculer(portfolioReturns);
 	}
-	
+
+	/**
+	 * This method is used to calculate the CVaR of an array of historical returns.
+	 * @param tab the retuns.
+	 * @return the CVaR.
+	 */
 	private double calculer(double[] tab){
 		Percentile percentile = new Percentile();
 		double valueAtRisk;
 		valueAtRisk = - percentile.evaluate(tab, 5.0);
-		
+
 		double sum = 0;
 		int compt = 0;
-		
+
 		for(int i =0 ; i<tab.length;i++){
 			if(tab[i]<(-valueAtRisk)){
 				sum = sum + tab[i];
@@ -47,58 +57,33 @@ public class ConditionalValueAtRisk extends EnergiePotentielle {
 	}
 
 
-
+	/**
+	 * This method is used to calculate the distance in terms of risk (energy) between a state and its mutation
+	 * @param etat the state.
+	 * @param mutation the mutation to be applied
+	 * @return the energy.
+	 */
 	@Override
 	public double calculerDeltaE(Etat etat, MutationElementaire mutation) {
-		
+
 		Portfolio portfolio = (Portfolio) etat;
 		Swap m = (Swap) mutation;
 		HashMap<Integer, Double> vect = m.vecteur;
-	
+
 		portfolio.getTickersSet().getData().getReturnsMatrix();
-		
-		double[] newPortfolioReturns = Tools.cloneArray(portfolio.getReturns());
-		
-		
+
+		double[] newPortfolioWeights = Tools.cloneArray(portfolio.getWeights());
+
+
 		for(Map.Entry<Integer, Double> entry : vect.entrySet()){
-			
-			for(int i =0; i<newPortfolioReturns.length;i++){
-			newPortfolioReturns[entry.getKey()] += entry.getValue()*(portfolio.getTickersSet().getData().getReturnsMatrix()[i][entry.getKey()]);
-			//System.out.println("=="+ entry.getValue()*(portfolio.getTickersSet().getData().getReturnsMatrix()[i][entry.getKey()]));
-			}
-			
+
+			newPortfolioWeights[entry.getKey()] += entry.getValue();
 		}
-		return (calculer(newPortfolioReturns)-calculer(portfolio.getReturns()));
-		
-		
-		
-		
-		/*Portfolio portfolio = (Portfolio) etat;
-		Portfolio newPortfolio = portfolio.clone();
-		SwapAssets m = (SwapAssets) mutation;
-		
-		double R1 = portfolio.getTickersSet().getData().getExpectedReturnsOfEachAsset()[m.Asset1];
-		double R2 = portfolio.getTickersSet().getData().getExpectedReturnsOfEachAsset()[m.Asset2];
-		double R3 = portfolio.getTickersSet().getData().getExpectedReturnsOfEachAsset()[m.Asset3];
-		System.out.println("avant mutation : ");
-		Tools.printArray(newPortfolio.getWeights());
-		newPortfolio.getWeights()[m.Asset1]=newPortfolio.getWeights()[m.Asset1]-m.step;
-		newPortfolio.getWeights()[m.Asset2]=newPortfolio.getWeights()[m.Asset2]+m.step*((R1-R3)/(R2-R3));
-		newPortfolio.getWeights()[m.Asset3]=newPortfolio.getWeights()[m.Asset3]+m.step*((R2-R1)/(R2-R3));
-		
-		System.out.println("apres mutation : ");
-		Tools.printArray(newPortfolio.getWeights());
+		Portfolio newPortfolio = new Portfolio(portfolio.getTickersSet(), newPortfolioWeights);
+		double[] newPortfolioReturns =  newPortfolio.computeReturns(newPortfolioWeights);
 
-		double energyPortfolio = calculer(portfolio);
-		System.out.println("energyPortfolio : "+energyPortfolio);
+		return (calculer(newPortfolioReturns)-calculer(etat));
 
-		double energyNewPortfolio = calculer(newPortfolio);
-		System.out.println("energyNewPortfolio : "+energyNewPortfolio);
-
-		System.out.println("difference : "+(energyNewPortfolio - energyPortfolio));
-
-		return energyNewPortfolio - energyPortfolio;*/
-		
 	}
 
 
