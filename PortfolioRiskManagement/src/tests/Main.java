@@ -2,71 +2,67 @@ package tests;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import portfolioProblem.ConditionalValueAtRisk;
 import portfolioProblem.Data;
 import portfolioProblem.PortfolioDistance;
 import portfolioProblem.PortfolioParticule;
 import portfolioProblem.SwapAssets;
 import portfolioProblem.TickersSet;
+import portfolioProblem.ValueAtRisk;
 import solver.parametres.ConstanteKConstant;
 import solver.parametres.FonctionLineaire;
 import solver.quantique.RecuitQuantique;
-import Optionnel.ValueAtRisk;
+
+/**
+ * @author thomasdoutre
+ * @version 1.0
+ * @since   2015-05-10
+ */
 
 public class Main {
 
 	public static void main(String[] args) {
 
-		// Initialisation des Data
 
-		String[] tickers = {"GSPC","AAPL","FCHI"/*,"LG.PA"*//*,"GSZ.PA"*//*"KER.PA","RNO.PA","AIR.PA"*/};
+		String[] tickers = {"GSPC","AAPL","FCHI","LG.PA","GSZ.PA"/*"KER.PA","RNO.PA","AIR.PA"*/};
 		Calendar startCalendar = new GregorianCalendar(2010,0,27);
 		Calendar endCalendar = Calendar.getInstance();
 
-		//On récupère les données et on fait les liens avec l'ensemble d'actifs.
 		TickersSet tickersSet = new TickersSet(tickers);
 		Data data = new Data(tickersSet,startCalendar,endCalendar);
 		tickersSet.setData(data);
 		data.setExpectedReturnsOfEachAsset(data.computeExpectedReturnsOfEachAsset());
 		int nombreTickers = tickersSet.getLength();
 
-		// Initialisation
+		for(int nbRecuits = 0; nbRecuits <20; nbRecuits++){
 
-		ValueAtRisk Ep = new ValueAtRisk();
-		PortfolioDistance Ec = new PortfolioDistance();
+			ValueAtRisk Ep = new ValueAtRisk();
+			PortfolioDistance Ec = new PortfolioDistance();
 
-		SwapAssets mutation = new SwapAssets();
-		mutation.initialize(nombreTickers);
+			SwapAssets mutation = new SwapAssets();
+			mutation.initialize(nombreTickers);
 
-		int k = 1;
-		int M = 100;
-		double G0 = 0.55;
-		int P = 10;
-		int maxSteps = (int) Math.pow(10,2);
-		int seed = 22;
-		double T = 0.35/P;
+			int k = 1;
+			int M = 500;
+			double G0 = 0.55;
+			int P = 10;
+			int maxSteps = 100;
+			int seed = 22;
+			double T = 0.35/P;
 
+			double[] weights = new double[nombreTickers];
+			double[] returns = new double[nombreTickers];
 
-		// construire liste d'etats
+			PortfolioParticule particule = new PortfolioParticule(Ep, mutation, Ec, P, tickersSet, weights, returns);
+			particule.initialiser();
 
-		double[] weights = new double[nombreTickers];
+			FonctionLineaire Tparam = new FonctionLineaire(0,G0,maxSteps);
+			ConstanteKConstant Kparam = new ConstanteKConstant(k);
+			RecuitQuantique recuit = new RecuitQuantique(Tparam,Kparam, M, T);
 
-		/*	double sum=0;
-				for(int i=0; i < nombreTickers;i++){
-					weights[i]=1/nombreTickers;
-				}*/
-		double[] returns = new double[nombreTickers];
-
-		PortfolioParticule particule = new PortfolioParticule(Ep, mutation, Ec, P, tickersSet, weights, returns);
-		particule.initialiser();
-
-		FonctionLineaire Tparam = new FonctionLineaire(G0,0,maxSteps);
-		ConstanteKConstant Kparam = new ConstanteKConstant(k);
-		RecuitQuantique recuit = new RecuitQuantique(Tparam,Kparam, M, T);
-
-		long startTime = System.nanoTime();
-		recuit.lancer(particule);
-		long endTime = System.nanoTime();
-
+			long startTime = System.nanoTime();
+			recuit.lancer(particule);
+			long endTime = System.nanoTime();
+		}
 	}
-
 }
