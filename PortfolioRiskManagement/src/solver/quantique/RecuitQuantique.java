@@ -4,6 +4,7 @@ package solver.quantique;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import Optionnel.Tools;
 import portfolioProblem.Portfolio;
 import solver.commun.Etat;
 import solver.commun.IRecuit;
@@ -11,7 +12,6 @@ import solver.commun.MutationElementaire;
 import solver.commun.Probleme;
 import solver.parametres.ConstanteK;
 import solver.parametres.Fonction;
-import Optionnel.Tools;
 
 /**
  * Classe implémentant le Recuit Quantique, qui prend en paramétres un Gamma et un K modulables ainsi qu'une température constante
@@ -22,7 +22,6 @@ import Optionnel.Tools;
  * On va parler d'une particule, qui disposera de plusieurs états. Ces états influenceront chacun deux autres états dans une chaéne
  * liée invariante. On modifiera les états dans un ordre aléatoire, chaque état subiera le méme nombre d'essais de mutations.
  * 
- * @see solver.simule.RecuitSimule
  * @see solver.commun.Particule
  * @see Etat
  */
@@ -58,6 +57,8 @@ public class RecuitQuantique implements IRecuit {
 
 	public int mutationTentess;
 
+	public double[] meilleursPoids;
+	public double meilleurRetour;
 
 	/**
 	 * Réinitialise Gamma et K au début de lancer().
@@ -117,9 +118,6 @@ public class RecuitQuantique implements IRecuit {
 		Etat etat = probleme.etats[0];
 		Etat previous = probleme.etats[nombreRepliques-1];
 		Etat next = probleme.etats[1];
-		System.out.println("Poids de l'état 0 :");
-		Tools.printArray(((Portfolio)probleme.etats[0]).getWeights());
-		System.out.println("Energie de depart de l'état 0 = "+ probleme.etats[0].Ep.calculer(probleme.etats[0]));
 		for (int i = 0; i < nombreRepliques; i++){	// initialisation de meilleureEnergie
 			double energie = probleme.etats[i].Ep.calculer(probleme.etats[i]) ;
 			if (energie < this.meilleureEnergie){
@@ -128,7 +126,7 @@ public class RecuitQuantique implements IRecuit {
 
 		}	
 
-		double proba = 1;
+		double proba = -1;
 		double deltaEp = 0;
 		double deltaEc = 0;
 		double deltaE = 0;
@@ -141,10 +139,10 @@ public class RecuitQuantique implements IRecuit {
 			indiceEtats.add(i);
 		}
 		boolean bool = false;
-		while(Gamma.modifierT() /*&& this.meilleureEnergie!=0*/){
+		while(Gamma.modifierT()){
 			Collections.shuffle(indiceEtats, probleme.gen);	// melanger l'ordre de parcours des indices
 			Jr = -this.temperature/2*Math.log(Math.tanh(this.Gamma.t/nombreRepliques/this.temperature));	// calcul de Jr pour ce palier
-
+			//System.out.println("this.temperature = "+this.temperature + ",this.Gamma = "+this.Gamma.t);
 			for (Integer p : indiceEtats){	
 
 				etat = probleme.etats[p];	
@@ -162,7 +160,6 @@ public class RecuitQuantique implements IRecuit {
 				else{
 					next = probleme.etats[p+1];
 				}
-
 				for (int j = 0; j < this.palier; j++){
 
 					MutationElementaire mutation = probleme.getMutationElementaire(etat);	// trouver une mutation possible
@@ -170,47 +167,43 @@ public class RecuitQuantique implements IRecuit {
 
 					deltaEp = probleme.calculerDeltaEp(etat, mutation);	// calculer deltaEp si la mutation etait acceptee
 					deltaEc = probleme.calculerDeltaEc(etat, previous, next, mutation);  // calculer deltaIEc si la mutation etait acceptee
-
-					//différences du hamiltonien total
-					//multiplier deltaIEc par JGamma
 					deltaE = deltaEp/nombreRepliques - deltaEc*Jr;
-					//K.calculerK(deltaE);
 
 					if( deltaE <= 0 || deltaEp < 0) {
 						proba = 1;
 					}
-					else	proba = Math.exp(-deltaE / (this.K.k * this.temperature));
+					else	{proba = Math.exp(-deltaE / (this.K.k * this.temperature));}
 					if (proba == 1 || proba >= probleme.gen.nextDouble()) {
 						mutationsAcceptees++;
 						probleme.modifElem(etat, mutation);				// faire la mutation
-						//System.out.println("apres le faire :");
 
 						if (deltaEp < 0){
 							EpActuelle = etat.Ep.calculer(etat);		// energie potentielle temporelle
-							
 							if( EpActuelle < this.meilleureEnergie ){		// mettre a jour la meilleur energie
-								System.out.println("ACTUALISATION DE LA MEILLEURE ENERGIE : " + EpActuelle);
+								System.out.println("ACTUALISATION DE LA MEILLEURE ENERGIE POUR L ETAT "+p+" : " + EpActuelle);
 
 								this.meilleureEnergie = EpActuelle;
+								this.meilleursPoids = ((Portfolio)probleme.etats[p]).getWeights();
+								this.meilleurRetour = ((Portfolio)probleme.etats[p]).computeExpectedReturn();
+
 							}
 						}
-						
+
 					}
 				}
-				
+
 			}
 		}
 
 
-		System.out.println("Mutations tentées : " + mutationsTentees);
-		System.out.println("Mutations acceptées : " + mutationsAcceptees);
-		System.out.println("Meilleur Ep :"+ this.meilleureEnergie);
-		double sum =0;
-		for(int i = 0; i<((Portfolio)probleme.etats[0]).getWeights().length;i++){
-			sum += ((Portfolio)probleme.etats[0]).getWeights()[i];
-		}
-		System.out.println("sum = "+sum);
-		System.out.println("Expected Return :"+ ((Portfolio)probleme.etats[0]).computeExpectedReturn());
+		//System.out.println(this.meilleureEnergie+";"+this.meilleurRetour);
+			System.out.println("Best VaR found : "+this.meilleureEnergie);
+			
+
+			
+		/*System.out.println("Meilleurs Poids");
+		Tools.printArray(this.meilleursPoids);
+*/
 		this.mutationTentess=mutationsTentees;
 		return;
 	}
@@ -222,9 +215,5 @@ public class RecuitQuantique implements IRecuit {
 	public int getMutationTentess() {
 		return mutationTentess;
 	}
-
-
-
-
 
 }
