@@ -8,6 +8,13 @@ import solver.commun.Etat;
 import solver.commun.MutationElementaire;
 import Optionnel.Tools;
 
+/**
+ * This class represents a fake risk metric in order to debug the program.
+ * @author thomasdoutre
+ * @version 1.0
+ * @since   2015-06-04
+ */
+
 public class DebugRisk extends EnergiePotentielle {
 	
 	@Override
@@ -43,13 +50,9 @@ public class DebugRisk extends EnergiePotentielle {
 		
 		int longDeVecteur = 0;
 		for(Map.Entry<Integer, Double> entry : vect.entrySet()){
-			
+
 			longDeVecteur++;
 			newPortfolioWeights[entry.getKey()] += entry.getValue();
-			/*for(int i =0; i<newPortfolioWeights.length;i++){
-			newPortfolioWeights[entry.getKey()] += entry.getValue()*(portfolio.getTickersSet().getData().getReturnsMatrix()[i][entry.getKey()]);
-			//System.out.println("=="+ entry.getValue()*(portfolio.getTickersSet().getData().getReturnsMatrix()[i][entry.getKey()]));
-			}*/
 			
 		}
 		System.out.println("longDeVecteur = "+longDeVecteur);
