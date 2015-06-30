@@ -2,6 +2,7 @@ package portfolioProblem;
 
 /**
  * This class decribes set of tickers
+ * @author thomasdoutre
  * @version 1.0
  * @since   2015-05-10
  */
@@ -15,7 +16,6 @@ public class TickersSet {
 	
 	/**
 	 * @param tickers
-	 * @param data
 	 */
 	public TickersSet(String[] tickers) {
 		this.tickers = tickers;
