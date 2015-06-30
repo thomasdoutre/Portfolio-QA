@@ -10,6 +10,7 @@ import java.util.Calendar;
 
 /**
  * This class retrieves historical data from YahooFinance csv files.
+ * @author thomasdoutre
  * @version 1.0
  * @since   2015-05-10
  */
@@ -25,11 +26,10 @@ public class Data {
 	private Calendar endCalendar;
 	
 	public Data(TickersSet tickersSet, Calendar startCalendar, Calendar endCalendar){
-		
+
 		this.tickersSet = tickersSet;
 		this.startCalendar = startCalendar;
 		this.endCalendar = endCalendar;
-		
 		this.pricesMatrix = this.computePricesMatrix();
 		this.returnsMatrix = this.computeReturnsMatrix();
 		this.expectedReturnsOfEachAsset = this.computeExpectedReturnsOfEachAsset();
@@ -41,6 +41,7 @@ public class Data {
 	 * Columns represents differents tickers.
 	 * Lines represents trading days.
 	 * The resulting matrix may not include all data available, because we only include data that is relevant for creating a portfolio.
+	 * @return the matrix
 	 */
 	
 	private double[][] computePricesMatrix() {
@@ -90,10 +91,6 @@ public class Data {
 		for(int i=0; i<tickersSet.getLength(); i++){
 			for(int j=0; j<min; j++){
 				pricesMatrix[j][i] = pricesArrayList.get(i)[j];
-				/*System.out.println("j "+j);
-				System.out.println("i "+i);
-				System.out.println("min "+min);
-				System.out.println("nombre Tickers "+this.tickersSet.getLength());*/
 			}
 		}
 		
@@ -134,7 +131,6 @@ public class Data {
 		double[] pricesOfEachAsset = new double[n];
 		for (int i = 0; i<n;i++){
 			pricesOfEachAsset[i]=this.pricesMatrix[0][i];
-			//Vérifier les indices
 		}
 		return pricesOfEachAsset;
 		
