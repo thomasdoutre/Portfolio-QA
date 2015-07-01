@@ -56,7 +56,7 @@ public class Main {
 			PortfolioParticule particule = new PortfolioParticule(Ep, mutation, Ec, P, tickersSet, weights, returns);
 			particule.initialiser();
 
-			FonctionLineaire Tparam = new FonctionLineaire(0,G0,maxSteps);
+			FonctionLineaire Tparam = new FonctionLineaire(G0,0,maxSteps);
 			ConstanteKConstant Kparam = new ConstanteKConstant(k);
 			RecuitQuantique recuit = new RecuitQuantique(Tparam,Kparam, M, T);
 
