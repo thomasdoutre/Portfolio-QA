@@ -74,7 +74,7 @@ public class SwapAssets implements IMutation {
 			this.Asset3 = generator.nextInt(nombreTickers);
 		} while (Asset2==Asset3 || Asset3 == Asset1);
 
-		this.step = 0.1*Math.random();
+		this.step = 1000*Math.random();
 	}
 
 	/**
