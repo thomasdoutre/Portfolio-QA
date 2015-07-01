@@ -23,13 +23,13 @@ public class FonctionLineaire extends Fonction {
 	/**
 	 * <p>
 	 * Ici, on ajoute le pas é la température et on vérifie si la température résultante est inférieure é la température de fin.
-	 * Pour le recuit quantique, modifierT() modifie Gamma, pas la température, on a donc des valeurs croissantes.
+	 * Pour le recuit quantique, modifierT() modifie Gamma, pas la température.
 	 */
 	public boolean modifierT() {
-		if (this.t+this.pasLineaire > this.Tfinal) {
+		if (this.t+this.pasLineaire < this.Tfinal) {
 			return false;
 		} else {
-			this.t += this.pasLineaire; //pas lineaire positif
+			this.t += this.pasLineaire; //pas lineaire négatif
 			return true;
 		}
 	}
