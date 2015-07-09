@@ -1,3 +1,9 @@
+/**
+ * This class describes a QA particle
+ * @author thomasdoutre
+ * @version 1.0
+ * @since   2015-06-20
+ */
 
 public class Particule {
 
