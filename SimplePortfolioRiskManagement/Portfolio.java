@@ -1,8 +1,13 @@
 import java.util.Random;
-
 import org.apache.commons.math3.stat.descriptive.moment.Mean;
 import org.apache.commons.math3.stat.descriptive.rank.Percentile;
 
+/**
+ * This class describes a portfolio
+ * @author thomasdoutre
+ * @version 1.0
+ * @since   2015-06-20
+ */
 
 public class Portfolio {
 
