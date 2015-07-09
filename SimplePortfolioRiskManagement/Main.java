@@ -13,7 +13,6 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		System.out.println("PO-VersionSimple");
 		String[] tickers = {/*"GSPC",*/"AAPL","FCHI","LG.PA","GSZ.PA","KER.PA","RNO.PA","AIR.PA"/*,"OMXC20.CO"*/,"DG.PA","UG.PA"};
 		Calendar startCalendar = new GregorianCalendar(2010,0,27);
 		Calendar endCalendar = Calendar.getInstance();
