@@ -1,3 +1,10 @@
+/**
+ * This class implements the SA algorithm
+ * @author thomasdoutre
+ * @version 1.0
+ * @since   2015-06-20
+ */
+
 
 public class RecuitSimule {
 
